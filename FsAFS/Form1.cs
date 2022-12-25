@@ -1948,6 +1948,7 @@ namespace FsAFS
                             lvDuplicate.Items.Clear();
                             lbLeftSideFolderSize.Text = GetFolderSize(txtSourceFolderPath.Text);
                             lbRightSideFolderSize.Text = GetFolderSize(txtDestinationFolderPath.Text);
+                            calculatefilesandfolders(2);
                             progressBar1.Visible = false;
                             MessageBox.Show("Process Completed");
 
