@@ -68,9 +68,11 @@ namespace FsAFS
         {
             InitializeComponent();
         }
-        
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            progressBar1.Style = ProgressBarStyle.Marquee;
+            progressBar1.Visible = false;
             //con.Open();
             //SqlCommand cmd = new SqlCommand("TRUNCATE TABLE copy_item_list", con);
             //cmd.ExecuteNonQuery();
@@ -78,7 +80,7 @@ namespace FsAFS
             //trayIcon.Icon = Properties.Resources.logo;
             //trayIcon.Visible = true;
             //trayIcon.ShowBalloonTip(1000, "Wlcome Message", "Welcome to My Application FsAFS", ToolTipIcon.None);
-           
+
             //<>
             {
                 btnAnalyse.Enabled = false;
@@ -138,9 +140,9 @@ namespace FsAFS
             //</>
             string Imagepath = AppDomain.CurrentDomain.BaseDirectory;
             Imagepath = Imagepath.Replace(@"bin\Debug\", @"Resources\");
-            string filetype_name_path = Imagepath+@"filetype_name.txt";
-            
-            
+            string filetype_name_path = Imagepath + @"filetype_name.txt";
+
+
             if (File.Exists(filetype_name_path))
             {
                 filetype_name = File.ReadAllText(filetype_name_path).Split(',');
@@ -149,7 +151,7 @@ namespace FsAFS
             ImageList img = new ImageList() { ImageSize = new Size(25, 25) };
 
             //<>
-            
+
             //img.Images.Add(Properties.Resources.file);
             //img.Images.Add(Properties.Resources.folder);
             img.Images.Add(Image.FromFile(Imagepath + @"file.png"));
@@ -175,7 +177,7 @@ namespace FsAFS
 
             formRectSize = this.Size;
 
-            
+
             panelSourceFolderRect = new Rectangle(panelSourceFolder.Location, panelSourceFolder.Size);
             panelDestinationFolderRect = new Rectangle(panelDestinationFolder.Location, panelDestinationFolder.Size);
             panelButtom1Rect = new Rectangle(panelBottom1.Location, panelBottom1.Size);
@@ -280,15 +282,15 @@ namespace FsAFS
 
             timer1.Interval = 1000;
             timer1.Start();
-            
+
         }
 
         private void Form1_Resize(object sender, EventArgs e)
         {
             ChildResize();
         }
-        
-        public void copyFile(string sourcePath, string destinationPath, Boolean fileOverride=false)
+
+        public void copyFile(string sourcePath, string destinationPath, Boolean fileOverride = false)
         {
             try
             {
@@ -300,9 +302,9 @@ namespace FsAFS
                 {
                     MessageBox.Show("Error to insert in database");
                 }
-                
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -317,7 +319,7 @@ namespace FsAFS
                     MessageBox.Show(ex2.Message);
                 }
             }
-            
+
         }
 
         public static bool AccessCheck(string folderPath)
@@ -361,12 +363,12 @@ namespace FsAFS
             {
                 return false;
             }
-            
+
         }
 
         string GetFolderSize(string Path)
         {
-            if(Directory.Exists(Path))
+            if (Directory.Exists(Path))
             {
                 string[] a = Directory.GetFiles(Path, "*.*", SearchOption.AllDirectories);
 
@@ -422,21 +424,21 @@ namespace FsAFS
 
         void calculatefilesandfolders(int i)
         {
-            if(i==0)
+            if (i == 0)
             {
                 string[] sourceFiles = Directory.GetFiles(txtSourceFolderPath.Text, "*.*", SearchOption.AllDirectories);
                 string[] sourceFolders = Directory.GetDirectories(txtSourceFolderPath.Text, "*.*", SearchOption.AllDirectories);
                 lbNoOfSourceFiles.Text = "Files: " + sourceFiles.Length;
                 lbNoOfSourceFolders.Text = "Folders: " + sourceFolders.Length;
             }
-            else if(i==1)
+            else if (i == 1)
             {
                 string[] destinationFiles = Directory.GetFiles(txtDestinationFolderPath.Text, "*.*", SearchOption.AllDirectories);
                 string[] destinationFolders = Directory.GetDirectories(txtDestinationFolderPath.Text, "*.*", SearchOption.AllDirectories);
                 lbNoOfDestinationFiles.Text = "Files: " + destinationFiles.Length;
                 lbNoOfDestinationFolders.Text = "Folders: " + destinationFolders.Length;
             }
-            else if(i==2)
+            else if (i == 2)
             {
                 string[] sourceFiles = Directory.GetFiles(txtSourceFolderPath.Text, "*.*", SearchOption.AllDirectories);
                 string[] sourceFolders = Directory.GetDirectories(txtSourceFolderPath.Text, "*.*", SearchOption.AllDirectories);
@@ -451,8 +453,8 @@ namespace FsAFS
 
         void ChildResize()
         {
-            ControlResize(panelSourceFolderRect, panelSourceFolder,panelSourceFolderFont);
-            ControlResize(panelDestinationFolderRect, panelDestinationFolder,panelDestinationFolderFont);
+            ControlResize(panelSourceFolderRect, panelSourceFolder, panelSourceFolderFont);
+            ControlResize(panelDestinationFolderRect, panelDestinationFolder, panelDestinationFolderFont);
             ControlResize(panelButtom1Rect, panelBottom1);
             panelBottom1.Height = 122;
             ControlResize(panelButtom2Rect, panelBottom2);
@@ -468,7 +470,7 @@ namespace FsAFS
             Relocated(pbCopySourceFolderPathRect, pbCopySourceFolderPath);
             Relocated(pbCopyDestinationFolderNameRect, pbCopyDestinationFolderName);
             Relocated(pbCopyDestinationFolderPathRect, pbCopyDestinationFolderPath);
-            
+
             ControlResize(txtSourceFolderNameRect, txtSourceFolderName);
             ControlResize(txtSourceFolderPathRect, txtSourceFolderPath);
             ControlResize(txtDestinationFolderNameRect, txtDestinationFolderName);
@@ -528,11 +530,11 @@ namespace FsAFS
             }
             double newFontSize = orignalFontSize * ratio;
             Font nowFontSize = new Font(c.Font.FontFamily, (float)6);
-            if (newFontSize>9)
+            if (newFontSize > 9)
             {
                 nowFontSize = new Font(c.Font.FontFamily, (float)9);
             }
-            else if(newFontSize<=9 && newFontSize>=6)
+            else if (newFontSize <= 9 && newFontSize >= 6)
             {
                 nowFontSize = new Font(c.Font.FontFamily, (float)newFontSize);
             }
@@ -562,7 +564,7 @@ namespace FsAFS
                 string fileext = Path.GetExtension(s[2]);
                 fileext = fileext.Replace(".", "");
                 int index = Array.IndexOf(filetype_name, fileext.ToLower());
-                if(index!=-1)
+                if (index != -1)
                 {
                     iconIndex = index + 2;
                 }
@@ -627,7 +629,7 @@ namespace FsAFS
                 foreach (string file in Directory.GetFiles(path))
                 {
                     File.Delete(file);
-                    
+
                 }
                 //Delete all child Directories
                 foreach (string directory in Directory.GetDirectories(path))
@@ -636,18 +638,18 @@ namespace FsAFS
                 }
                 //Delete a Directory
                 Directory.Delete(path);
-                
+
             }
         }
 
         void DeleteFile(string path)
         {
-            if(File.Exists(path))
+            if (File.Exists(path))
             {
                 File.Delete(path);
                 con.Open();
-                SqlCommand cmd = new SqlCommand("insert into delete_item_list values ('" + path + "','" + DateTime.Now + "')",con);
-                if(cmd.ExecuteNonQuery()==0)
+                SqlCommand cmd = new SqlCommand("insert into delete_item_list values ('" + path + "','" + DateTime.Now + "')", con);
+                if (cmd.ExecuteNonQuery() == 0)
                 {
                     MessageBox.Show("Add Deleted item in Database Error");
                 }
@@ -657,7 +659,7 @@ namespace FsAFS
 
         bool FileCompare(string path1, string path2)
         {
-            if(File.Exists(path1) && File.Exists(path2))
+            if (File.Exists(path1) && File.Exists(path2))
             {
                 HashAlgorithm ha = HashAlgorithm.Create();
                 FileStream f1 = new FileStream(path1, FileMode.Open); ;
@@ -687,7 +689,7 @@ namespace FsAFS
 
         bool FolderCompare(string pathA, string pathB)
         {
-            if(Directory.Exists(pathA) && Directory.Exists(pathB))
+            if (Directory.Exists(pathA) && Directory.Exists(pathB))
             {
                 DirectoryInfo dir1 = new DirectoryInfo(pathA);
                 DirectoryInfo dir2 = new DirectoryInfo(pathB);
@@ -718,7 +720,7 @@ namespace FsAFS
             {
                 return (f1.Name == f2.Name &&
                         f1.Length == f2.Length);
-            } 
+            }
             public int GetHashCode(FileInfo fi)
             {
                 string s = $"{fi.Name}{fi.Length}";
@@ -733,7 +735,7 @@ namespace FsAFS
             string[] SplitsSettingData = settingData.Split(',');
             double fromSize = 0;
             double toSize = 0;
-            if(SplitsSettingData[0] == "SizeCreated DateType" || SplitsSettingData[0] == "SizeCreated DateCustom Type" || SplitsSettingData[0] == "SizeCreated Date" || SplitsSettingData[0] == "Size" || SplitsSettingData[0] == "SizeCustom Type" || SplitsSettingData[0] == "SizeType")
+            if (SplitsSettingData[0] == "SizeCreated DateType" || SplitsSettingData[0] == "SizeCreated DateCustom Type" || SplitsSettingData[0] == "SizeCreated Date" || SplitsSettingData[0] == "Size" || SplitsSettingData[0] == "SizeCustom Type" || SplitsSettingData[0] == "SizeType")
             {
                 if (SplitsSettingData[2] == "KB")
                 {
@@ -769,14 +771,14 @@ namespace FsAFS
                     toSize = Convert.ToDouble(SplitsSettingData[3]);
                 }
             }
-            
+
             if (SplitsSettingData[0] == "SizeCreated DateType")
             {
                 double filesize = new FileInfo(data[1]).Length;
                 DateTime dateTimeFrom = DateTime.Parse(SplitsSettingData[5]);
                 DateTime dateTimeTo = DateTime.Parse(SplitsSettingData[6]);
                 DateTime fileDate = DateTime.Parse(File.GetCreationTime(data[1]).ToShortDateString());
-                if((filesize >= fromSize && filesize <= toSize) && (Path.GetExtension(data[1]) == SplitsSettingData[7]) && (dateTimeFrom <= fileDate && dateTimeTo >= fileDate))
+                if ((filesize >= fromSize && filesize <= toSize) && (Path.GetExtension(data[1]) == SplitsSettingData[7]) && (dateTimeFrom <= fileDate && dateTimeTo >= fileDate))
                 {
                     AddItemListViewDifferent(data[0], data[1], data[2], data[3], data[4]);
                 }
@@ -866,35 +868,35 @@ namespace FsAFS
             else if (SplitsSettingData[0] == "Size")
             {
                 double filesize = new FileInfo(data[1]).Length;
-                if(filesize>=fromSize && filesize<=toSize)
+                if (filesize >= fromSize && filesize <= toSize)
                 {
-                    AddItemListViewDifferent(data[0], data[1], data[2], data[3],data[4]);
+                    AddItemListViewDifferent(data[0], data[1], data[2], data[3], data[4]);
                 }
-                
+
             }
             else if (SplitsSettingData[0] == "Created Date")
             {
                 DateTime dateTimeFrom = DateTime.Parse(SplitsSettingData[1]);
                 DateTime dateTimeTo = DateTime.Parse(SplitsSettingData[2]);
                 DateTime fileDate = DateTime.Parse(File.GetCreationTime(data[1]).ToShortDateString());
-                if(dateTimeFrom<=fileDate && dateTimeTo>=fileDate)
+                if (dateTimeFrom <= fileDate && dateTimeTo >= fileDate)
                 {
                     AddItemListViewDifferent(data[0], data[1], data[2], data[3], data[4]);
                 }
             }
             else if (SplitsSettingData[0] == "Type")
             {
-                if(Path.GetExtension(data[1]) == SplitsSettingData[1])
+                if (Path.GetExtension(data[1]) == SplitsSettingData[1])
                 {
                     AddItemListViewDifferent(data[0], data[1], data[2], data[3], data[4]);
                 }
             }
-            else if(SplitsSettingData[0] == "Custom Type")
+            else if (SplitsSettingData[0] == "Custom Type")
             {
                 string[] customtypes = SplitsSettingData[1].Split('|');
-                foreach(string type in customtypes)
+                foreach (string type in customtypes)
                 {
-                    if(type.Contains(Path.GetExtension(data[1])))
+                    if (type.Contains(Path.GetExtension(data[1])))
                     {
                         AddItemListViewDifferent(data[0], data[1], data[2], data[3], data[4]);
                         break;
@@ -918,15 +920,16 @@ namespace FsAFS
             lvDuplicate.Items.Clear();
             lvDifferent.Items.Clear();
 
-            CommonOpenFileDialog dialog = new CommonOpenFileDialog() {
+            CommonOpenFileDialog dialog = new CommonOpenFileDialog()
+            {
                 IsFolderPicker = true
             };
-            
+
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                if(AccessCheck(dialog.FileName))
+                if (AccessCheck(dialog.FileName))
                 {
-                    
+
                     timer1.Stop();
                     btnBL.Enabled = false;
                     string str = dialog.FileName;
@@ -948,20 +951,20 @@ namespace FsAFS
                 {
                     MessageBox.Show("Folder Not Accessible", "Folder Auth", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                
+
             }
         }
 
         private void BtnBR_Click(object sender, EventArgs e)
         {
-            
+
             lbRightSideFolderSize.Text = "";
             lbNoOfDestinationFiles.Text = "";
             lbNoOfDestinationFolders.Text = "";
             txtDestinationFolderName.Clear();
             txtDestinationFolderPath.Clear();
 
-            
+
             lvDuplicate.Items.Clear();
             lvDifferent.Items.Clear();
 
@@ -1001,6 +1004,7 @@ namespace FsAFS
         {
             if (txtSourceFolderPath.Text != "" && txtDestinationFolderPath.Text != "")
             {
+                progressBar1.Visible = true;
                 timer1.Stop();
                 EnableOrDisableControls(false);
                 btnCancel.Enabled = true;
@@ -1013,18 +1017,14 @@ namespace FsAFS
                 int SourceFileLen = SourceFiles.Length;
                 int DesFolderLen = DestinationFolders.Length;
                 int SourceFolderLen = SourceFolders.Length;
-                int maxProgress = SourceFileLen + SourceFolderLen + DesFileLen + DesFolderLen;
-                int progressValue = 0;
-                progressBar1.Maximum = maxProgress;
-                progressBar1.Minimum = 0;
-                progressBar1.Value = 0;
                 lvDifferent.Items.Clear();
                 lvDuplicate.Items.Clear();
                 Boolean flagOperationCancel = false;
-                
+
                 await Task.Run(() =>
                 {
-                    Task task1 = Task.Factory.StartNew(() => {
+                    Task task1 = Task.Factory.StartNew(() =>
+                    {
                         for (int i = 0; i < SourceFolderLen; i++)
                         {
                             if (operationCancel || flagOperationCancel)
@@ -1039,9 +1039,9 @@ namespace FsAFS
                             string type = "Folder";
                             string itemMD5Hash = StringToMD5Hash(item);
                             string notAvalibleItemPath = txtDestinationFolderPath.Text + item;
-                            if (DesFolderLen==0)
+                            if (DesFolderLen == 0)
                             {
-                                
+
                                 AddItemListViewDifferent(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
                             }
                             else
@@ -1062,13 +1062,6 @@ namespace FsAFS
                                     AddItemListViewDifferent(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
                                 }
                             }
-                            
-                            if (progressValue > maxProgress)
-                            {
-                                maxProgress++;
-                                progressBar1.Maximum = maxProgress;
-                            }
-                            progressBar1.Value = progressValue++;
                             if (operationCancel || flagOperationCancel)
                             {
                                 flagOperationCancel = true;
@@ -1078,7 +1071,8 @@ namespace FsAFS
                             }
                         }
                     });
-                    Task task2 = Task.Factory.StartNew(() => {
+                    Task task2 = Task.Factory.StartNew(() =>
+                    {
                         for (int i = 0; i < DesFolderLen; i++)
                         {
                             if (operationCancel || flagOperationCancel)
@@ -1093,9 +1087,9 @@ namespace FsAFS
                             string type = "Folder";
                             string itemMD5Hash = StringToMD5Hash(item);
                             string notAvalibleItemPath = txtSourceFolderPath.Text + item;
-                            if (SourceFolderLen==0)
+                            if (SourceFolderLen == 0)
                             {
-                                
+
                                 AddItemListViewDifferent(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
                             }
                             else
@@ -1105,13 +1099,6 @@ namespace FsAFS
                                     AddItemListViewDifferent(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
                                 }
                             }
-                            
-                            if (progressValue > maxProgress)
-                            {
-                                maxProgress++;
-                                progressBar1.Maximum = maxProgress;
-                            }
-                            progressBar1.Value = progressValue++;
                             if (operationCancel || flagOperationCancel)
                             {
                                 flagOperationCancel = true;
@@ -1122,8 +1109,9 @@ namespace FsAFS
                         }
                     });
                     Task.WaitAll(task1, task2);
-                    
-                    Task task3 = Task.Factory.StartNew(() => {
+
+                    Task task3 = Task.Factory.StartNew(() =>
+                    {
                         for (int i = 0; i < SourceFiles.Length; i++)
                         {
                             if (operationCancel || flagOperationCancel)
@@ -1137,54 +1125,47 @@ namespace FsAFS
                             string itemPath = SourceFiles[i];
                             string type = "File";
                             string itemMD5Hash = StringToMD5Hash(item);
+                            string notAvalibleItemPath = txtDestinationFolderPath.Text + item;
                             if (DestinationFiles.Length == 0)
                             {
-                                string notAvalibleItemPath = txtDestinationFolderPath.Text + item;
+                                
                                 DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
                             }
                             else
                             {
-                                if (File.Exists(txtDestinationFolderPath.Text + item))
+                                if (File.Exists(notAvalibleItemPath))
                                 {
-                                    if (Path.GetFileName(itemPath) == Path.GetFileName(txtDestinationFolderPath.Text + item))
+                                    if (StringToMD5Hash(Path.GetFileName(itemPath)) == StringToMD5Hash(Path.GetFileName(notAvalibleItemPath)))
                                     {
                                         FileInfo fi1 = new FileInfo(itemPath);
-                                        FileInfo fi2 = new FileInfo(txtDestinationFolderPath.Text + item);
+                                        FileInfo fi2 = new FileInfo(notAvalibleItemPath);
                                         if (fi1.Length == fi2.Length)
                                         {
-                                            bool check = FileCompare(itemPath, txtDestinationFolderPath.Text + item);
+                                            bool check = FileCompare(itemPath, notAvalibleItemPath);
                                             if (check)
                                             {
                                                 AddItemListViewDuplicate(item, type, itemMD5Hash);
                                             }
                                             else
                                             {
-                                                DifferentFileSettings(item, itemPath, txtDestinationFolderPath.Text + item, type, itemMD5Hash);
+                                                DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
                                             }
                                         }
                                         else
                                         {
-                                            DifferentFileSettings(item, itemPath, txtDestinationFolderPath.Text + item, type, itemMD5Hash);
+                                            DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
                                         }
                                     }
                                     else
                                     {
-                                        DifferentFileSettings(item, itemPath, txtDestinationFolderPath.Text + item, type, itemMD5Hash);
+                                        DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
                                     }
                                 }
                                 else
                                 {
-                                    string notAvalibleItemPath = txtDestinationFolderPath.Text + item;
                                     DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
                                 }
                             }
-                                
-                            if (progressValue > maxProgress)
-                            {
-                                maxProgress++;
-                                progressBar1.Maximum = maxProgress;
-                            }
-                            progressBar1.Value = progressValue++;
                             if (operationCancel || flagOperationCancel)
                             {
                                 flagOperationCancel = true;
@@ -1195,7 +1176,8 @@ namespace FsAFS
                         }
                     });
 
-                    Task task4 = Task.Factory.StartNew(() => {
+                    Task task4 = Task.Factory.StartNew(() =>
+                    {
                         for (int i = 0; i < DesFileLen; i++)
                         {
                             if (operationCancel || flagOperationCancel)
@@ -1210,7 +1192,7 @@ namespace FsAFS
                             string type = "File";
                             string itemMD5Hash = StringToMD5Hash(item);
                             string notAvalibleItemPath = txtSourceFolderPath.Text + item;
-                            if (SourceFileLen==0)
+                            if (SourceFileLen == 0)
                             {
                                 DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
                             }
@@ -1221,13 +1203,7 @@ namespace FsAFS
                                     DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
                                 }
                             }
-                                
-                            if (progressValue > maxProgress)
-                            {
-                                maxProgress++;
-                                progressBar1.Maximum = maxProgress;
-                            }
-                            progressBar1.Value = progressValue++;
+
                             if (operationCancel || flagOperationCancel)
                             {
                                 flagOperationCancel = true;
@@ -1237,12 +1213,10 @@ namespace FsAFS
                             }
                         }
                     });
-                    Task.WaitAll(task3,task4);
+                    Task.WaitAll(task3, task4);
                 });
-                
-                progressBar1.Value = maxProgress;
+                progressBar1.Visible = false;
                 MessageBox.Show("Analyse Completed");
-                progressBar1.Value = 0;
                 EnableOrDisableControls(true);
                 btnAnalyseSettings.Enabled = true;
                 btnCancel.Enabled = false;
@@ -1257,17 +1231,11 @@ namespace FsAFS
                 if (confirmMessage("You can't cancel/undo/redo operation do you want to continue?"))
                 {
                     timer1.Stop();
+                    progressBar1.Visible = true;
                     await Task.Run(() =>
                     {
-                        int maxProgress = lvDifferent.Items.Count;
-                        int progressValue = 0;
-                        progressBar1.Maximum = maxProgress;
-                        progressBar1.Minimum = 0;
-                        progressBar1.Value = 0;
                         EnableOrDisableControls(false);
                         f = 0;
-
-
                         for (int i = 0; i < lvDifferent.Items.Count; i++)
                         {
                             string avalableItemPath = lvDifferent.Items[i].SubItems[1].Text;
@@ -1359,27 +1327,19 @@ namespace FsAFS
                                     }
                                 }
                             }
-                            if (progressValue > maxProgress)
-                            {
-                                maxProgress++;
-                                progressBar1.Maximum = maxProgress;
-                            }
-                            progressBar1.Value = progressValue++;
-
                         }
                         lvDifferent.Items.Clear();
                         lvDuplicate.Items.Clear();
                         lbLeftSideFolderSize.Text = GetFolderSize(txtSourceFolderPath.Text);
                         lbRightSideFolderSize.Text = GetFolderSize(txtDestinationFolderPath.Text);
                         calculatefilesandfolders(2);
-                        progressBar1.Value = maxProgress;
+                        progressBar1.Visible = false;
                         MessageBox.Show("Sync Completed");
-                        progressBar1.Value = 0;
                         EnableOrDisableControls(true);
                     });
                     timer1.Start();
                 }
-                
+
             }
             else
             {
@@ -1395,15 +1355,10 @@ namespace FsAFS
                 if (confirmMessage("You can't cancel/undo/redo operation do you want to continue?"))
                 {
                     timer1.Stop();
-                    await Task.Run(() => {
-                        int maxProgress = lvDifferent.Items.Count;
-                        int progressValue = 0;
-                        progressBar1.Maximum = maxProgress;
-                        progressBar1.Minimum = 0;
-                        progressBar1.Value = 0;
+                    progressBar1.Visible = true;
+                    await Task.Run(() =>
+                    {
                         EnableOrDisableControls(false);
-
-
                         ArrayList al = new ArrayList();
                         for (int i = 0; i < lvDifferent.Items.Count; i++)
                         {
@@ -1454,34 +1409,20 @@ namespace FsAFS
                                     }
                                 }
                             }
-                            if (progressValue > maxProgress)
-                            {
-                                maxProgress++;
-                                progressBar1.Maximum = maxProgress;
-                            }
-                            progressBar1.Value = progressValue++;
+
                         }
                         foreach (string p in al)
                         {
                             DeleteDirectory(p);
-                            if (progressValue > maxProgress)
-                            {
-                                maxProgress++;
-                                progressBar1.Maximum = maxProgress;
-                            }
-                            progressBar1.Value = progressValue++;
                         }
                         lvDifferent.Items.Clear();
                         lvDuplicate.Items.Clear();
                         lbRightSideFolderSize.Text = GetFolderSize(txtDestinationFolderPath.Text);
                         lbLeftSideFolderSize.Text = GetFolderSize(txtSourceFolderPath.Text);
                         calculatefilesandfolders(2);
-                        progressBar1.Value = maxProgress;
+                        progressBar1.Visible = false;
                         MessageBox.Show("Sync Completed");
-                        progressBar1.Value = 0;
                         EnableOrDisableControls(true);
-
-
                     });
                     timer1.Start();
                 }
@@ -1499,12 +1440,9 @@ namespace FsAFS
                 if (confirmMessage("You can't cancel/undo/redo operation do you want to continue?"))
                 {
                     timer1.Stop();
-                    await Task.Run(() => {
-                        int maxProgress = lvDifferent.Items.Count;
-                        int progressValue = 0;
-                        progressBar1.Maximum = maxProgress;
-                        progressBar1.Minimum = 0;
-                        progressBar1.Value = 0;
+                    progressBar1.Visible = true;
+                    await Task.Run(() =>
+                    {
                         EnableOrDisableControls(false);
 
                         for (int i = 0; i < lvDifferent.Items.Count; i++)
@@ -1554,25 +1492,19 @@ namespace FsAFS
                                 }
 
                             }
-                            if (progressValue > maxProgress)
-                            {
-                                maxProgress++;
-                                progressBar1.Maximum = maxProgress;
-                            }
-                            progressBar1.Value = progressValue++;
                         }
                         lvDifferent.Items.Clear();
                         lvDuplicate.Items.Clear();
                         lbRightSideFolderSize.Text = GetFolderSize(txtDestinationFolderPath.Text);
                         calculatefilesandfolders(1);
-                        progressBar1.Value = maxProgress;
+                        progressBar1.Visible = false;
                         MessageBox.Show("Process Completed");
-                        progressBar1.Value = 0;
                         EnableOrDisableControls(true);
                     });
+
                     timer1.Start();
                 }
-                
+
             }
             else
             {
@@ -1587,12 +1519,9 @@ namespace FsAFS
                 if (confirmMessage("You can't cancel/undo/redo operation do you want to continue?"))
                 {
                     timer1.Stop();
-                    await Task.Run(() => {
-                        int maxProgress = lvDifferent.Items.Count;
-                        int progressValue = 0;
-                        progressBar1.Maximum = maxProgress;
-                        progressBar1.Minimum = 0;
-                        progressBar1.Value = 0;
+                    progressBar1.Visible = true;
+                    await Task.Run(() =>
+                    {
                         EnableOrDisableControls(false);
                         for (int i = 0; i < lvDifferent.Items.Count; i++)
                         {
@@ -1640,28 +1569,21 @@ namespace FsAFS
                                 }
 
                             }
-                            if (progressValue > maxProgress)
-                            {
-                                maxProgress++;
-                                progressBar1.Maximum = maxProgress;
-                            }
-                            progressBar1.Value = progressValue++;
                         }
                         lvDifferent.Items.Clear();
                         lvDuplicate.Items.Clear();
                         lbLeftSideFolderSize.Text = GetFolderSize(txtSourceFolderPath.Text);
                         calculatefilesandfolders(0);
-                        progressBar1.Value = maxProgress;
+                        progressBar1.Visible = false;
                         MessageBox.Show("Process Completed");
-                        progressBar1.Value = 0;
                         EnableOrDisableControls(true);
 
 
                     });
                     timer1.Start();
                 }
-                
-                
+
+
             }
             else
             {
@@ -1676,15 +1598,10 @@ namespace FsAFS
                 if (confirmMessage("You can't cancel/undo/redo operation do you want to continue?"))
                 {
                     timer1.Stop();
-                    await Task.Run(() => {
-                        int maxProgress = lvDifferent.Items.Count;
-                        int progressValue = 0;
-                        progressBar1.Maximum = maxProgress;
-                        progressBar1.Minimum = 0;
-                        progressBar1.Value = 0;
+                    progressBar1.Visible = true;
+                    await Task.Run(() =>
+                    {
                         EnableOrDisableControls(false);
-
-
                         ArrayList arl = new ArrayList();
                         f = 0;
                         for (int i = 0; i < lvDifferent.Items.Count; i++)
@@ -1769,38 +1686,25 @@ namespace FsAFS
                                     arl.Add(avaliableItem);
                                 }
                             }
-                            if (progressValue > maxProgress)
-                            {
-                                maxProgress++;
-                                progressBar1.Maximum = maxProgress;
-                            }
-                            progressBar1.Value = progressValue++;
                         }
                         foreach (string p in arl)
                         {
                             DeleteDirectory(p);
-                            if (progressValue > maxProgress)
-                            {
-                                maxProgress++;
-                                progressBar1.Maximum = maxProgress;
-                            }
-                            progressBar1.Value = progressValue++;
                         }
                         lvDifferent.Items.Clear();
                         lbRightSideFolderSize.Text = GetFolderSize(txtDestinationFolderPath.Text);
                         lbLeftSideFolderSize.Text = GetFolderSize(txtSourceFolderPath.Text);
                         calculatefilesandfolders(2);
-                        progressBar1.Value = maxProgress;
+                        progressBar1.Visible = false;
                         MessageBox.Show("Process Completed");
-                        progressBar1.Value = 0;
+
                         EnableOrDisableControls(true);
 
 
                     });
+
                     timer1.Start();
                 }
-                
-                
             }
             else
             {
@@ -1815,12 +1719,9 @@ namespace FsAFS
                 if (confirmMessage("You can't cancel/undo/redo operation do you want to continue?"))
                 {
                     timer1.Stop();
-                    await Task.Run(() => {
-                        int maxProgress = lvDifferent.Items.Count;
-                        int progressValue = 0;
-                        progressBar1.Maximum = maxProgress;
-                        progressBar1.Minimum = 0;
-                        progressBar1.Value = 0;
+                    progressBar1.Visible = true;
+                    await Task.Run(() =>
+                    {
                         EnableOrDisableControls(false);
 
 
@@ -1907,38 +1808,27 @@ namespace FsAFS
                                     arl.Add(avaliableItem);
                                 }
                             }
-                            if (progressValue > maxProgress)
-                            {
-                                maxProgress++;
-                                progressBar1.Maximum = maxProgress;
-                            }
-                            progressBar1.Value = progressValue++;
                         }
                         foreach (string p in arl)
                         {
                             DeleteDirectory(p);
-                            if (progressValue > maxProgress)
-                            {
-                                maxProgress++;
-                                progressBar1.Maximum = maxProgress;
-                            }
-                            progressBar1.Value = progressValue++;
                         }
                         lvDifferent.Items.Clear();
                         lbRightSideFolderSize.Text = GetFolderSize(txtDestinationFolderPath.Text);
                         lbLeftSideFolderSize.Text = GetFolderSize(txtSourceFolderPath.Text);
                         calculatefilesandfolders(2);
-                        progressBar1.Value = maxProgress;
+                        progressBar1.Visible = false;
                         MessageBox.Show("Process Completed");
-                        progressBar1.Value = 0;
+
                         EnableOrDisableControls(true);
 
 
                     });
+
                     timer1.Start();
                 }
-                
-                
+
+
             }
             else
             {
@@ -1950,20 +1840,17 @@ namespace FsAFS
         {
             if (lvDuplicate.Items.Count != 0 && txtSourceFolderPath.Text != "" && txtDestinationFolderPath.Text != "" && Directory.Exists(txtSourceFolderPath.Text) && Directory.Exists(txtDestinationFolderPath.Text))
             {
-                
+
                 CommonOpenFileDialog dialog = new CommonOpenFileDialog()
-                {IsFolderPicker = true};
+                { IsFolderPicker = true };
                 if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
                 {
                     if (confirmMessage("You can't cancel/undo/redo operation do you want to continue?"))
                     {
                         timer1.Stop();
-                        await Task.Run(() => {
-                            int maxProgress = lvDuplicate.Items.Count;
-                            int progressValue = 0;
-                            progressBar1.Maximum = maxProgress;
-                            progressBar1.Minimum = 0;
-                            progressBar1.Value = 0;
+                        progressBar1.Visible = true;
+                        await Task.Run(() =>
+                        {
                             EnableOrDisableControls(false);
 
 
@@ -1989,20 +1876,15 @@ namespace FsAFS
                                         copyFile(txtSourceFolderPath.Text + item, (dialog.FileName) + item);
                                     }
                                 }
-                                if (progressValue > maxProgress)
-                                {
-                                    maxProgress++;
-                                    progressBar1.Maximum = maxProgress;
-                                }
-                                progressBar1.Value = progressValue++;
                             }
-                            progressBar1.Value = maxProgress;
+                            progressBar1.Visible = false;
                             MessageBox.Show("Process Completed");
-                            progressBar1.Value = 0;
+
                             EnableOrDisableControls(true);
 
 
                         });
+
                         timer1.Start();
                     }
                 }
@@ -2017,7 +1899,7 @@ namespace FsAFS
         {
             if (lvDuplicate.Items.Count != 0 && txtSourceFolderPath.Text != "" && txtDestinationFolderPath.Text != "" && Directory.Exists(txtSourceFolderPath.Text) && Directory.Exists(txtDestinationFolderPath.Text))
             {
-                
+
                 CommonOpenFileDialog dialog = new CommonOpenFileDialog()
                 { IsFolderPicker = true };
                 if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
@@ -2025,12 +1907,9 @@ namespace FsAFS
                     if (confirmMessage("You can't cancel/undo/redo operation do you want to continue?"))
                     {
                         timer1.Stop();
-                        await Task.Run(() => {
-                            int maxProgress = lvDuplicate.Items.Count;
-                            int progressValue = 0;
-                            progressBar1.Maximum = maxProgress;
-                            progressBar1.Minimum = 0;
-                            progressBar1.Value = 0;
+                        progressBar1.Visible = true;
+                        await Task.Run(() =>
+                        {
                             EnableOrDisableControls(false);
 
 
@@ -2060,38 +1939,27 @@ namespace FsAFS
                                         DeleteFile(txtDestinationFolderPath.Text + item);
                                     }
                                 }
-                                if (progressValue > maxProgress)
-                                {
-                                    maxProgress++;
-                                    progressBar1.Maximum = maxProgress;
-                                }
-                                progressBar1.Value = progressValue++;
                             }
                             foreach (string p in al)
                             {
                                 DeleteDirectory(txtSourceFolderPath.Text + p);
                                 DeleteDirectory(txtDestinationFolderPath.Text + p);
-                                if (progressValue > maxProgress)
-                                {
-                                    maxProgress++;
-                                    progressBar1.Maximum = maxProgress;
-                                }
-                                progressBar1.Value = progressValue++;
                             }
                             lvDuplicate.Items.Clear();
                             lbLeftSideFolderSize.Text = GetFolderSize(txtSourceFolderPath.Text);
                             lbRightSideFolderSize.Text = GetFolderSize(txtDestinationFolderPath.Text);
-                            progressBar1.Value = maxProgress;
+                            progressBar1.Visible = false;
                             MessageBox.Show("Process Completed");
-                            progressBar1.Value = 0;
+
                             EnableOrDisableControls(true);
 
 
                         });
+
                         timer1.Start();
                     }
-                    
-                    
+
+
                 }
             }
             else
@@ -2106,17 +1974,12 @@ namespace FsAFS
             {
                 if (MessageBox.Show("Do you want sure delete file?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    
+
                     timer1.Stop();
-                    int maxProgress = lvDuplicate.Items.Count;
-                    int progressValue = 0;
-                    progressBar1.Maximum = maxProgress;
-                    progressBar1.Minimum = 0;
-                    progressBar1.Value = 0;
+                    progressBar1.Visible = true;
                     EnableOrDisableControls(false);
-                    
-                    
-                    await Task.Run(() => {
+                    await Task.Run(() =>
+                    {
                         if (cbLeftFilesSubfoldersDelete.Checked && cbRightFilesSubfoldersDelete.Checked)
                         {
                             for (int i = lvDuplicate.Items.Count - 1; i >= 0; i--)
@@ -2133,12 +1996,12 @@ namespace FsAFS
                                     DeleteDirectory(txtDestinationFolderPath.Text + item);
                                     DeleteDirectory(txtSourceFolderPath.Text + item);
                                 }
-                                if (progressValue > maxProgress)
-                                {
-                                    maxProgress++;
-                                    progressBar1.Maximum = maxProgress;
-                                }
-                                progressBar1.Value = progressValue++;
+
+                                //{
+
+
+                                //}
+
                             }
                         }
                         else if (cbRightFilesSubfoldersDelete.Checked && !cbLeftFilesSubfoldersDelete.Checked)
@@ -2155,12 +2018,12 @@ namespace FsAFS
                                 {
                                     DeleteDirectory(txtDestinationFolderPath.Text + item);
                                 }
-                                if (progressValue > maxProgress)
-                                {
-                                    maxProgress++;
-                                    progressBar1.Maximum = maxProgress;
-                                }
-                                progressBar1.Value = progressValue++;
+
+                                //{
+
+
+                                //}
+
                             }
                         }
                         else if (!cbRightFilesSubfoldersDelete.Checked && cbLeftFilesSubfoldersDelete.Checked)
@@ -2177,29 +2040,24 @@ namespace FsAFS
                                 {
                                     DeleteDirectory(txtSourceFolderPath.Text + item);
                                 }
-                                if (progressValue > maxProgress)
-                                {
-                                    maxProgress++;
-                                    progressBar1.Maximum = maxProgress;
-                                }
-                                progressBar1.Value = progressValue++;
+
+                                //{
+
+
+                                //}
+
                             }
                         }
                     });
-                    
-                    
                     lvDuplicate.Items.Clear();
                     lbLeftSideFolderSize.Text = GetFolderSize(txtSourceFolderPath.Text);
                     lbRightSideFolderSize.Text = GetFolderSize(txtDestinationFolderPath.Text);
                     calculatefilesandfolders(2);
-                    progressBar1.Value = maxProgress;
+                    progressBar1.Visible = false;
                     MessageBox.Show("Process Completed");
-                    progressBar1.Value = 0;
                     EnableOrDisableControls(true);
-                    
-                    
                     timer1.Start();
-                    
+
                 }
             }
             else
@@ -2214,17 +2072,13 @@ namespace FsAFS
             {
                 if (MessageBox.Show("Do you want sure delete file?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    
+
                     timer1.Stop();
-                    int maxProgress = lvDuplicate.Items.Count;
-                    int progressValue = 0;
-                    progressBar1.Maximum = maxProgress;
-                    progressBar1.Minimum = 0;
-                    progressBar1.Value = 0;
                     EnableOrDisableControls(false);
-                    
-                    
-                    await Task.Run(() => {
+                    progressBar1.Visible = true;
+
+                    await Task.Run(() =>
+                    {
                         if (cbLeftFileDelete.Checked && cbRightFileDelete.Checked)
                         {
                             for (int i = 0; i < lvDuplicate.Items.Count; i++)
@@ -2237,12 +2091,12 @@ namespace FsAFS
                                     DeleteFile(txtSourceFolderPath.Text + item);
                                 }
                             }
-                            if (progressValue > maxProgress)
-                            {
-                                maxProgress++;
-                                progressBar1.Maximum = maxProgress;
-                            }
-                            progressBar1.Value = progressValue++;
+
+                            //{
+
+
+                            //}
+
                         }
                         else if (cbRightFileDelete.Checked && !cbLeftFileDelete.Checked)
                         {
@@ -2255,12 +2109,12 @@ namespace FsAFS
                                     DeleteFile(txtDestinationFolderPath.Text + item);
                                 }
                             }
-                            if (progressValue > maxProgress)
-                            {
-                                maxProgress++;
-                                progressBar1.Maximum = maxProgress;
-                            }
-                            progressBar1.Value = progressValue++;
+
+                            //{
+
+
+                            //}
+
                         }
                         else if (!cbRightFileDelete.Checked && cbLeftFileDelete.Checked)
                         {
@@ -2273,28 +2127,25 @@ namespace FsAFS
                                     DeleteFile(txtSourceFolderPath.Text + item);
                                 }
                             }
-                            if (progressValue > maxProgress)
-                            {
-                                maxProgress++;
-                                progressBar1.Maximum = maxProgress;
-                            }
-                            progressBar1.Value = progressValue++;
+
+                            //{
+
+
+                            //}
+
                         }
                     });
                     lvDuplicate.Items.Clear();
-                    
-                    
+
+
                     lbLeftSideFolderSize.Text = GetFolderSize(txtSourceFolderPath.Text);
                     lbRightSideFolderSize.Text = GetFolderSize(txtDestinationFolderPath.Text);
                     calculatefilesandfolders(2);
-                    progressBar1.Value = maxProgress;
+                    progressBar1.Visible = false;
                     MessageBox.Show("Process Completed");
-                    progressBar1.Value = 0;
                     EnableOrDisableControls(true);
-                    
-                    
                     timer1.Start();
-                    
+
                 }
 
             }
@@ -2303,7 +2154,7 @@ namespace FsAFS
                 MessageBox.Show("Please Analyse Directory or Duplicate Files and Folders not Found");
             }
         }
-        
+
 
         private void BtnCopyLeftToRightFAF_MouseHover(object sender, EventArgs e)
         {
@@ -2344,7 +2195,7 @@ namespace FsAFS
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            if(operationCancelCheck)
+            if (operationCancelCheck)
             {
                 lvDifferent.Items.Clear();
                 lvDuplicate.Items.Clear();
@@ -2368,9 +2219,9 @@ namespace FsAFS
             {
                 EnableOrDisableControls(true);
             }
-            if (txtSourceFolderPath.Text!="")
+            if (txtSourceFolderPath.Text != "")
             {
-                if(!Directory.Exists(txtSourceFolderPath.Text))
+                if (!Directory.Exists(txtSourceFolderPath.Text))
                 {
                     txtSourceFolderName.Clear();
                     txtSourceFolderPath.Clear();
@@ -2381,7 +2232,7 @@ namespace FsAFS
                     lvDuplicate.Items.Clear();
                 }
             }
-            if(txtDestinationFolderPath.Text != "")
+            if (txtDestinationFolderPath.Text != "")
             {
                 if (!Directory.Exists(txtDestinationFolderPath.Text))
                 {
@@ -2408,8 +2259,8 @@ namespace FsAFS
             lbNoOfDestinationFolders.Text = string.Empty;
             txtSourceFolderPath.Clear();
             txtDestinationFolderPath.Clear();
-            
-            
+
+
             lvDifferent.Items.Clear();
             lvDuplicate.Items.Clear();
             cbLeftFileDelete.Checked = false;
@@ -2420,7 +2271,7 @@ namespace FsAFS
 
         private void PbCopySourceFolderName_Click(object sender, EventArgs e)
         {
-            if(txtSourceFolderName.Text!=string.Empty)
+            if (txtSourceFolderName.Text != string.Empty)
             {
                 Clipboard.SetText(txtSourceFolderName.Text);
                 NotificationManager.Show(this, "Copied ", Color.Green, Color.Black, Color.White, 1500);
@@ -2476,5 +2327,7 @@ namespace FsAFS
                 return false;
             }
         }
+
+
     }
 }
