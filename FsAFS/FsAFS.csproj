@@ -207,6 +207,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>FsAFS_Database.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\settings.png" />
+    <None Include="Resources\cancel.png" />
     <Content Include="Resources\charts.png" />
     <Content Include="Resources\filetype_icon\3g2.png" />
     <Content Include="Resources\filetype_icon\3ga.png" />
@@ -254,6 +256,7 @@
     <Content Include="Resources\filetype_icon\bowerrc.png" />
     <Content Include="Resources\filetype_icon\bpg.png" />
     <Content Include="Resources\filetype_icon\browser.png" />
+    <Content Include="Resources\filetype_icon\bun.png" />
     <Content Include="Resources\filetype_icon\bz2.png" />
     <Content Include="Resources\filetype_icon\bzempty.png" />
     <Content Include="Resources\filetype_icon\c.png" />
@@ -403,6 +406,7 @@
     <Content Include="Resources\filetype_icon\lock.png" />
     <Content Include="Resources\filetype_icon\log.png" />
     <Content Include="Resources\filetype_icon\lua.png" />
+    <Content Include="Resources\filetype_icon\lzc.png" />
     <Content Include="Resources\filetype_icon\m.png" />
     <Content Include="Resources\filetype_icon\m2v.png" />
     <Content Include="Resources\filetype_icon\m3u.png" />
@@ -622,7 +626,6 @@
     <None Include="Resources\copy.png" />
     <None Include="Resources\sync_and_copy.png" />
     <None Include="Resources\sync_and_move.png" />
-    <None Include="Resources\settings.png" />
     <None Include="Resources\right-arrow.png" />
     <None Include="Resources\left-arrow.png" />
     <None Include="Resources\copy_txt.png" />

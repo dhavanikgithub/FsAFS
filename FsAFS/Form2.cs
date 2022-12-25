@@ -2,11 +2,13 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace FsAFS
 {
     public partial class Form2 : Form
     {
+        string[] filetype_name = new string[406];
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\FsAFS_Database.mdf;Integrated Security=True");
         public Form2()
         {
@@ -21,6 +23,35 @@ namespace FsAFS
             txtSizeTo.Text = "0";
             cobType.SelectedIndex = 0;
             EnableDisableControls(false);
+            lbTotalCountSD.Text = "";
+            lbTotalCountDelete.Text = "";
+
+            string Imagepath = AppDomain.CurrentDomain.BaseDirectory;
+            Imagepath = Imagepath.Replace(@"bin\Debug\", @"Resources\");
+            string filetype_name_path = Imagepath + @"filetype_name.txt";
+
+
+            if (File.Exists(filetype_name_path))
+            {
+                filetype_name = File.ReadAllText(filetype_name_path).Split(',');
+                //MessageBox.Show(Imagepath + @"filetype_icon\" + filetype_name[0] + ".png");
+            }
+            ImageList img = new ImageList() { ImageSize = new Size(25, 25) };
+
+            //<>
+            img.Images.Add(Image.FromFile(Imagepath + @"file.png"));
+            for (int i = 0; i < filetype_name.Length; i++)
+            {
+                string filename = filetype_name[i];
+
+                img.Images.Add(Image.FromFile(Imagepath + @"filetype_icon\" + filename + ".png"));
+            }
+            //</>
+
+            //<>
+            lvCopyFromSource.SmallImageList = img;
+            lvDeleteItem.SmallImageList = img;
+            //</>
 
             con.Open();
             string query = "select * from copy_item_list";
@@ -30,17 +61,11 @@ namespace FsAFS
             {
                 while(rdr.Read())
                 {
-                    if(Convert.ToInt32(rdr.GetValue(2))==1)
-                    {
-                        AddItemListViewCopyFromSource(rdr.GetValue(0).ToString(), rdr.GetValue(1).ToString(), rdr.GetValue(3).ToString());
-                    }
-                    else
-                    {
-                        AddItemListViewCopyFromDestination(rdr.GetValue(0).ToString(), rdr.GetValue(1).ToString(), rdr.GetValue(3).ToString());
-                    }
+                    AddItemListViewCopyFromSource(rdr.GetValue(0).ToString(), rdr.GetValue(1).ToString(), rdr.GetValue(3).ToString());
                 }
             }
             con.Close();
+            lbTotalCountSD.Text = lvCopyFromSource.Items.Count.ToString();
             con.Open();
             cmd = new SqlCommand("select * from delete_item_list", con);
             rdr = cmd.ExecuteReader();
@@ -52,6 +77,7 @@ namespace FsAFS
                 }
             }
             con.Close();
+            lbTotalCountDelete.Text = lvDeleteItem.Items.Count.ToString();
             if (Properties.Settings.Default.DifferentSettings==null || Properties.Settings.Default.DifferentSettings=="Default")
             {
                 rbDefault.Checked = true;
@@ -168,25 +194,22 @@ namespace FsAFS
                 }
             }
             //</>
-
-            ImageList img = new ImageList() { ImageSize = new Size(20, 20) };
-
-            //<>
-            img.Images.Add(Properties.Resources.file);
-            img.Images.Add(Properties.Resources.folder);
-            //</>
-
-            //<>
-            lvCopyFromSource.SmallImageList = img;
-            lvCopyFromDestination.SmallImageList = img;
-            //</>
+            
             
         }
 
 
         void AddItemListViewCopyFromSource(params string[] s)
         {
-            ListViewItem item = new ListViewItem(s[0]);
+            var iconCode = 0;
+            string fileext = Path.GetExtension(s[0]).ToLower();
+            fileext = fileext.Replace(".", "");
+            int index = Array.IndexOf(filetype_name, fileext);
+            if (index != -1)
+            {
+                iconCode = index + 1;
+            }
+            ListViewItem item = new ListViewItem(s[0],iconCode);
             ListViewItem.ListViewSubItem subitem1 = new ListViewItem.ListViewSubItem(item, s[1]);
             ListViewItem.ListViewSubItem subitem2 = new ListViewItem.ListViewSubItem(item, s[2]);
             item.SubItems.Add(subitem1);
@@ -195,20 +218,17 @@ namespace FsAFS
             lvCopyFromSource.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
-        void AddItemListViewCopyFromDestination(params string[] s)
-        {
-            ListViewItem item = new ListViewItem(s[0]);
-            ListViewItem.ListViewSubItem subitem1 = new ListViewItem.ListViewSubItem(item, s[1]);
-            ListViewItem.ListViewSubItem subitem2 = new ListViewItem.ListViewSubItem(item, s[2]);
-            item.SubItems.Add(subitem1);
-            item.SubItems.Add(subitem2);
-            lvCopyFromDestination.Items.Add(item);
-            lvCopyFromDestination.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-        }
-
         void AddItemListViewDeleteItem(params string[] s)
         {
-            ListViewItem item = new ListViewItem(s[0]);
+            var iconCode = 0;
+            string fileext = Path.GetExtension(s[0]).ToLower();
+            fileext = fileext.Replace(".", "");
+            int index = Array.IndexOf(filetype_name, fileext);
+            if (index != -1)
+            {
+                iconCode = index + 1;
+            }
+            ListViewItem item = new ListViewItem(s[0],iconCode);
             ListViewItem.ListViewSubItem subitem1 = new ListViewItem.ListViewSubItem(item, s[1]);
             item.SubItems.Add(subitem1);
             lvDeleteItem.Items.Add(item);

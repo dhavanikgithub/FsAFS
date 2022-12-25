@@ -81,6 +81,7 @@ namespace FsAFS
             this.btnClear = new System.Windows.Forms.Button();
             this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.panelBottom1 = new System.Windows.Forms.Panel();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.btnAnalyseSettings = new System.Windows.Forms.Button();
             this.panelBottom2 = new System.Windows.Forms.Panel();
             this.panelMiddel1 = new System.Windows.Forms.Panel();
@@ -703,7 +704,7 @@ namespace FsAFS
             // panelBottom1
             // 
             this.panelBottom1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.panelBottom1.Controls.Add(this.btnAnalyseSettings);
+            this.panelBottom1.Controls.Add(this.btnCancel);
             this.panelBottom1.Controls.Add(this.btnAnalyse);
             this.panelBottom1.Controls.Add(this.progressBar1);
             this.panelBottom1.Controls.Add(this.btnSC_FAF);
@@ -715,10 +716,27 @@ namespace FsAFS
             this.panelBottom1.Size = new System.Drawing.Size(421, 122);
             this.panelBottom1.TabIndex = 54;
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Image = global::FsAFS.Properties.Resources.cancel2;
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancel.Location = new System.Drawing.Point(320, 77);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
+            this.btnCancel.Size = new System.Drawing.Size(96, 40);
+            this.btnCancel.TabIndex = 54;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // btnAnalyseSettings
             // 
-            this.btnAnalyseSettings.Image = global::FsAFS.Properties.Resources.settings;
-            this.btnAnalyseSettings.Location = new System.Drawing.Point(320, 77);
+            this.btnAnalyseSettings.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAnalyseSettings.Image = global::FsAFS.Properties.Resources.settings1;
+            this.btnAnalyseSettings.Location = new System.Drawing.Point(15, 40);
             this.btnAnalyseSettings.Name = "btnAnalyseSettings";
             this.btnAnalyseSettings.Size = new System.Drawing.Size(40, 40);
             this.btnAnalyseSettings.TabIndex = 49;
@@ -739,6 +757,7 @@ namespace FsAFS
             // 
             this.panelMiddel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panelMiddel1.Controls.Add(this.btnClear);
+            this.panelMiddel1.Controls.Add(this.btnAnalyseSettings);
             this.panelMiddel1.Location = new System.Drawing.Point(358, 25);
             this.panelMiddel1.Name = "panelMiddel1";
             this.panelMiddel1.Size = new System.Drawing.Size(70, 81);
@@ -878,6 +897,7 @@ namespace FsAFS
         private System.Windows.Forms.Panel panelSD;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
 

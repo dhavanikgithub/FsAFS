@@ -53,14 +53,8 @@ namespace FsAFS
             this.cobSizeFrom = new System.Windows.Forms.ComboBox();
             this.txtSizeFrom = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.lbTotalItemCopyFromDestination = new System.Windows.Forms.Label();
             this.lbTotalItemCopyFromSource = new System.Windows.Forms.Label();
-            this.lbCopyFromDestination = new System.Windows.Forms.Label();
             this.lbCopyFromSource = new System.Windows.Forms.Label();
-            this.lvCopyFromDestination = new System.Windows.Forms.ListView();
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvCopyFromSource = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -71,6 +65,8 @@ namespace FsAFS
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lbDeletedItem = new System.Windows.Forms.Label();
             this.lbTotalDeleteItem = new System.Windows.Forms.Label();
+            this.lbTotalCountSD = new System.Windows.Forms.Label();
+            this.lbTotalCountDelete = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.Different.SuspendLayout();
             this.gbDifferentSettings.SuspendLayout();
@@ -1703,11 +1699,9 @@ namespace FsAFS
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.lbTotalItemCopyFromDestination);
+            this.tabPage1.Controls.Add(this.lbTotalCountSD);
             this.tabPage1.Controls.Add(this.lbTotalItemCopyFromSource);
-            this.tabPage1.Controls.Add(this.lbCopyFromDestination);
             this.tabPage1.Controls.Add(this.lbCopyFromSource);
-            this.tabPage1.Controls.Add(this.lvCopyFromDestination);
             this.tabPage1.Controls.Add(this.lvCopyFromSource);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
@@ -1715,15 +1709,6 @@ namespace FsAFS
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Text = "Copy Item List";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // lbTotalItemCopyFromDestination
-            // 
-            this.lbTotalItemCopyFromDestination.AutoSize = true;
-            this.lbTotalItemCopyFromDestination.Location = new System.Drawing.Point(600, 270);
-            this.lbTotalItemCopyFromDestination.Name = "lbTotalItemCopyFromDestination";
-            this.lbTotalItemCopyFromDestination.Size = new System.Drawing.Size(44, 17);
-            this.lbTotalItemCopyFromDestination.TabIndex = 5;
-            this.lbTotalItemCopyFromDestination.Text = "Total:";
             // 
             // lbTotalItemCopyFromSource
             // 
@@ -1734,15 +1719,6 @@ namespace FsAFS
             this.lbTotalItemCopyFromSource.TabIndex = 4;
             this.lbTotalItemCopyFromSource.Text = "Total:";
             // 
-            // lbCopyFromDestination
-            // 
-            this.lbCopyFromDestination.AutoSize = true;
-            this.lbCopyFromDestination.Location = new System.Drawing.Point(3, 270);
-            this.lbCopyFromDestination.Name = "lbCopyFromDestination";
-            this.lbCopyFromDestination.Size = new System.Drawing.Size(149, 17);
-            this.lbCopyFromDestination.TabIndex = 3;
-            this.lbCopyFromDestination.Text = "Destination To Source";
-            // 
             // lbCopyFromSource
             // 
             this.lbCopyFromSource.AutoSize = true;
@@ -1751,35 +1727,6 @@ namespace FsAFS
             this.lbCopyFromSource.Size = new System.Drawing.Size(149, 17);
             this.lbCopyFromSource.TabIndex = 2;
             this.lbCopyFromSource.Text = "Source To Destination";
-            // 
-            // lvCopyFromDestination
-            // 
-            this.lvCopyFromDestination.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader6});
-            this.lvCopyFromDestination.FullRowSelect = true;
-            this.lvCopyFromDestination.GridLines = true;
-            this.lvCopyFromDestination.HideSelection = false;
-            this.lvCopyFromDestination.Location = new System.Drawing.Point(7, 290);
-            this.lvCopyFromDestination.Name = "lvCopyFromDestination";
-            this.lvCopyFromDestination.Size = new System.Drawing.Size(685, 230);
-            this.lvCopyFromDestination.TabIndex = 1;
-            this.lvCopyFromDestination.UseCompatibleStateImageBehavior = false;
-            this.lvCopyFromDestination.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Destination";
-            this.columnHeader3.Width = 91;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Source";
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Date&Time";
             // 
             // lvCopyFromSource
             // 
@@ -1792,7 +1739,7 @@ namespace FsAFS
             this.lvCopyFromSource.HideSelection = false;
             this.lvCopyFromSource.Location = new System.Drawing.Point(7, 35);
             this.lvCopyFromSource.Name = "lvCopyFromSource";
-            this.lvCopyFromSource.Size = new System.Drawing.Size(685, 230);
+            this.lvCopyFromSource.Size = new System.Drawing.Size(685, 490);
             this.lvCopyFromSource.TabIndex = 0;
             this.lvCopyFromSource.UseCompatibleStateImageBehavior = false;
             this.lvCopyFromSource.View = System.Windows.Forms.View.Details;
@@ -1813,6 +1760,7 @@ namespace FsAFS
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.lbTotalCountDelete);
             this.tabPage2.Controls.Add(this.lvDeleteItem);
             this.tabPage2.Controls.Add(this.lbDeletedItem);
             this.tabPage2.Controls.Add(this.lbTotalDeleteItem);
@@ -1858,11 +1806,29 @@ namespace FsAFS
             // lbTotalDeleteItem
             // 
             this.lbTotalDeleteItem.AutoSize = true;
-            this.lbTotalDeleteItem.Location = new System.Drawing.Point(549, 9);
+            this.lbTotalDeleteItem.Location = new System.Drawing.Point(592, 9);
             this.lbTotalDeleteItem.Name = "lbTotalDeleteItem";
             this.lbTotalDeleteItem.Size = new System.Drawing.Size(44, 17);
             this.lbTotalDeleteItem.TabIndex = 1;
             this.lbTotalDeleteItem.Text = "Total:";
+            // 
+            // lbTotalCountSD
+            // 
+            this.lbTotalCountSD.AutoSize = true;
+            this.lbTotalCountSD.Location = new System.Drawing.Point(651, 12);
+            this.lbTotalCountSD.Name = "lbTotalCountSD";
+            this.lbTotalCountSD.Size = new System.Drawing.Size(12, 17);
+            this.lbTotalCountSD.TabIndex = 6;
+            this.lbTotalCountSD.Text = " ";
+            // 
+            // lbTotalCountDelete
+            // 
+            this.lbTotalCountDelete.AutoSize = true;
+            this.lbTotalCountDelete.Location = new System.Drawing.Point(643, 9);
+            this.lbTotalCountDelete.Name = "lbTotalCountDelete";
+            this.lbTotalCountDelete.Size = new System.Drawing.Size(46, 17);
+            this.lbTotalCountDelete.TabIndex = 4;
+            this.lbTotalCountDelete.Text = "label1";
             // 
             // Form2
             // 
@@ -1916,22 +1882,18 @@ namespace FsAFS
         private System.Windows.Forms.Button btnShowSettings;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.ListView lvCopyFromSource;
-        private System.Windows.Forms.ListView lvCopyFromDestination;
         private System.Windows.Forms.Label lbCopyFromSource;
-        private System.Windows.Forms.Label lbCopyFromDestination;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.Label lbTotalItemCopyFromDestination;
         private System.Windows.Forms.Label lbTotalItemCopyFromSource;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label lbTotalDeleteItem;
         private System.Windows.Forms.Label lbDeletedItem;
         private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ListView lvDeleteItem;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.Label lbTotalCountSD;
+        private System.Windows.Forms.Label lbTotalCountDelete;
     }
 }
