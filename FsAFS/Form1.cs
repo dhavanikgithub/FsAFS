@@ -1122,200 +1122,40 @@ namespace FsAFS
                         }
                     });
                     Task.WaitAll(task1, task2);
-                    if (SourceFileLen >= 100)
-                    {
-                        
-                        int div = SourceFileLen / 2;
-                        if (div % 2 != 0)
+                    
+                    Task task3 = Task.Factory.StartNew(() => {
+                        for (int i = 0; i < SourceFiles.Length; i++)
                         {
-                            div = div++;
-                        }
-                        Task task5 = Task.Factory.StartNew(() =>
-                        {
-                            for (int i = 0; i < div; i++)
+                            if (operationCancel || flagOperationCancel)
                             {
-                                if (operationCancel || flagOperationCancel)
-                                {
-                                    flagOperationCancel = true;
-                                    operationCancelCheck = true;
-                                    operationCancel = false;
-                                    break;
-                                }
-                                string item = SourceFiles[i].Replace(txtSourceFolderPath.Text, "");
-                                string itemPath = SourceFiles[i];
-                                string type = "File";
-                                string itemMD5Hash = StringToMD5Hash(item);
-                                string notAvalibleItemPath = txtDestinationFolderPath.Text + item;
-                                if (DesFileLen == 0)
-                                {
-                                    
-                                    DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
-                                }
-                                else
-                                {
-                                    if (File.Exists(notAvalibleItemPath))
-                                    {
-                                        if (Path.GetFileName(itemPath) == Path.GetFileName(notAvalibleItemPath))
-                                        {
-                                            FileInfo fi1 = new FileInfo(itemPath);
-                                            FileInfo fi2 = new FileInfo(notAvalibleItemPath);
-                                            if (fi1.Length == fi2.Length)
-                                            {
-                                                bool check = FileCompare(itemPath, notAvalibleItemPath);
-                                                if (check)
-                                                {
-                                                    AddItemListViewDuplicate(item, type, itemMD5Hash);
-                                                }
-                                                else
-                                                {
-                                                    DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
-                                                }
-                                            }
-                                            else
-                                            {
-                                                DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
-                                            }
-                                        }
-                                        else
-                                        {
-                                            DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
-                                    }
-                                }
-                                if (progressValue > maxProgress)
-                                {
-                                    maxProgress++;
-                                    progressBar1.Maximum = maxProgress;
-                                }
-                                progressBar1.Value = progressValue++;
-                                if (operationCancel || flagOperationCancel)
-                                {
-                                    flagOperationCancel = true;
-                                    operationCancelCheck = true;
-                                    operationCancel = false;
-                                    break;
-                                }
+                                flagOperationCancel = true;
+                                operationCancelCheck = true;
+                                operationCancel = false;
+                                break;
                             }
-                        });
-                        Task task6 = Task.Factory.StartNew(() =>
-                        {
-                            for (int i = div; i < SourceFileLen; i++)
+                            string item = SourceFiles[i].Replace(txtSourceFolderPath.Text, "");
+                            string itemPath = SourceFiles[i];
+                            string type = "File";
+                            string itemMD5Hash = StringToMD5Hash(item);
+                            if (DestinationFiles.Length == 0)
                             {
-                                if (operationCancel || flagOperationCancel)
-                                {
-                                    flagOperationCancel = true;
-                                    operationCancelCheck = true;
-                                    operationCancel = false;
-                                    break;
-                                }
-                                string item = SourceFiles[i].Replace(txtSourceFolderPath.Text, "");
-                                string itemPath = SourceFiles[i];
-                                string type = "File";
-                                string itemMD5Hash = StringToMD5Hash(item);
                                 string notAvalibleItemPath = txtDestinationFolderPath.Text + item;
-                                if (DesFileLen == 0)
-                                {
-                                    
-                                    DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
-                                }
-                                else
-                                {
-                                    if (File.Exists(notAvalibleItemPath))
-                                    {
-                                        if (Path.GetFileName(itemPath) == Path.GetFileName(notAvalibleItemPath))
-                                        {
-                                            FileInfo fi1 = new FileInfo(itemPath);
-                                            FileInfo fi2 = new FileInfo(notAvalibleItemPath);
-                                            if (fi1.Length == fi2.Length)
-                                            {
-                                                bool check = FileCompare(itemPath, notAvalibleItemPath);
-                                                if (check)
-                                                {
-                                                    AddItemListViewDuplicate(item, type, itemMD5Hash);
-                                                }
-                                                else
-                                                {
-                                                    DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
-                                                }
-                                            }
-                                            else
-                                            {
-                                                DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
-                                            }
-                                        }
-                                        else
-                                        {
-                                            DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
-                                    }
-                                }
-                                
-                                if (progressValue > maxProgress)
-                                {
-                                    maxProgress++;
-                                    progressBar1.Maximum = maxProgress;
-                                }
-                                progressBar1.Value = progressValue++;
-                                if (operationCancel || flagOperationCancel)
-                                {
-                                    flagOperationCancel = true;
-                                    operationCancelCheck = true;
-                                    operationCancel = false;
-                                    break;
-                                }
+                                DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
                             }
-                        });
-                        
-                        Task.WaitAll(task5,task6);
-                    }
-                    else
-                    {
-                        Task task3 = Task.Factory.StartNew(() => {
-                            for (int i = 0; i < SourceFiles.Length; i++)
+                            else
                             {
-                                if (operationCancel || flagOperationCancel)
+                                if (File.Exists(txtDestinationFolderPath.Text + item))
                                 {
-                                    flagOperationCancel = true;
-                                    operationCancelCheck = true;
-                                    operationCancel = false;
-                                    break;
-                                }
-                                string item = SourceFiles[i].Replace(txtSourceFolderPath.Text, "");
-                                string itemPath = SourceFiles[i];
-                                string type = "File";
-                                string itemMD5Hash = StringToMD5Hash(item);
-                                if (DestinationFiles.Length == 0)
-                                {
-                                    string notAvalibleItemPath = txtDestinationFolderPath.Text + item;
-                                    DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
-                                }
-                                else
-                                {
-                                    if (File.Exists(txtDestinationFolderPath.Text + item))
+                                    if (Path.GetFileName(itemPath) == Path.GetFileName(txtDestinationFolderPath.Text + item))
                                     {
-                                        if (Path.GetFileName(itemPath) == Path.GetFileName(txtDestinationFolderPath.Text + item))
+                                        FileInfo fi1 = new FileInfo(itemPath);
+                                        FileInfo fi2 = new FileInfo(txtDestinationFolderPath.Text + item);
+                                        if (fi1.Length == fi2.Length)
                                         {
-                                            FileInfo fi1 = new FileInfo(itemPath);
-                                            FileInfo fi2 = new FileInfo(txtDestinationFolderPath.Text + item);
-                                            if (fi1.Length == fi2.Length)
+                                            bool check = FileCompare(itemPath, txtDestinationFolderPath.Text + item);
+                                            if (check)
                                             {
-                                                bool check = FileCompare(itemPath, txtDestinationFolderPath.Text + item);
-                                                if (check)
-                                                {
-                                                    AddItemListViewDuplicate(item, type, itemMD5Hash);
-                                                }
-                                                else
-                                                {
-                                                    DifferentFileSettings(item, itemPath, txtDestinationFolderPath.Text + item, type, itemMD5Hash);
-                                                }
+                                                AddItemListViewDuplicate(item, type, itemMD5Hash);
                                             }
                                             else
                                             {
@@ -1329,171 +1169,75 @@ namespace FsAFS
                                     }
                                     else
                                     {
-                                        string notAvalibleItemPath = txtDestinationFolderPath.Text + item;
-                                        DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
+                                        DifferentFileSettings(item, itemPath, txtDestinationFolderPath.Text + item, type, itemMD5Hash);
                                     }
                                 }
-                                
-                                if (progressValue > maxProgress)
+                                else
                                 {
-                                    maxProgress++;
-                                    progressBar1.Maximum = maxProgress;
-                                }
-                                progressBar1.Value = progressValue++;
-                                if (operationCancel || flagOperationCancel)
-                                {
-                                    flagOperationCancel = true;
-                                    operationCancelCheck = true;
-                                    operationCancel = false;
-                                    break;
+                                    string notAvalibleItemPath = txtDestinationFolderPath.Text + item;
+                                    DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
                                 }
                             }
-                        });
-                        Task.WaitAll(task3);
-                    }
-                    if(DesFileLen>=100)
-                    {
-                        int div = DesFileLen / 2;
-                        if (div % 2 != 0)
-                        {
-                            div = div++;
+                                
+                            if (progressValue > maxProgress)
+                            {
+                                maxProgress++;
+                                progressBar1.Maximum = maxProgress;
+                            }
+                            progressBar1.Value = progressValue++;
+                            if (operationCancel || flagOperationCancel)
+                            {
+                                flagOperationCancel = true;
+                                operationCancelCheck = true;
+                                operationCancel = false;
+                                break;
+                            }
                         }
-                        Task task9 = Task.Factory.StartNew(() => {
-                            for (int i = 0; i < div; i++)
+                    });
+
+                    Task task4 = Task.Factory.StartNew(() => {
+                        for (int i = 0; i < DesFileLen; i++)
+                        {
+                            if (operationCancel || flagOperationCancel)
                             {
-                                if (operationCancel || flagOperationCancel)
-                                {
-                                    flagOperationCancel = true;
-                                    operationCancelCheck = true;
-                                    operationCancel = false;
-                                    break;
-                                }
-                                string item = DestinationFiles[i].Replace(txtDestinationFolderPath.Text, "");
-                                string itemPath = DestinationFiles[i];
-                                string type = "File";
-                                string itemMD5Hash = StringToMD5Hash(item);
-                                string notAvalibleItemPath = txtSourceFolderPath.Text + item;
-                                if (SourceFileLen == 0)
-                                {
-                                    
-                                    DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
-                                }
-                                else
-                                {
-                                    if (!File.Exists(txtSourceFolderPath.Text + item))
-                                    {
-                                        DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
-                                    }
-                                }
-                                
-                                if (progressValue > maxProgress)
-                                {
-                                    maxProgress++;
-                                    progressBar1.Maximum = maxProgress;
-                                }
-                                progressBar1.Value = progressValue++;
-                                if (operationCancel || flagOperationCancel)
-                                {
-                                    flagOperationCancel = true;
-                                    operationCancelCheck = true;
-                                    operationCancel = false;
-                                    break;
-                                }
+                                flagOperationCancel = true;
+                                operationCancelCheck = true;
+                                operationCancel = false;
+                                break;
                             }
-                        });
-                        Task task10 = Task.Factory.StartNew(() => {
-                            for (int i = div; i < DesFileLen; i++)
+                            string item = DestinationFiles[i].Replace(txtDestinationFolderPath.Text, "");
+                            string itemPath = DestinationFiles[i];
+                            string type = "File";
+                            string itemMD5Hash = StringToMD5Hash(item);
+                            string notAvalibleItemPath = txtSourceFolderPath.Text + item;
+                            if (SourceFileLen==0)
                             {
-                                if (operationCancel || flagOperationCancel)
-                                {
-                                    flagOperationCancel = true;
-                                    operationCancelCheck = true;
-                                    operationCancel = false;
-                                    break;
-                                }
-                                string item = DestinationFiles[i].Replace(txtDestinationFolderPath.Text, "");
-                                string itemPath = DestinationFiles[i];
-                                string type = "File";
-                                string itemMD5Hash = StringToMD5Hash(item);
-                                string notAvalibleItemPath = txtSourceFolderPath.Text + item;
-                                if (SourceFileLen == 0)
+                                DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
+                            }
+                            else
+                            {
+                                if (!File.Exists(txtSourceFolderPath.Text + item))
                                 {
                                     DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
                                 }
-                                else
-                                {
-                                    if (!File.Exists(txtSourceFolderPath.Text + item))
-                                    {
-                                        DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
-                                    }
-                                }
-                                
-                                if (progressValue > maxProgress)
-                                {
-                                    maxProgress++;
-                                    progressBar1.Maximum = maxProgress;
-                                }
-                                progressBar1.Value = progressValue++;
-                                if (operationCancel || flagOperationCancel)
-                                {
-                                    flagOperationCancel = true;
-                                    operationCancelCheck = true;
-                                    operationCancel = false;
-                                    break;
-                                }
                             }
-                        });
-                        Task.WaitAll(task9,task10);
-                    }
-                    else
-                    {
-                        long SourceLen = SourceFiles.Length;
-                        Task task4 = Task.Factory.StartNew(() => {
-                            for (int i = 0; i < DesFileLen; i++)
+                                
+                            if (progressValue > maxProgress)
                             {
-                                if (operationCancel || flagOperationCancel)
-                                {
-                                    flagOperationCancel = true;
-                                    operationCancelCheck = true;
-                                    operationCancel = false;
-                                    break;
-                                }
-                                string item = DestinationFiles[i].Replace(txtDestinationFolderPath.Text, "");
-                                string itemPath = DestinationFiles[i];
-                                string type = "File";
-                                string itemMD5Hash = StringToMD5Hash(item);
-                                string notAvalibleItemPath = txtSourceFolderPath.Text + item;
-                                if (SourceLen==0)
-                                {
-                                    DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
-                                }
-                                else
-                                {
-                                    if (!File.Exists(txtSourceFolderPath.Text + item))
-                                    {
-                                        DifferentFileSettings(item, itemPath, notAvalibleItemPath, type, itemMD5Hash);
-                                    }
-                                }
-                                
-                                if (progressValue > maxProgress)
-                                {
-                                    maxProgress++;
-                                    progressBar1.Maximum = maxProgress;
-                                }
-                                progressBar1.Value = progressValue++;
-                                if (operationCancel || flagOperationCancel)
-                                {
-                                    flagOperationCancel = true;
-                                    operationCancelCheck = true;
-                                    operationCancel = false;
-                                    break;
-                                }
+                                maxProgress++;
+                                progressBar1.Maximum = maxProgress;
                             }
-                        });
-                        Task.WaitAll(task4);
-                    }
-                    
-                    
+                            progressBar1.Value = progressValue++;
+                            if (operationCancel || flagOperationCancel)
+                            {
+                                flagOperationCancel = true;
+                                operationCancelCheck = true;
+                                operationCancel = false;
+                                break;
+                            }
+                        }
+                    });
+                    Task.WaitAll(task3,task4);
                 });
                 
                 progressBar1.Value = maxProgress;
