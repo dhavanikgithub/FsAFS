@@ -43,7 +43,6 @@ namespace FsAFS
             this.lvDuplicate = new System.Windows.Forms.ListView();
             this.lbDifferent = new System.Windows.Forms.Label();
             this.lbDuplicate = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panelDestinationFolder = new System.Windows.Forms.Panel();
             this.pbCopyDestinationFolderPath = new System.Windows.Forms.PictureBox();
             this.pbCopyDestinationFolderName = new System.Windows.Forms.PictureBox();
@@ -88,6 +87,8 @@ namespace FsAFS
             this.panelSD = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.pbProgressBar = new System.Windows.Forms.PictureBox();
+            this.lbProcessing = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panelDestinationFolder.SuspendLayout();
@@ -100,6 +101,7 @@ namespace FsAFS
             this.panelBottom2.SuspendLayout();
             this.panelMiddel1.SuspendLayout();
             this.panelSD.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProgressBar)).BeginInit();
             this.SuspendLayout();
             // 
             // cbLeftFileDelete
@@ -247,16 +249,6 @@ namespace FsAFS
             this.lbDuplicate.Size = new System.Drawing.Size(67, 17);
             this.lbDuplicate.TabIndex = 27;
             this.lbDuplicate.Text = "Duplicate";
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(0, 8);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(373, 21);
-            this.progressBar1.TabIndex = 48;
             // 
             // panelDestinationFolder
             // 
@@ -704,9 +696,10 @@ namespace FsAFS
             // panelBottom1
             // 
             this.panelBottom1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panelBottom1.Controls.Add(this.lbProcessing);
+            this.panelBottom1.Controls.Add(this.pbProgressBar);
             this.panelBottom1.Controls.Add(this.btnCancel);
             this.panelBottom1.Controls.Add(this.btnAnalyse);
-            this.panelBottom1.Controls.Add(this.progressBar1);
             this.panelBottom1.Controls.Add(this.btnSC_FAF);
             this.panelBottom1.Controls.Add(this.btnSM_FAF);
             this.panelBottom1.Controls.Add(this.btnMoveDuplicate);
@@ -794,6 +787,25 @@ namespace FsAFS
             this.label2.TabIndex = 59;
             this.label2.Text = "Destination";
             // 
+            // pbProgressBar
+            // 
+            this.pbProgressBar.Image = global::FsAFS.Properties.Resources.loading_gif;
+            this.pbProgressBar.Location = new System.Drawing.Point(3, 0);
+            this.pbProgressBar.Name = "pbProgressBar";
+            this.pbProgressBar.Size = new System.Drawing.Size(28, 28);
+            this.pbProgressBar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbProgressBar.TabIndex = 55;
+            this.pbProgressBar.TabStop = false;
+            // 
+            // lbProcessing
+            // 
+            this.lbProcessing.AutoSize = true;
+            this.lbProcessing.Location = new System.Drawing.Point(38, 6);
+            this.lbProcessing.Name = "lbProcessing";
+            this.lbProcessing.Size = new System.Drawing.Size(173, 17);
+            this.lbProcessing.TabIndex = 56;
+            this.lbProcessing.Text = "Processing Please Wait....";
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -832,9 +844,11 @@ namespace FsAFS
             ((System.ComponentModel.ISupportInitialize)(this.pbCopySourceFolderPath)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCopySourceFolderName)).EndInit();
             this.panelBottom1.ResumeLayout(false);
+            this.panelBottom1.PerformLayout();
             this.panelBottom2.ResumeLayout(false);
             this.panelMiddel1.ResumeLayout(false);
             this.panelSD.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbProgressBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -863,7 +877,6 @@ namespace FsAFS
         private System.Windows.Forms.Button btnBL;
         private System.Windows.Forms.Button btnCopyDuplicate;
         private System.Windows.Forms.Button btnMoveDuplicate;
-        private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label lbDestinationFolderName;
         private System.Windows.Forms.Label lbDestinationFolderPath;
         private System.Windows.Forms.Label label12;
@@ -898,6 +911,8 @@ namespace FsAFS
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.PictureBox pbProgressBar;
+        private System.Windows.Forms.Label lbProcessing;
     }
 }
 

@@ -63,7 +63,6 @@ namespace FsAFS
         private Size formRectSize;
         string[] filetype_name = new string[406];
         public Boolean operationCancel = false;
-        public Boolean operationCancelCheck = false;
         public Form1()
         {
             InitializeComponent();
@@ -71,8 +70,7 @@ namespace FsAFS
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            progressBar1.Style = ProgressBarStyle.Marquee;
-            progressBar1.Visible = false;
+
             //con.Open();
             //SqlCommand cmd = new SqlCommand("TRUNCATE TABLE copy_item_list", con);
             //cmd.ExecuteNonQuery();
@@ -80,7 +78,8 @@ namespace FsAFS
             //trayIcon.Icon = Properties.Resources.logo;
             //trayIcon.Visible = true;
             //trayIcon.ShowBalloonTip(1000, "Wlcome Message", "Welcome to My Application FsAFS", ToolTipIcon.None);
-
+            pbProgressBar.Visible = false;
+            lbProcessing.Visible = false;
             //<>
             {
                 btnAnalyse.Enabled = false;
@@ -141,8 +140,6 @@ namespace FsAFS
             string Imagepath = AppDomain.CurrentDomain.BaseDirectory;
             Imagepath = Imagepath.Replace(@"bin\Debug\", @"Resources\");
             string filetype_name_path = Imagepath + @"filetype_name.txt";
-
-
             if (File.Exists(filetype_name_path))
             {
                 filetype_name = File.ReadAllText(filetype_name_path).Split(',');
@@ -300,13 +297,13 @@ namespace FsAFS
                 SqlCommand cmd = new SqlCommand(query, con);
                 if (cmd.ExecuteNonQuery() == 0)
                 {
-                    MessageBox.Show("Error to insert in database");
+                    MessageBox.Show("Error to insert in database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message,"Exception",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
             finally
             {
@@ -316,7 +313,7 @@ namespace FsAFS
                 }
                 catch (Exception ex2)
                 {
-                    MessageBox.Show(ex2.Message);
+                    MessageBox.Show(ex2.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -1004,7 +1001,7 @@ namespace FsAFS
         {
             if (txtSourceFolderPath.Text != "" && txtDestinationFolderPath.Text != "")
             {
-                progressBar1.Visible = true;
+                pbProgressBar.Visible = true;lbProcessing.Visible = true;
                 timer1.Stop();
                 EnableOrDisableControls(false);
                 btnCancel.Enabled = true;
@@ -1030,7 +1027,6 @@ namespace FsAFS
                             if (operationCancel || flagOperationCancel)
                             {
                                 flagOperationCancel = true;
-                                operationCancelCheck = true;
                                 operationCancel = false;
                                 break;
                             }
@@ -1065,7 +1061,7 @@ namespace FsAFS
                             if (operationCancel || flagOperationCancel)
                             {
                                 flagOperationCancel = true;
-                                operationCancelCheck = true;
+                                
                                 operationCancel = false;
                                 break;
                             }
@@ -1078,7 +1074,7 @@ namespace FsAFS
                             if (operationCancel || flagOperationCancel)
                             {
                                 flagOperationCancel = true;
-                                operationCancelCheck = true;
+                                
                                 operationCancel = false;
                                 break;
                             }
@@ -1102,7 +1098,7 @@ namespace FsAFS
                             if (operationCancel || flagOperationCancel)
                             {
                                 flagOperationCancel = true;
-                                operationCancelCheck = true;
+                                
                                 operationCancel = false;
                                 break;
                             }
@@ -1117,7 +1113,7 @@ namespace FsAFS
                             if (operationCancel || flagOperationCancel)
                             {
                                 flagOperationCancel = true;
-                                operationCancelCheck = true;
+                                
                                 operationCancel = false;
                                 break;
                             }
@@ -1169,7 +1165,7 @@ namespace FsAFS
                             if (operationCancel || flagOperationCancel)
                             {
                                 flagOperationCancel = true;
-                                operationCancelCheck = true;
+                                
                                 operationCancel = false;
                                 break;
                             }
@@ -1183,7 +1179,7 @@ namespace FsAFS
                             if (operationCancel || flagOperationCancel)
                             {
                                 flagOperationCancel = true;
-                                operationCancelCheck = true;
+                                
                                 operationCancel = false;
                                 break;
                             }
@@ -1207,7 +1203,7 @@ namespace FsAFS
                             if (operationCancel || flagOperationCancel)
                             {
                                 flagOperationCancel = true;
-                                operationCancelCheck = true;
+                                
                                 operationCancel = false;
                                 break;
                             }
@@ -1215,8 +1211,17 @@ namespace FsAFS
                     });
                     Task.WaitAll(task3, task4);
                 });
-                progressBar1.Visible = false;
-                MessageBox.Show("Analyse Completed");
+                pbProgressBar.Visible = false;lbProcessing.Visible = false;
+                if(flagOperationCancel)
+                {
+                    lvDifferent.Items.Clear();
+                    lvDuplicate.Items.Clear();
+                    MessageBox.Show("Analyse was Cancel","Notification",MessageBoxButtons.OK,MessageBoxIcon.Stop);
+                }
+                else
+                {
+                    MessageBox.Show("Analyse was Complete", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
                 EnableOrDisableControls(true);
                 btnAnalyseSettings.Enabled = true;
                 btnCancel.Enabled = false;
@@ -1231,7 +1236,7 @@ namespace FsAFS
                 if (confirmMessage("You can't cancel/undo/redo operation do you want to continue?"))
                 {
                     timer1.Stop();
-                    progressBar1.Visible = true;
+                    pbProgressBar.Visible = true;lbProcessing.Visible = true;
                     await Task.Run(() =>
                     {
                         EnableOrDisableControls(false);
@@ -1333,7 +1338,7 @@ namespace FsAFS
                         lbLeftSideFolderSize.Text = GetFolderSize(txtSourceFolderPath.Text);
                         lbRightSideFolderSize.Text = GetFolderSize(txtDestinationFolderPath.Text);
                         calculatefilesandfolders(2);
-                        progressBar1.Visible = false;
+                        pbProgressBar.Visible = false;lbProcessing.Visible = false;
                         MessageBox.Show("Sync Completed");
                         EnableOrDisableControls(true);
                     });
@@ -1355,7 +1360,7 @@ namespace FsAFS
                 if (confirmMessage("You can't cancel/undo/redo operation do you want to continue?"))
                 {
                     timer1.Stop();
-                    progressBar1.Visible = true;
+                    pbProgressBar.Visible = true;lbProcessing.Visible = true;
                     await Task.Run(() =>
                     {
                         EnableOrDisableControls(false);
@@ -1420,7 +1425,7 @@ namespace FsAFS
                         lbRightSideFolderSize.Text = GetFolderSize(txtDestinationFolderPath.Text);
                         lbLeftSideFolderSize.Text = GetFolderSize(txtSourceFolderPath.Text);
                         calculatefilesandfolders(2);
-                        progressBar1.Visible = false;
+                        pbProgressBar.Visible = false;lbProcessing.Visible = false;
                         MessageBox.Show("Sync Completed");
                         EnableOrDisableControls(true);
                     });
@@ -1440,7 +1445,7 @@ namespace FsAFS
                 if (confirmMessage("You can't cancel/undo/redo operation do you want to continue?"))
                 {
                     timer1.Stop();
-                    progressBar1.Visible = true;
+                    pbProgressBar.Visible = true;lbProcessing.Visible = true;
                     await Task.Run(() =>
                     {
                         EnableOrDisableControls(false);
@@ -1497,7 +1502,7 @@ namespace FsAFS
                         lvDuplicate.Items.Clear();
                         lbRightSideFolderSize.Text = GetFolderSize(txtDestinationFolderPath.Text);
                         calculatefilesandfolders(1);
-                        progressBar1.Visible = false;
+                        pbProgressBar.Visible = false;lbProcessing.Visible = false;
                         MessageBox.Show("Process Completed");
                         EnableOrDisableControls(true);
                     });
@@ -1519,7 +1524,7 @@ namespace FsAFS
                 if (confirmMessage("You can't cancel/undo/redo operation do you want to continue?"))
                 {
                     timer1.Stop();
-                    progressBar1.Visible = true;
+                    pbProgressBar.Visible = true;lbProcessing.Visible = true;
                     await Task.Run(() =>
                     {
                         EnableOrDisableControls(false);
@@ -1574,7 +1579,7 @@ namespace FsAFS
                         lvDuplicate.Items.Clear();
                         lbLeftSideFolderSize.Text = GetFolderSize(txtSourceFolderPath.Text);
                         calculatefilesandfolders(0);
-                        progressBar1.Visible = false;
+                        pbProgressBar.Visible = false;lbProcessing.Visible = false;
                         MessageBox.Show("Process Completed");
                         EnableOrDisableControls(true);
 
@@ -1598,7 +1603,7 @@ namespace FsAFS
                 if (confirmMessage("You can't cancel/undo/redo operation do you want to continue?"))
                 {
                     timer1.Stop();
-                    progressBar1.Visible = true;
+                    pbProgressBar.Visible = true;lbProcessing.Visible = true;
                     await Task.Run(() =>
                     {
                         EnableOrDisableControls(false);
@@ -1695,7 +1700,7 @@ namespace FsAFS
                         lbRightSideFolderSize.Text = GetFolderSize(txtDestinationFolderPath.Text);
                         lbLeftSideFolderSize.Text = GetFolderSize(txtSourceFolderPath.Text);
                         calculatefilesandfolders(2);
-                        progressBar1.Visible = false;
+                        pbProgressBar.Visible = false;lbProcessing.Visible = false;
                         MessageBox.Show("Process Completed");
 
                         EnableOrDisableControls(true);
@@ -1719,12 +1724,10 @@ namespace FsAFS
                 if (confirmMessage("You can't cancel/undo/redo operation do you want to continue?"))
                 {
                     timer1.Stop();
-                    progressBar1.Visible = true;
+                    pbProgressBar.Visible = true;lbProcessing.Visible = true;
                     await Task.Run(() =>
                     {
                         EnableOrDisableControls(false);
-
-
                         ArrayList arl = new ArrayList();
                         f = 0;
                         for (int i = 0; i < lvDifferent.Items.Count; i++)
@@ -1817,7 +1820,7 @@ namespace FsAFS
                         lbRightSideFolderSize.Text = GetFolderSize(txtDestinationFolderPath.Text);
                         lbLeftSideFolderSize.Text = GetFolderSize(txtSourceFolderPath.Text);
                         calculatefilesandfolders(2);
-                        progressBar1.Visible = false;
+                        pbProgressBar.Visible = false;lbProcessing.Visible = false;
                         MessageBox.Show("Process Completed");
 
                         EnableOrDisableControls(true);
@@ -1848,7 +1851,7 @@ namespace FsAFS
                     if (confirmMessage("You can't cancel/undo/redo operation do you want to continue?"))
                     {
                         timer1.Stop();
-                        progressBar1.Visible = true;
+                        pbProgressBar.Visible = true;lbProcessing.Visible = true;
                         await Task.Run(() =>
                         {
                             EnableOrDisableControls(false);
@@ -1877,7 +1880,7 @@ namespace FsAFS
                                     }
                                 }
                             }
-                            progressBar1.Visible = false;
+                            pbProgressBar.Visible = false;lbProcessing.Visible = false;
                             MessageBox.Show("Process Completed");
 
                             EnableOrDisableControls(true);
@@ -1907,7 +1910,7 @@ namespace FsAFS
                     if (confirmMessage("You can't cancel/undo/redo operation do you want to continue?"))
                     {
                         timer1.Stop();
-                        progressBar1.Visible = true;
+                        pbProgressBar.Visible = true;lbProcessing.Visible = true;
                         await Task.Run(() =>
                         {
                             EnableOrDisableControls(false);
@@ -1949,7 +1952,7 @@ namespace FsAFS
                             lbLeftSideFolderSize.Text = GetFolderSize(txtSourceFolderPath.Text);
                             lbRightSideFolderSize.Text = GetFolderSize(txtDestinationFolderPath.Text);
                             calculatefilesandfolders(2);
-                            progressBar1.Visible = false;
+                            pbProgressBar.Visible = false;lbProcessing.Visible = false;
                             MessageBox.Show("Process Completed");
 
                             EnableOrDisableControls(true);
@@ -1977,7 +1980,7 @@ namespace FsAFS
                 {
 
                     timer1.Stop();
-                    progressBar1.Visible = true;
+                    pbProgressBar.Visible = true;lbProcessing.Visible = true;
                     EnableOrDisableControls(false);
                     await Task.Run(() =>
                     {
@@ -1997,12 +2000,6 @@ namespace FsAFS
                                     DeleteDirectory(txtDestinationFolderPath.Text + item);
                                     DeleteDirectory(txtSourceFolderPath.Text + item);
                                 }
-
-                                //{
-
-
-                                //}
-
                             }
                         }
                         else if (cbRightFilesSubfoldersDelete.Checked && !cbLeftFilesSubfoldersDelete.Checked)
@@ -2019,12 +2016,6 @@ namespace FsAFS
                                 {
                                     DeleteDirectory(txtDestinationFolderPath.Text + item);
                                 }
-
-                                //{
-
-
-                                //}
-
                             }
                         }
                         else if (!cbRightFilesSubfoldersDelete.Checked && cbLeftFilesSubfoldersDelete.Checked)
@@ -2042,11 +2033,6 @@ namespace FsAFS
                                     DeleteDirectory(txtSourceFolderPath.Text + item);
                                 }
 
-                                //{
-
-
-                                //}
-
                             }
                         }
                     });
@@ -2054,7 +2040,7 @@ namespace FsAFS
                     lbLeftSideFolderSize.Text = GetFolderSize(txtSourceFolderPath.Text);
                     lbRightSideFolderSize.Text = GetFolderSize(txtDestinationFolderPath.Text);
                     calculatefilesandfolders(2);
-                    progressBar1.Visible = false;
+                    pbProgressBar.Visible = false;lbProcessing.Visible = false;
                     MessageBox.Show("Process Completed");
                     EnableOrDisableControls(true);
                     timer1.Start();
@@ -2076,7 +2062,7 @@ namespace FsAFS
 
                     timer1.Stop();
                     EnableOrDisableControls(false);
-                    progressBar1.Visible = true;
+                    pbProgressBar.Visible = true;lbProcessing.Visible = true;
 
                     await Task.Run(() =>
                     {
@@ -2092,12 +2078,6 @@ namespace FsAFS
                                     DeleteFile(txtSourceFolderPath.Text + item);
                                 }
                             }
-
-                            //{
-
-
-                            //}
-
                         }
                         else if (cbRightFileDelete.Checked && !cbLeftFileDelete.Checked)
                         {
@@ -2111,11 +2091,6 @@ namespace FsAFS
                                 }
                             }
 
-                            //{
-
-
-                            //}
-
                         }
                         else if (!cbRightFileDelete.Checked && cbLeftFileDelete.Checked)
                         {
@@ -2128,12 +2103,6 @@ namespace FsAFS
                                     DeleteFile(txtSourceFolderPath.Text + item);
                                 }
                             }
-
-                            //{
-
-
-                            //}
-
                         }
                     });
                     lvDuplicate.Items.Clear();
@@ -2142,7 +2111,7 @@ namespace FsAFS
                     lbLeftSideFolderSize.Text = GetFolderSize(txtSourceFolderPath.Text);
                     lbRightSideFolderSize.Text = GetFolderSize(txtDestinationFolderPath.Text);
                     calculatefilesandfolders(2);
-                    progressBar1.Visible = false;
+                    pbProgressBar.Visible = false;lbProcessing.Visible = false;
                     MessageBox.Show("Process Completed");
                     EnableOrDisableControls(true);
                     timer1.Start();
@@ -2196,12 +2165,6 @@ namespace FsAFS
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            if (operationCancelCheck)
-            {
-                lvDifferent.Items.Clear();
-                lvDuplicate.Items.Clear();
-                operationCancelCheck = false;
-            }
             if (txtSourceFolderPath.Text == "" || txtDestinationFolderPath.Text == "" || !Directory.Exists(txtSourceFolderPath.Text) || !Directory.Exists(txtDestinationFolderPath.Text))
             {
                 btnAnalyse.Enabled = false;
