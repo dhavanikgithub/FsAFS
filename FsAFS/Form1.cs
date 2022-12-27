@@ -11,6 +11,7 @@ using System.Linq;
 using System.Security.AccessControl;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Security.Principal;
 
 namespace FsAFS
 {
@@ -70,6 +71,9 @@ namespace FsAFS
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            string Imagepath = AppDomain.CurrentDomain.BaseDirectory;
+            SetFolderPermission(Imagepath);
+            Imagepath = Imagepath.Replace(@"bin\Debug\", @"Resources\");
 
             //con.Open();
             //SqlCommand cmd = new SqlCommand("TRUNCATE TABLE copy_item_list", con);
@@ -137,8 +141,7 @@ namespace FsAFS
             }
 
             //</>
-            string Imagepath = AppDomain.CurrentDomain.BaseDirectory;
-            Imagepath = Imagepath.Replace(@"bin\Debug\", @"Resources\");
+            
             string filetype_name_path = Imagepath + @"filetype_name.txt";
             if (File.Exists(filetype_name_path))
             {
@@ -282,6 +285,20 @@ namespace FsAFS
 
         }
 
+        public static void SetFolderPermission(string folderPath)
+        {
+            var directoryInfo = new DirectoryInfo(folderPath);
+            var directorySecurity = directoryInfo.GetAccessControl();
+            var currentUserIdentity = WindowsIdentity.GetCurrent();
+            var fileSystemRule = new FileSystemAccessRule(currentUserIdentity.Name,
+                                                          FileSystemRights.FullControl,
+                                                          InheritanceFlags.ObjectInherit |
+                                                          InheritanceFlags.ContainerInherit,
+                                                          PropagationFlags.None, AccessControlType.Allow);
+           
+            directorySecurity.AddAccessRule(fileSystemRule);
+            directoryInfo.SetAccessControl(directorySecurity);
+        }
         private void Form1_Resize(object sender, EventArgs e)
         {
             ChildResize();
@@ -293,7 +310,7 @@ namespace FsAFS
             {
                 File.Copy(sourcePath, destinationPath, fileOverride);
                 con.Open();
-                string query = "insert into copy_item_list values('" + sourcePath + "','" + destinationPath + "',1,'" + DateTime.Now + "')";
+                string query = "insert into copy_item_list values('" + sourcePath + "','" + destinationPath + "',1,'" + DateTime.Now.ToString() + "')";
                 SqlCommand cmd = new SqlCommand(query, con);
                 if (cmd.ExecuteNonQuery() == 0)
                 {
@@ -645,7 +662,7 @@ namespace FsAFS
             {
                 File.Delete(path);
                 con.Open();
-                SqlCommand cmd = new SqlCommand("insert into delete_item_list values ('" + path + "','" + DateTime.Now + "')", con);
+                SqlCommand cmd = new SqlCommand("insert into delete_item_list values ('" + path + "','" + DateTime.Now.ToString() + "')", con);
                 if (cmd.ExecuteNonQuery() == 0)
                 {
                     MessageBox.Show("Add Deleted item in Database Error");

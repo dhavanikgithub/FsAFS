@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.32510.428
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FsAFS", "FsAFS\FsAFS.csproj", "{575E2657-442D-4C82-AC08-585975E44A4B}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FsAFS_Setup", "FsAFS_Setup\FsAFS_Setup.vdproj", "{777CC199-1F5B-431E-BA6F-849BA21B3E81}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{575E2657-442D-4C82-AC08-585975E44A4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{575E2657-442D-4C82-AC08-585975E44A4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{575E2657-442D-4C82-AC08-585975E44A4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{777CC199-1F5B-431E-BA6F-849BA21B3E81}.Debug|Any CPU.ActiveCfg = Debug
+		{777CC199-1F5B-431E-BA6F-849BA21B3E81}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
