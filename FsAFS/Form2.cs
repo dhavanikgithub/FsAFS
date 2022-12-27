@@ -28,7 +28,7 @@ namespace FsAFS
 
             string Imagepath = AppDomain.CurrentDomain.BaseDirectory;
             Imagepath = Imagepath.Replace(@"bin\Debug\", @"Resources\");
-            string filetype_name_path = Imagepath + @"filetype_name.txt";
+            string filetype_name_path = Imagepath + @"src\filetype_name.txt";
 
 
             if (File.Exists(filetype_name_path))
@@ -39,12 +39,12 @@ namespace FsAFS
             ImageList img = new ImageList() { ImageSize = new Size(25, 25) };
 
             //<>
-            img.Images.Add(Image.FromFile(Imagepath + @"file.png"));
+            img.Images.Add(Image.FromFile(Imagepath + @"img\file.png"));
             for (int i = 0; i < filetype_name.Length; i++)
             {
                 string filename = filetype_name[i];
 
-                img.Images.Add(Image.FromFile(Imagepath + @"filetype_icon\" + filename + ".png"));
+                img.Images.Add(Image.FromFile(Imagepath + @"img\filetype_icon\" + filename + ".png"));
             }
             //</>
 

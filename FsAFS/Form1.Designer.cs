@@ -80,6 +80,8 @@ namespace FsAFS
             this.btnClear = new System.Windows.Forms.Button();
             this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.panelBottom1 = new System.Windows.Forms.Panel();
+            this.lbProcessing = new System.Windows.Forms.Label();
+            this.pbProgressBar = new System.Windows.Forms.PictureBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAnalyseSettings = new System.Windows.Forms.Button();
             this.panelBottom2 = new System.Windows.Forms.Panel();
@@ -87,8 +89,6 @@ namespace FsAFS
             this.panelSD = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.pbProgressBar = new System.Windows.Forms.PictureBox();
-            this.lbProcessing = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panelDestinationFolder.SuspendLayout();
@@ -98,10 +98,10 @@ namespace FsAFS
             ((System.ComponentModel.ISupportInitialize)(this.pbCopySourceFolderPath)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCopySourceFolderName)).BeginInit();
             this.panelBottom1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProgressBar)).BeginInit();
             this.panelBottom2.SuspendLayout();
             this.panelMiddel1.SuspendLayout();
             this.panelSD.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbProgressBar)).BeginInit();
             this.SuspendLayout();
             // 
             // cbLeftFileDelete
@@ -273,7 +273,7 @@ namespace FsAFS
             // 
             // pbCopyDestinationFolderPath
             // 
-            this.pbCopyDestinationFolderPath.Image = global::FsAFS.Properties.Resources.copy_txt;
+            this.pbCopyDestinationFolderPath.Image = ((System.Drawing.Image)(resources.GetObject("pbCopyDestinationFolderPath.Image")));
             this.pbCopyDestinationFolderPath.Location = new System.Drawing.Point(264, 34);
             this.pbCopyDestinationFolderPath.Name = "pbCopyDestinationFolderPath";
             this.pbCopyDestinationFolderPath.Size = new System.Drawing.Size(15, 15);
@@ -284,7 +284,7 @@ namespace FsAFS
             // 
             // pbCopyDestinationFolderName
             // 
-            this.pbCopyDestinationFolderName.Image = global::FsAFS.Properties.Resources.copy_txt;
+            this.pbCopyDestinationFolderName.Image = ((System.Drawing.Image)(resources.GetObject("pbCopyDestinationFolderName.Image")));
             this.pbCopyDestinationFolderName.Location = new System.Drawing.Point(264, 6);
             this.pbCopyDestinationFolderName.Name = "pbCopyDestinationFolderName";
             this.pbCopyDestinationFolderName.Size = new System.Drawing.Size(15, 15);
@@ -354,7 +354,7 @@ namespace FsAFS
             // btnBR
             // 
             this.btnBR.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBR.Image = global::FsAFS.Properties.Resources.add_folder;
+            this.btnBR.Image = ((System.Drawing.Image)(resources.GetObject("btnBR.Image")));
             this.btnBR.Location = new System.Drawing.Point(301, 2);
             this.btnBR.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBR.Name = "btnBR";
@@ -406,7 +406,7 @@ namespace FsAFS
             // 
             // pbCopySourceFolderPath
             // 
-            this.pbCopySourceFolderPath.Image = global::FsAFS.Properties.Resources.copy_txt;
+            this.pbCopySourceFolderPath.Image = ((System.Drawing.Image)(resources.GetObject("pbCopySourceFolderPath.Image")));
             this.pbCopySourceFolderPath.Location = new System.Drawing.Point(263, 32);
             this.pbCopySourceFolderPath.Name = "pbCopySourceFolderPath";
             this.pbCopySourceFolderPath.Size = new System.Drawing.Size(15, 15);
@@ -417,7 +417,7 @@ namespace FsAFS
             // 
             // pbCopySourceFolderName
             // 
-            this.pbCopySourceFolderName.Image = global::FsAFS.Properties.Resources.copy_txt;
+            this.pbCopySourceFolderName.Image = ((System.Drawing.Image)(resources.GetObject("pbCopySourceFolderName.Image")));
             this.pbCopySourceFolderName.Location = new System.Drawing.Point(263, 6);
             this.pbCopySourceFolderName.Name = "pbCopySourceFolderName";
             this.pbCopySourceFolderName.Size = new System.Drawing.Size(15, 15);
@@ -542,7 +542,7 @@ namespace FsAFS
             // 
             this.btnCopyDuplicate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCopyDuplicate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCopyDuplicate.Image = global::FsAFS.Properties.Resources.copy;
+            this.btnCopyDuplicate.Image = ((System.Drawing.Image)(resources.GetObject("btnCopyDuplicate.Image")));
             this.btnCopyDuplicate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCopyDuplicate.Location = new System.Drawing.Point(160, 77);
             this.btnCopyDuplicate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -603,7 +603,7 @@ namespace FsAFS
             // 
             this.btnMoveDuplicate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnMoveDuplicate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMoveDuplicate.Image = global::FsAFS.Properties.Resources.move;
+            this.btnMoveDuplicate.Image = ((System.Drawing.Image)(resources.GetObject("btnMoveDuplicate.Image")));
             this.btnMoveDuplicate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMoveDuplicate.Location = new System.Drawing.Point(0, 77);
             this.btnMoveDuplicate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -620,7 +620,7 @@ namespace FsAFS
             // 
             this.btnSM_FAF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSM_FAF.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSM_FAF.Image = global::FsAFS.Properties.Resources.sync_and_move;
+            this.btnSM_FAF.Image = ((System.Drawing.Image)(resources.GetObject("btnSM_FAF.Image")));
             this.btnSM_FAF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSM_FAF.Location = new System.Drawing.Point(266, 33);
             this.btnSM_FAF.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -637,7 +637,7 @@ namespace FsAFS
             // 
             this.btnSC_FAF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSC_FAF.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSC_FAF.Image = global::FsAFS.Properties.Resources.sync_and_copy;
+            this.btnSC_FAF.Image = ((System.Drawing.Image)(resources.GetObject("btnSC_FAF.Image")));
             this.btnSC_FAF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSC_FAF.Location = new System.Drawing.Point(108, 33);
             this.btnSC_FAF.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -709,11 +709,30 @@ namespace FsAFS
             this.panelBottom1.Size = new System.Drawing.Size(421, 122);
             this.panelBottom1.TabIndex = 54;
             // 
+            // lbProcessing
+            // 
+            this.lbProcessing.AutoSize = true;
+            this.lbProcessing.Location = new System.Drawing.Point(38, 6);
+            this.lbProcessing.Name = "lbProcessing";
+            this.lbProcessing.Size = new System.Drawing.Size(173, 17);
+            this.lbProcessing.TabIndex = 56;
+            this.lbProcessing.Text = "Processing Please Wait....";
+            // 
+            // pbProgressBar
+            // 
+            this.pbProgressBar.Image = ((System.Drawing.Image)(resources.GetObject("pbProgressBar.Image")));
+            this.pbProgressBar.Location = new System.Drawing.Point(3, 0);
+            this.pbProgressBar.Name = "pbProgressBar";
+            this.pbProgressBar.Size = new System.Drawing.Size(28, 28);
+            this.pbProgressBar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbProgressBar.TabIndex = 55;
+            this.pbProgressBar.TabStop = false;
+            // 
             // btnCancel
             // 
             this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Image = global::FsAFS.Properties.Resources.cancel2;
+            this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancel.Location = new System.Drawing.Point(320, 77);
             this.btnCancel.Name = "btnCancel";
@@ -728,7 +747,7 @@ namespace FsAFS
             // btnAnalyseSettings
             // 
             this.btnAnalyseSettings.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAnalyseSettings.Image = global::FsAFS.Properties.Resources.settings1;
+            this.btnAnalyseSettings.Image = ((System.Drawing.Image)(resources.GetObject("btnAnalyseSettings.Image")));
             this.btnAnalyseSettings.Location = new System.Drawing.Point(15, 40);
             this.btnAnalyseSettings.Name = "btnAnalyseSettings";
             this.btnAnalyseSettings.Size = new System.Drawing.Size(40, 40);
@@ -787,25 +806,6 @@ namespace FsAFS
             this.label2.TabIndex = 59;
             this.label2.Text = "Destination";
             // 
-            // pbProgressBar
-            // 
-            this.pbProgressBar.Image = global::FsAFS.Properties.Resources.loading_gif;
-            this.pbProgressBar.Location = new System.Drawing.Point(3, 0);
-            this.pbProgressBar.Name = "pbProgressBar";
-            this.pbProgressBar.Size = new System.Drawing.Size(28, 28);
-            this.pbProgressBar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbProgressBar.TabIndex = 55;
-            this.pbProgressBar.TabStop = false;
-            // 
-            // lbProcessing
-            // 
-            this.lbProcessing.AutoSize = true;
-            this.lbProcessing.Location = new System.Drawing.Point(38, 6);
-            this.lbProcessing.Name = "lbProcessing";
-            this.lbProcessing.Size = new System.Drawing.Size(173, 17);
-            this.lbProcessing.TabIndex = 56;
-            this.lbProcessing.Text = "Processing Please Wait....";
-            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -845,10 +845,10 @@ namespace FsAFS
             ((System.ComponentModel.ISupportInitialize)(this.pbCopySourceFolderName)).EndInit();
             this.panelBottom1.ResumeLayout(false);
             this.panelBottom1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProgressBar)).EndInit();
             this.panelBottom2.ResumeLayout(false);
             this.panelMiddel1.ResumeLayout(false);
             this.panelSD.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbProgressBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -82,6 +82,10 @@ namespace FsAFS
             //trayIcon.Icon = Properties.Resources.logo;
             //trayIcon.Visible = true;
             //trayIcon.ShowBalloonTip(1000, "Wlcome Message", "Welcome to My Application FsAFS", ToolTipIcon.None);
+
+            //Assign Icon
+            
+
             pbProgressBar.Visible = false;
             lbProcessing.Visible = false;
             //<>
@@ -142,11 +146,10 @@ namespace FsAFS
 
             //</>
             
-            string filetype_name_path = Imagepath + @"filetype_name.txt";
+            string filetype_name_path = Imagepath + @"src\filetype_name.txt";
             if (File.Exists(filetype_name_path))
             {
                 filetype_name = File.ReadAllText(filetype_name_path).Split(',');
-                //MessageBox.Show(Imagepath + @"filetype_icon\" + filetype_name[0] + ".png");
             }
             ImageList img = new ImageList() { ImageSize = new Size(25, 25) };
 
@@ -154,13 +157,13 @@ namespace FsAFS
 
             //img.Images.Add(Properties.Resources.file);
             //img.Images.Add(Properties.Resources.folder);
-            img.Images.Add(Image.FromFile(Imagepath + @"file.png"));
-            img.Images.Add(Image.FromFile(Imagepath + @"folder.png"));
+            img.Images.Add(Image.FromFile(Imagepath + @"img\file.png"));
+            img.Images.Add(Image.FromFile(Imagepath + @"img\folder.png"));
             for (int i = 0; i < filetype_name.Length; i++)
             {
                 string filename = filetype_name[i];
 
-                img.Images.Add(Image.FromFile(Imagepath + @"filetype_icon\" + filename + ".png"));
+                img.Images.Add(Image.FromFile(Imagepath + @"img\filetype_icon\" + filename + ".png"));
             }
 
             //</>
