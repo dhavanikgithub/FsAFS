@@ -8,7 +8,7 @@ namespace FsAFS
 {
     public partial class Form2 : Form
     {
-        string[] filetype_name = new string[406];
+        string[] filetype_name = new string[404];
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\FsAFS_Database.mdf;Integrated Security=True");
         public Form2()
         {
@@ -36,10 +36,10 @@ namespace FsAFS
                 filetype_name = File.ReadAllText(filetype_name_path).Split(',');
                 //MessageBox.Show(Imagepath + @"filetype_icon\" + filetype_name[0] + ".png");
             }
-            ImageList img = new ImageList() { ImageSize = new Size(25, 25) };
+            ImageList img = new ImageList() { ImageSize = new Size(30,30) };
 
             //<>
-            img.Images.Add(Image.FromFile(Imagepath + @"img\file.png"));
+            img.Images.Add(Image.FromFile(Imagepath + @"img\filetype_icon\blank.png"));
             for (int i = 0; i < filetype_name.Length; i++)
             {
                 string filename = filetype_name[i];

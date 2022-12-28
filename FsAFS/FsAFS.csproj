@@ -625,7 +625,6 @@
     <None Include="Resources\img\loading-gif.gif" />
     <None Include="Resources\img\clear.png" />
     <None Include="Resources\img\folder.png" />
-    <None Include="Resources\img\file.png" />
     <None Include="Resources\img\move.png" />
     <None Include="Resources\img\add_folder.png" />
     <None Include="Resources\img\copy.png" />

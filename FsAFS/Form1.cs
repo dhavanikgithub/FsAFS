@@ -62,7 +62,7 @@ namespace FsAFS
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\FsAFS_Database.mdf;Integrated Security=True");
 
         private Size formRectSize;
-        string[] filetype_name = new string[406];
+        string[] filetype_name = new string[404];
         public Boolean operationCancel = false;
         public Form1()
         {
@@ -151,13 +151,13 @@ namespace FsAFS
             {
                 filetype_name = File.ReadAllText(filetype_name_path).Split(',');
             }
-            ImageList img = new ImageList() { ImageSize = new Size(25, 25) };
+            ImageList img = new ImageList() { ImageSize = new Size(30,30) };
 
             //<>
 
             //img.Images.Add(Properties.Resources.file);
             //img.Images.Add(Properties.Resources.folder);
-            img.Images.Add(Image.FromFile(Imagepath + @"img\file.png"));
+            img.Images.Add(Image.FromFile(Imagepath + @"img\filetype_icon\blank.png"));
             img.Images.Add(Image.FromFile(Imagepath + @"img\folder.png"));
             for (int i = 0; i < filetype_name.Length; i++)
             {
