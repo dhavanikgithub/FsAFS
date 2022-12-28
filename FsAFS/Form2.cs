@@ -53,31 +53,8 @@ namespace FsAFS
             lvDeleteItem.SmallImageList = img;
             //</>
 
-            con.Open();
-            string query = "select * from copy_item_list";
-            SqlCommand cmd = new SqlCommand(query, con);
-            SqlDataReader rdr = cmd.ExecuteReader();
-            if(rdr.HasRows)
-            {
-                while(rdr.Read())
-                {
-                    AddItemListViewCopyFromSource(rdr.GetValue(0).ToString(), rdr.GetValue(1).ToString(), rdr.GetValue(3).ToString());
-                }
-            }
-            con.Close();
-            lbTotalCountSD.Text = lvCopyFromSource.Items.Count.ToString();
-            con.Open();
-            cmd = new SqlCommand("select * from delete_item_list", con);
-            rdr = cmd.ExecuteReader();
-            if(rdr.HasRows)
-            {
-                while(rdr.Read())
-                {
-                    AddItemListViewDeleteItem(rdr.GetValue(0).ToString(), rdr.GetValue(1).ToString());
-                }
-            }
-            con.Close();
-            lbTotalCountDelete.Text = lvDeleteItem.Items.Count.ToString();
+            
+            
             if (Properties.Settings.Default.DifferentSettings==null || Properties.Settings.Default.DifferentSettings=="Default")
             {
                 rbDefault.Checked = true;
@@ -216,6 +193,8 @@ namespace FsAFS
             item.SubItems.Add(subitem2);
             lvCopyFromSource.Items.Add(item);
             lvCopyFromSource.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            lvCopyFromSource.EnsureVisible(lvCopyFromSource.Items.Count - 1);
+            lbTotalCountSD.Text = lvCopyFromSource.Items.Count.ToString();
         }
 
         void AddItemListViewDeleteItem(params string[] s)
@@ -233,6 +212,8 @@ namespace FsAFS
             item.SubItems.Add(subitem1);
             lvDeleteItem.Items.Add(item);
             lvDeleteItem.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            lvDeleteItem.EnsureVisible(lvDeleteItem.Items.Count - 1);
+            lbTotalCountDelete.Text = lvDeleteItem.Items.Count.ToString();
         }
 
         void EnableDisableControls(bool ed)
@@ -469,6 +450,38 @@ namespace FsAFS
         private void btnShowSettings_Click(object sender, EventArgs e)
         {
             MessageBox.Show(Properties.Settings.Default.DifferentSettings);
+        }
+
+        private void btnCopyItemLoadData_Click(object sender, EventArgs e)
+        {
+            con.Open();
+            SqlCommand cmd = new SqlCommand("select * from copy_item_list", con);
+            SqlDataReader rdr = cmd.ExecuteReader();
+            if (rdr.HasRows)
+            {
+                while (rdr.Read())
+                {
+                    AddItemListViewCopyFromSource(rdr.GetValue(0).ToString(), rdr.GetValue(1).ToString(), rdr.GetValue(3).ToString());
+                }
+            }
+            con.Close();
+            
+        }
+
+        private void btnDeleteItemLoadData_Click(object sender, EventArgs e)
+        {
+            con.Open();
+            SqlCommand cmd = new SqlCommand("select * from delete_item_list", con);
+            SqlDataReader rdr = cmd.ExecuteReader();
+            if (rdr.HasRows)
+            {
+                while (rdr.Read())
+                {
+                    AddItemListViewDeleteItem(rdr.GetValue(0).ToString(), rdr.GetValue(1).ToString());
+                }
+            }
+            con.Close();
+            
         }
     }
 }

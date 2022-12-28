@@ -215,6 +215,7 @@
       <DependentUpon>FsAFS_Database.mdf</DependentUpon>
     </Content>
     <None Include="Resources\img\settings.png" />
+    <Content Include="Resources\img\bottom_arrow.png" />
     <Content Include="Resources\img\cancel.png" />
     <Content Include="Resources\img\charts.png" />
     <Content Include="Resources\img\filetype_icon\3g2.png" />
@@ -621,6 +622,7 @@
     <Content Include="Resources\img\filetype_icon\z.png" />
     <Content Include="Resources\img\filetype_icon\zip.png" />
     <Content Include="Resources\img\filetype_icon\zsh.png" />
+    <Content Include="Resources\img\top_arrow.png" />
     <Content Include="Resources\src\filetype_name.txt" />
     <None Include="Resources\img\loading-gif.gif" />
     <None Include="Resources\img\clear.png" />

@@ -1263,6 +1263,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_790DAB875C6F4B168F430C80096122AB"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_796237B2C9584005B16D0AA0873A0191"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1864,6 +1870,12 @@
         "Entry"
         {
         "MsmKey" = "8:_B476A06E7B6243EC80A16751CEC83D16"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B52EE82859084DD68B7ABE9DE7EAB4F7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -6938,6 +6950,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_790DAB875C6F4B168F430C80096122AB"
+            {
+            "SourcePath" = "8:..\\FsAFS\\Resources\\img\\bottom_arrow.png"
+            "TargetName" = "8:bottom_arrow.png"
+            "Tag" = "8:"
+            "Folder" = "8:_E484BDBDF1054B5285AB6722811EB981"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_796237B2C9584005B16D0AA0873A0191"
             {
             "SourcePath" = "8:..\\FsAFS\\Resources\\img\\filetype_icon\\ods.png"
@@ -8917,6 +8949,26 @@
             "TargetName" = "8:vmdk.png"
             "Tag" = "8:"
             "Folder" = "8:_125DECE3FBA24D4C8B92897991A53151"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B52EE82859084DD68B7ABE9DE7EAB4F7"
+            {
+            "SourcePath" = "8:..\\FsAFS\\Resources\\img\\top_arrow.png"
+            "TargetName" = "8:top_arrow.png"
+            "Tag" = "8:"
+            "Folder" = "8:_E484BDBDF1054B5285AB6722811EB981"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -11627,7 +11679,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:FsAFS"
         "ProductCode" = "8:{45050251-CB8E-4F41-AFF7-7D172FB353EB}"
-        "PackageCode" = "8:{B573B378-84B2-45A5-829F-2026633CC9AB}"
+        "PackageCode" = "8:{7AF6C6CE-266A-44B9-BA88-EDD6E53EC724}"
         "UpgradeCode" = "8:{122C7243-688F-49FE-9F94-F4D1F27F6CC5}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

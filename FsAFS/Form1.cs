@@ -33,6 +33,10 @@ namespace FsAFS
         private Rectangle pbCopySourceFolderPathRect;
         private Rectangle pbCopyDestinationFolderNameRect;
         private Rectangle pbCopyDestinationFolderPathRect;
+        private Rectangle btnGotoTOPDifferentRect;
+        private Rectangle btnGotoBOTTOMDifferentRect;
+        private Rectangle btnGotoTOPDuplicateRect;
+        private Rectangle btnGotoBOTTOMDuplicateRect;
 
         private Rectangle txtSourceFolderNameRect;
         private Rectangle txtSourceFolderPathRect;
@@ -55,6 +59,10 @@ namespace FsAFS
         private Rectangle lbDuplicateRect;
         private Rectangle lb1Rect;
         private Rectangle lb2Rect;
+        private Rectangle lbDuplicateTotalCountRect;
+        private Rectangle lbDifferentTotalCountRect;
+        private Rectangle lbDifferentTotalCountTXTRect;
+        private Rectangle lbDuplicateTotalCountTXTRect;
 
         private double panelSourceFolderFont;
         private double panelDestinationFolderFont;
@@ -71,6 +79,7 @@ namespace FsAFS
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            
             string Imagepath = AppDomain.CurrentDomain.BaseDirectory;
             SetFolderPermission(Imagepath);
             Imagepath = Imagepath.Replace(@"bin\Debug\", @"Resources\");
@@ -136,12 +145,14 @@ namespace FsAFS
                 txtDestinationFolderName.Clear();
                 txtSourceFolderPath.Clear();
                 txtDestinationFolderPath.Clear();
-                lbLeftSideFolderSize.Text = "";
-                lbRightSideFolderSize.Text = "";
-                lbNoOfSourceFiles.Text = "";
-                lbNoOfSourceFolders.Text = "";
-                lbNoOfDestinationFiles.Text = "";
-                lbNoOfDestinationFolders.Text = "";
+                lbLeftSideFolderSize.Text = null;
+                lbRightSideFolderSize.Text = null;
+                lbNoOfSourceFiles.Text = null;
+                lbNoOfSourceFolders.Text = null;
+                lbNoOfDestinationFiles.Text = null;
+                lbNoOfDestinationFolders.Text = null;
+                lbDifferentTotalCount.Text = null;
+                lbDuplicateTotalCount.Text = null;
             }
 
             //</>
@@ -195,6 +206,10 @@ namespace FsAFS
             pbCopySourceFolderPathRect = new Rectangle(pbCopySourceFolderPath.Location, pbCopySourceFolderPath.Size);
             pbCopyDestinationFolderNameRect = new Rectangle(pbCopyDestinationFolderName.Location, pbCopyDestinationFolderName.Size);
             pbCopyDestinationFolderPathRect = new Rectangle(pbCopyDestinationFolderPath.Location, pbCopyDestinationFolderPath.Size);
+            btnGotoTOPDifferentRect = new Rectangle(btnGotoTOPDifferent.Location, btnGotoTOPDifferent.Size);
+            btnGotoBOTTOMDifferentRect = new Rectangle(btnGotoBOTTOMDifferent.Location, btnGotoBOTTOMDifferent.Size);
+            btnGotoTOPDuplicateRect = new Rectangle(btnGotoTOPDuplicate.Location, btnGotoTOPDuplicate.Size);
+            btnGotoBOTTOMDuplicateRect = new Rectangle(btnGotoBOTTOMDuplicate.Location, btnGotoBOTTOMDuplicate.Size);
 
             txtSourceFolderNameRect = new Rectangle(txtSourceFolderName.Location, txtSourceFolderName.Size);
             txtSourceFolderPathRect = new Rectangle(txtSourceFolderPath.Location, txtSourceFolderPath.Size);
@@ -217,6 +232,10 @@ namespace FsAFS
             lbDuplicateRect = new Rectangle(lbDuplicate.Location, lbDuplicate.Size);
             lb1Rect = new Rectangle(label1.Location, label1.Size);
             lb2Rect = new Rectangle(label2.Location, label2.Size);
+            lbDuplicateTotalCountRect = new Rectangle(lbDuplicateTotalCount.Location, lbDuplicateTotalCount.Size);
+            lbDifferentTotalCountRect = new Rectangle(lbDifferentTotalCount.Location, lbDifferentTotalCount.Size);
+            lbDifferentTotalCountTXTRect = new Rectangle(lbDifferentTotalCountTXT.Location, lbDifferentTotalCountTXT.Size);
+            lbDuplicateTotalCountTXTRect = new Rectangle(lbDuplicateTotalCountTXT.Location, lbDuplicateTotalCountTXT.Size);
             //</>
 
             //<Font>
@@ -488,6 +507,11 @@ namespace FsAFS
             Relocated(pbCopyDestinationFolderNameRect, pbCopyDestinationFolderName);
             Relocated(pbCopyDestinationFolderPathRect, pbCopyDestinationFolderPath);
 
+            Relocated(btnGotoBOTTOMDuplicateRect, btnGotoBOTTOMDuplicate);
+            Relocated(btnGotoTOPDuplicateRect, btnGotoTOPDuplicate);
+            Relocated(btnGotoBOTTOMDifferentRect, btnGotoBOTTOMDifferent);
+            Relocated(btnGotoTOPDifferentRect, btnGotoTOPDifferent);
+
             ControlResize(txtSourceFolderNameRect, txtSourceFolderName);
             ControlResize(txtSourceFolderPathRect, txtSourceFolderPath);
             ControlResize(txtDestinationFolderNameRect, txtDestinationFolderName);
@@ -509,6 +533,10 @@ namespace FsAFS
             ControlResize(lbDuplicateRect, lbDuplicate);
             ControlResize(lb1Rect, label1);
             ControlResize(lb2Rect, label2);
+            ControlResize(lbDuplicateTotalCountRect, lbDuplicateTotalCount);
+            ControlResize(lbDifferentTotalCountRect, lbDifferentTotalCount);
+            ControlResize(lbDuplicateTotalCountTXTRect, lbDuplicateTotalCountTXT);
+            ControlResize(lbDifferentTotalCountTXTRect, lbDifferentTotalCountTXT);
         }
 
         void ControlResize(Rectangle r, Control c)
@@ -597,6 +625,8 @@ namespace FsAFS
             item.SubItems.Add(subitem4);
             lvDifferent.Items.Add(item);
             lvDifferent.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            lvDifferent.EnsureVisible(lvDifferent.Items.Count - 1);
+            lbDifferentTotalCount.Text = lvDifferent.Items.Count.ToString();
         }
 
         void AddItemListViewDuplicate(params string[] s)
@@ -623,6 +653,8 @@ namespace FsAFS
             item.SubItems.Add(subitem2);
             lvDuplicate.Items.Add(item);
             lvDuplicate.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            lvDuplicate.EnsureVisible(lvDuplicate.Items.Count - 1);
+            lbDifferentTotalCount.Text = lvDuplicate.Items.Count.ToString();
         }
 
         public static string StringToMD5Hash(string input)
@@ -935,7 +967,9 @@ namespace FsAFS
             lbNoOfSourceFiles.Text = "";
             lbNoOfSourceFolders.Text = "";
             lvDuplicate.Items.Clear();
+            lbDuplicateTotalCount.Text = null;
             lvDifferent.Items.Clear();
+            lbDifferentTotalCount.Text = null;
 
             CommonOpenFileDialog dialog = new CommonOpenFileDialog()
             {
@@ -983,7 +1017,9 @@ namespace FsAFS
 
 
             lvDuplicate.Items.Clear();
+            lbDuplicateTotalCount.Text = null;
             lvDifferent.Items.Clear();
+            lbDifferentTotalCount.Text = null;
 
             CommonOpenFileDialog dialog = new CommonOpenFileDialog()
             {
@@ -1035,7 +1071,13 @@ namespace FsAFS
                 int DesFolderLen = DestinationFolders.Length;
                 int SourceFolderLen = SourceFolders.Length;
                 lvDifferent.Items.Clear();
+                lbDifferentTotalCount.Text = null;
                 lvDuplicate.Items.Clear();
+                lbDuplicateTotalCount.Text = null;
+                btnGotoTOPDifferent.Enabled = false;
+                btnGotoBOTTOMDifferent.Enabled = false;
+                btnGotoTOPDuplicate.Enabled = false;
+                btnGotoBOTTOMDuplicate.Enabled = false;
                 Boolean flagOperationCancel = false;
 
                 await Task.Run(() =>
@@ -1235,7 +1277,9 @@ namespace FsAFS
                 if(flagOperationCancel)
                 {
                     lvDifferent.Items.Clear();
+                    lbDifferentTotalCount.Text = null;
                     lvDuplicate.Items.Clear();
+                    lbDuplicateTotalCount.Text = null;
                     MessageBox.Show("Analyse was Cancel","Notification",MessageBoxButtons.OK,MessageBoxIcon.Stop);
                 }
                 else
@@ -1244,6 +1288,10 @@ namespace FsAFS
                 }
                 EnableOrDisableControls(true);
                 btnAnalyseSettings.Enabled = true;
+                btnGotoTOPDifferent.Enabled = true;
+                btnGotoBOTTOMDifferent.Enabled = true;
+                btnGotoTOPDuplicate.Enabled = true;
+                btnGotoBOTTOMDuplicate.Enabled = true;
                 btnCancel.Enabled = false;
                 timer1.Start();
             }
@@ -1354,7 +1402,9 @@ namespace FsAFS
                             }
                         }
                         lvDifferent.Items.Clear();
+                        lbDifferentTotalCount.Text = null;
                         lvDuplicate.Items.Clear();
+                        lbDuplicateTotalCount.Text = null;
                         lbLeftSideFolderSize.Text = GetFolderSize(txtSourceFolderPath.Text);
                         lbRightSideFolderSize.Text = GetFolderSize(txtDestinationFolderPath.Text);
                         calculatefilesandfolders(2);
@@ -1441,7 +1491,9 @@ namespace FsAFS
                             DeleteDirectory(p);
                         }
                         lvDifferent.Items.Clear();
+                        lbDifferentTotalCount.Text = null;
                         lvDuplicate.Items.Clear();
+                        lbDuplicateTotalCount.Text = null;
                         lbRightSideFolderSize.Text = GetFolderSize(txtDestinationFolderPath.Text);
                         lbLeftSideFolderSize.Text = GetFolderSize(txtSourceFolderPath.Text);
                         calculatefilesandfolders(2);
@@ -1519,7 +1571,9 @@ namespace FsAFS
                             }
                         }
                         lvDifferent.Items.Clear();
+                        lbDifferentTotalCount.Text = null;
                         lvDuplicate.Items.Clear();
+                        lbDuplicateTotalCount.Text = null;
                         lbRightSideFolderSize.Text = GetFolderSize(txtDestinationFolderPath.Text);
                         calculatefilesandfolders(1);
                         pbProgressBar.Visible = false;lbProcessing.Visible = false;
@@ -1596,7 +1650,9 @@ namespace FsAFS
                             }
                         }
                         lvDifferent.Items.Clear();
+                        lbDifferentTotalCount.Text = null;
                         lvDuplicate.Items.Clear();
+                        lbDuplicateTotalCount.Text = null;
                         lbLeftSideFolderSize.Text = GetFolderSize(txtSourceFolderPath.Text);
                         calculatefilesandfolders(0);
                         pbProgressBar.Visible = false;lbProcessing.Visible = false;
@@ -1717,6 +1773,7 @@ namespace FsAFS
                             DeleteDirectory(p);
                         }
                         lvDifferent.Items.Clear();
+                        lbDifferentTotalCount.Text = null;
                         lbRightSideFolderSize.Text = GetFolderSize(txtDestinationFolderPath.Text);
                         lbLeftSideFolderSize.Text = GetFolderSize(txtSourceFolderPath.Text);
                         calculatefilesandfolders(2);
@@ -1837,6 +1894,7 @@ namespace FsAFS
                             DeleteDirectory(p);
                         }
                         lvDifferent.Items.Clear();
+                        lbDifferentTotalCount.Text = null;
                         lbRightSideFolderSize.Text = GetFolderSize(txtDestinationFolderPath.Text);
                         lbLeftSideFolderSize.Text = GetFolderSize(txtSourceFolderPath.Text);
                         calculatefilesandfolders(2);
@@ -1969,6 +2027,7 @@ namespace FsAFS
                                 DeleteDirectory(txtDestinationFolderPath.Text + p);
                             }
                             lvDuplicate.Items.Clear();
+                            lbDuplicateTotalCount.Text = null;
                             lbLeftSideFolderSize.Text = GetFolderSize(txtSourceFolderPath.Text);
                             lbRightSideFolderSize.Text = GetFolderSize(txtDestinationFolderPath.Text);
                             calculatefilesandfolders(2);
@@ -2057,6 +2116,7 @@ namespace FsAFS
                         }
                     });
                     lvDuplicate.Items.Clear();
+                    lbDuplicateTotalCount.Text = null;
                     lbLeftSideFolderSize.Text = GetFolderSize(txtSourceFolderPath.Text);
                     lbRightSideFolderSize.Text = GetFolderSize(txtDestinationFolderPath.Text);
                     calculatefilesandfolders(2);
@@ -2126,6 +2186,7 @@ namespace FsAFS
                         }
                     });
                     lvDuplicate.Items.Clear();
+                    lbDuplicateTotalCount.Text = null;
 
 
                     lbLeftSideFolderSize.Text = GetFolderSize(txtSourceFolderPath.Text);
@@ -2213,7 +2274,9 @@ namespace FsAFS
                     lbNoOfSourceFolders.Text = "";
                     lbLeftSideFolderSize.Text = "";
                     lvDifferent.Items.Clear();
+                    lbDifferentTotalCount.Text = null;
                     lvDuplicate.Items.Clear();
+                    lbDuplicateTotalCount.Text = null;
                 }
             }
             if (txtDestinationFolderPath.Text != "")
@@ -2226,7 +2289,9 @@ namespace FsAFS
                     lbNoOfDestinationFolders.Text = "";
                     lbRightSideFolderSize.Text = "";
                     lvDifferent.Items.Clear();
+                    lbDifferentTotalCount.Text = null;
                     lvDuplicate.Items.Clear();
+                    lbDuplicateTotalCount.Text = null;
                 }
             }
         }
@@ -2246,7 +2311,9 @@ namespace FsAFS
 
 
             lvDifferent.Items.Clear();
+            lbDifferentTotalCount.Text = null;
             lvDuplicate.Items.Clear();
+            lbDuplicateTotalCount.Text = null;
             cbLeftFileDelete.Checked = false;
             cbRightFileDelete.Checked = false;
             cbLeftFilesSubfoldersDelete.Checked = false;
@@ -2298,6 +2365,8 @@ namespace FsAFS
         private void btnCancel_Click(object sender, EventArgs e)
         {
             operationCancel = true;
+            lbDifferentTotalCount.Text = null;
+            lbDuplicateTotalCount.Text = null;
         }
 
         Boolean confirmMessage(string msg)
@@ -2312,6 +2381,36 @@ namespace FsAFS
             }
         }
 
+        private void btnGotoTOPDifferent_Click(object sender, EventArgs e)
+        {
+            if (lvDifferent.Items.Count > 0)
+            {
+                lvDifferent.EnsureVisible(0);
+            }
+        }
 
+        private void btnGotoBOTTOMDifferent_Click(object sender, EventArgs e)
+        {
+            if (lvDifferent.Items.Count > 0)
+            {
+                lvDifferent.EnsureVisible(lvDifferent.Items.Count - 1);
+            }
+        }
+
+        private void btnGotoTOPDuplicate_Click(object sender, EventArgs e)
+        {
+            if (lvDuplicate.Items.Count > 0)
+            {
+                lvDuplicate.EnsureVisible(0);
+            }
+        }
+
+        private void btnGotoBOTTOMDuplicate_Click(object sender, EventArgs e)
+        {
+            if (lvDuplicate.Items.Count > 0)
+            {
+                lvDuplicate.EnsureVisible(lvDifferent.Items.Count - 1);
+            }
+        }
     }
 }

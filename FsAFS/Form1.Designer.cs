@@ -87,8 +87,16 @@ namespace FsAFS
             this.panelBottom2 = new System.Windows.Forms.Panel();
             this.panelMiddel1 = new System.Windows.Forms.Panel();
             this.panelSD = new System.Windows.Forms.Panel();
+            this.btnGotoTOPDuplicate = new System.Windows.Forms.Button();
+            this.btnGotoBOTTOMDuplicate = new System.Windows.Forms.Button();
+            this.btnGotoBOTTOMDifferent = new System.Windows.Forms.Button();
+            this.btnGotoTOPDifferent = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.lbDifferentTotalCountTXT = new System.Windows.Forms.Label();
+            this.lbDifferentTotalCount = new System.Windows.Forms.Label();
+            this.lbDuplicateTotalCount = new System.Windows.Forms.Label();
+            this.lbDuplicateTotalCountTXT = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panelDestinationFolder.SuspendLayout();
@@ -202,7 +210,7 @@ namespace FsAFS
             // btnDDFS
             // 
             this.btnDDFS.Image = ((System.Drawing.Image)(resources.GetObject("btnDDFS.Image")));
-            this.btnDDFS.Location = new System.Drawing.Point(120, 32);
+            this.btnDDFS.Location = new System.Drawing.Point(120, 30);
             this.btnDDFS.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDDFS.Name = "btnDDFS";
             this.btnDDFS.Size = new System.Drawing.Size(40, 40);
@@ -528,7 +536,7 @@ namespace FsAFS
             // 
             this.btnMoveRightToLeftFAF.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnMoveRightToLeftFAF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMoveRightToLeftFAF.Location = new System.Drawing.Point(636, 2);
+            this.btnMoveRightToLeftFAF.Location = new System.Drawing.Point(634, 2);
             this.btnMoveRightToLeftFAF.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMoveRightToLeftFAF.Name = "btnMoveRightToLeftFAF";
             this.btnMoveRightToLeftFAF.Size = new System.Drawing.Size(124, 35);
@@ -559,7 +567,7 @@ namespace FsAFS
             // 
             this.btnCopyRightToLeftFAF.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnCopyRightToLeftFAF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCopyRightToLeftFAF.Location = new System.Drawing.Point(393, 2);
+            this.btnCopyRightToLeftFAF.Location = new System.Drawing.Point(501, 2);
             this.btnCopyRightToLeftFAF.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCopyRightToLeftFAF.Name = "btnCopyRightToLeftFAF";
             this.btnCopyRightToLeftFAF.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -574,7 +582,7 @@ namespace FsAFS
             // 
             this.btnMoveLeftToRightFAF.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnMoveLeftToRightFAF.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnMoveLeftToRightFAF.Location = new System.Drawing.Point(253, 2);
+            this.btnMoveLeftToRightFAF.Location = new System.Drawing.Point(136, 2);
             this.btnMoveLeftToRightFAF.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMoveLeftToRightFAF.Name = "btnMoveLeftToRightFAF";
             this.btnMoveLeftToRightFAF.Size = new System.Drawing.Size(124, 35);
@@ -730,7 +738,7 @@ namespace FsAFS
             // 
             // btnCancel
             // 
-            this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -779,6 +787,10 @@ namespace FsAFS
             // 
             this.panelSD.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelSD.Controls.Add(this.btnGotoTOPDuplicate);
+            this.panelSD.Controls.Add(this.btnGotoBOTTOMDuplicate);
+            this.panelSD.Controls.Add(this.btnGotoBOTTOMDifferent);
+            this.panelSD.Controls.Add(this.btnGotoTOPDifferent);
             this.panelSD.Controls.Add(this.btnMoveLeftToRightFAF);
             this.panelSD.Controls.Add(this.btnMoveRightToLeftFAF);
             this.panelSD.Controls.Add(this.btnCopyRightToLeftFAF);
@@ -787,6 +799,46 @@ namespace FsAFS
             this.panelSD.Name = "panelSD";
             this.panelSD.Size = new System.Drawing.Size(765, 40);
             this.panelSD.TabIndex = 57;
+            // 
+            // btnGotoTOPDuplicate
+            // 
+            this.btnGotoTOPDuplicate.Image = ((System.Drawing.Image)(resources.GetObject("btnGotoTOPDuplicate.Image")));
+            this.btnGotoTOPDuplicate.Location = new System.Drawing.Point(390, 2);
+            this.btnGotoTOPDuplicate.Name = "btnGotoTOPDuplicate";
+            this.btnGotoTOPDuplicate.Size = new System.Drawing.Size(35, 35);
+            this.btnGotoTOPDuplicate.TabIndex = 54;
+            this.btnGotoTOPDuplicate.UseVisualStyleBackColor = true;
+            this.btnGotoTOPDuplicate.Click += new System.EventHandler(this.btnGotoTOPDuplicate_Click);
+            // 
+            // btnGotoBOTTOMDuplicate
+            // 
+            this.btnGotoBOTTOMDuplicate.Image = ((System.Drawing.Image)(resources.GetObject("btnGotoBOTTOMDuplicate.Image")));
+            this.btnGotoBOTTOMDuplicate.Location = new System.Drawing.Point(439, 2);
+            this.btnGotoBOTTOMDuplicate.Name = "btnGotoBOTTOMDuplicate";
+            this.btnGotoBOTTOMDuplicate.Size = new System.Drawing.Size(35, 35);
+            this.btnGotoBOTTOMDuplicate.TabIndex = 53;
+            this.btnGotoBOTTOMDuplicate.UseVisualStyleBackColor = true;
+            this.btnGotoBOTTOMDuplicate.Click += new System.EventHandler(this.btnGotoBOTTOMDuplicate_Click);
+            // 
+            // btnGotoBOTTOMDifferent
+            // 
+            this.btnGotoBOTTOMDifferent.Image = ((System.Drawing.Image)(resources.GetObject("btnGotoBOTTOMDifferent.Image")));
+            this.btnGotoBOTTOMDifferent.Location = new System.Drawing.Point(342, 2);
+            this.btnGotoBOTTOMDifferent.Name = "btnGotoBOTTOMDifferent";
+            this.btnGotoBOTTOMDifferent.Size = new System.Drawing.Size(35, 35);
+            this.btnGotoBOTTOMDifferent.TabIndex = 52;
+            this.btnGotoBOTTOMDifferent.UseVisualStyleBackColor = true;
+            this.btnGotoBOTTOMDifferent.Click += new System.EventHandler(this.btnGotoBOTTOMDifferent_Click);
+            // 
+            // btnGotoTOPDifferent
+            // 
+            this.btnGotoTOPDifferent.Image = ((System.Drawing.Image)(resources.GetObject("btnGotoTOPDifferent.Image")));
+            this.btnGotoTOPDifferent.Location = new System.Drawing.Point(296, 2);
+            this.btnGotoTOPDifferent.Name = "btnGotoTOPDifferent";
+            this.btnGotoTOPDifferent.Size = new System.Drawing.Size(35, 35);
+            this.btnGotoTOPDifferent.TabIndex = 51;
+            this.btnGotoTOPDifferent.UseVisualStyleBackColor = true;
+            this.btnGotoTOPDifferent.Click += new System.EventHandler(this.btnGotoTOPDifferent_Click);
             // 
             // label1
             // 
@@ -806,10 +858,51 @@ namespace FsAFS
             this.label2.TabIndex = 59;
             this.label2.Text = "Destination";
             // 
+            // lbDifferentTotalCountTXT
+            // 
+            this.lbDifferentTotalCountTXT.AutoSize = true;
+            this.lbDifferentTotalCountTXT.Location = new System.Drawing.Point(167, 110);
+            this.lbDifferentTotalCountTXT.Name = "lbDifferentTotalCountTXT";
+            this.lbDifferentTotalCountTXT.Size = new System.Drawing.Size(44, 17);
+            this.lbDifferentTotalCountTXT.TabIndex = 60;
+            this.lbDifferentTotalCountTXT.Text = "Total:";
+            // 
+            // lbDifferentTotalCount
+            // 
+            this.lbDifferentTotalCount.AutoSize = true;
+            this.lbDifferentTotalCount.Location = new System.Drawing.Point(222, 110);
+            this.lbDifferentTotalCount.Name = "lbDifferentTotalCount";
+            this.lbDifferentTotalCount.Size = new System.Drawing.Size(46, 17);
+            this.lbDifferentTotalCount.TabIndex = 61;
+            this.lbDifferentTotalCount.Text = "label4";
+            // 
+            // lbDuplicateTotalCount
+            // 
+            this.lbDuplicateTotalCount.AutoSize = true;
+            this.lbDuplicateTotalCount.Location = new System.Drawing.Point(641, 110);
+            this.lbDuplicateTotalCount.Name = "lbDuplicateTotalCount";
+            this.lbDuplicateTotalCount.Size = new System.Drawing.Size(46, 17);
+            this.lbDuplicateTotalCount.TabIndex = 63;
+            this.lbDuplicateTotalCount.Text = "label5";
+            // 
+            // lbDuplicateTotalCountTXT
+            // 
+            this.lbDuplicateTotalCountTXT.AutoSize = true;
+            this.lbDuplicateTotalCountTXT.Location = new System.Drawing.Point(591, 110);
+            this.lbDuplicateTotalCountTXT.Name = "lbDuplicateTotalCountTXT";
+            this.lbDuplicateTotalCountTXT.Size = new System.Drawing.Size(44, 17);
+            this.lbDuplicateTotalCountTXT.TabIndex = 62;
+            this.lbDuplicateTotalCountTXT.Text = "Total:";
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(782, 553);
+            this.Controls.Add(this.lbDuplicateTotalCount);
+            this.Controls.Add(this.lbDuplicateTotalCountTXT);
+            this.Controls.Add(this.lbDifferentTotalCount);
+            this.Controls.Add(this.lbDifferentTotalCountTXT);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panelSD);
@@ -913,6 +1006,14 @@ namespace FsAFS
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.PictureBox pbProgressBar;
         private System.Windows.Forms.Label lbProcessing;
+        private System.Windows.Forms.Label lbDifferentTotalCountTXT;
+        private System.Windows.Forms.Label lbDifferentTotalCount;
+        private System.Windows.Forms.Label lbDuplicateTotalCount;
+        private System.Windows.Forms.Label lbDuplicateTotalCountTXT;
+        private System.Windows.Forms.Button btnGotoTOPDifferent;
+        private System.Windows.Forms.Button btnGotoTOPDuplicate;
+        private System.Windows.Forms.Button btnGotoBOTTOMDuplicate;
+        private System.Windows.Forms.Button btnGotoBOTTOMDifferent;
     }
 }
 
