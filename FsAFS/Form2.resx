@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="pbCopyItemLoading.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="pbDeleteItemLoading.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         R0lGODlhyADIAPdjANfX2tjY2PX29uDg4ezs7fHx8dfX2dbW2cLCw9XV1svKzdfW2O3t7b6+wMvLy769
         wMvKzPDw8N7e3+bm5+7u78/O0fX19bCwsuXl5rq6u+Tk5be3uvT09Ojn6dzc3dzb3fLy8uHh4rKytPf3
@@ -805,7 +805,7 @@
         uF48UAM5EAsmgHdDZwIhcGoPNhAFgAEawAIhoAFcgJFqERAAOw==
 </value>
   </data>
-  <data name="pbDeleteItemLoading.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="pbCopyItemLoading.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         R0lGODlhyADIAPdjANfX2tjY2PX29uDg4ezs7fHx8dfX2dbW2cLCw9XV1svKzdfW2O3t7b6+wMvLy769
         wMvKzPDw8N7e3+bm5+7u78/O0fX19bCwsuXl5rq6u+Tk5be3uvT09Ojn6dzc3dzb3fLy8uHh4rKytPf3

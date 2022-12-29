@@ -210,6 +210,13 @@
     <Content Include="FsAFS_Database.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="FsAFS_Database_1.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FsAFS_Database_1_log.ldf">
+      <DependentUpon>FsAFS_Database_1.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="FsAFS_Database_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>FsAFS_Database.mdf</DependentUpon>

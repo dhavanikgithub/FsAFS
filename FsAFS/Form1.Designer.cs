@@ -178,7 +178,7 @@ namespace FsAFS
             // 
             // btnDDF
             // 
-            this.btnDDF.BackColor = System.Drawing.SystemColors.Control;
+            this.btnDDF.BackColor = System.Drawing.SystemColors.Info;
             this.btnDDF.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDDF.Image = ((System.Drawing.Image)(resources.GetObject("btnDDF.Image")));
             this.btnDDF.Location = new System.Drawing.Point(105, 30);
@@ -188,7 +188,7 @@ namespace FsAFS
             this.btnDDF.Size = new System.Drawing.Size(40, 40);
             this.btnDDF.TabIndex = 15;
             this.btnDDF.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDDF.UseVisualStyleBackColor = true;
+            this.btnDDF.UseVisualStyleBackColor = false;
             this.btnDDF.Click += new System.EventHandler(this.BtnDDF_Click);
             // 
             // groupBox2
@@ -209,17 +209,19 @@ namespace FsAFS
             // 
             // btnDDFS
             // 
+            this.btnDDFS.BackColor = System.Drawing.SystemColors.Info;
             this.btnDDFS.Image = ((System.Drawing.Image)(resources.GetObject("btnDDFS.Image")));
             this.btnDDFS.Location = new System.Drawing.Point(120, 30);
             this.btnDDFS.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDDFS.Name = "btnDDFS";
             this.btnDDFS.Size = new System.Drawing.Size(40, 40);
             this.btnDDFS.TabIndex = 16;
-            this.btnDDFS.UseVisualStyleBackColor = true;
+            this.btnDDFS.UseVisualStyleBackColor = false;
             this.btnDDFS.Click += new System.EventHandler(this.BtnDDFS_Click);
             // 
             // lvDifferent
             // 
+            this.lvDifferent.BackColor = System.Drawing.SystemColors.Info;
             this.lvDifferent.HideSelection = false;
             this.lvDifferent.Location = new System.Drawing.Point(10, 129);
             this.lvDifferent.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -231,6 +233,7 @@ namespace FsAFS
             // 
             // lvDuplicate
             // 
+            this.lvDuplicate.BackColor = System.Drawing.SystemColors.Info;
             this.lvDuplicate.HideSelection = false;
             this.lvDuplicate.Location = new System.Drawing.Point(400, 129);
             this.lvDuplicate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -309,6 +312,7 @@ namespace FsAFS
             // 
             this.txtDestinationFolderName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDestinationFolderName.BackColor = System.Drawing.SystemColors.Info;
             this.txtDestinationFolderName.Location = new System.Drawing.Point(47, 3);
             this.txtDestinationFolderName.Multiline = true;
             this.txtDestinationFolderName.Name = "txtDestinationFolderName";
@@ -320,6 +324,7 @@ namespace FsAFS
             // 
             this.txtDestinationFolderPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDestinationFolderPath.BackColor = System.Drawing.SystemColors.Info;
             this.txtDestinationFolderPath.Location = new System.Drawing.Point(47, 31);
             this.txtDestinationFolderPath.Multiline = true;
             this.txtDestinationFolderPath.Name = "txtDestinationFolderPath";
@@ -366,13 +371,14 @@ namespace FsAFS
             // btnBR
             // 
             this.btnBR.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBR.BackColor = System.Drawing.SystemColors.Info;
             this.btnBR.Image = ((System.Drawing.Image)(resources.GetObject("btnBR.Image")));
             this.btnBR.Location = new System.Drawing.Point(301, 2);
             this.btnBR.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBR.Name = "btnBR";
             this.btnBR.Size = new System.Drawing.Size(40, 39);
             this.btnBR.TabIndex = 4;
-            this.btnBR.UseVisualStyleBackColor = true;
+            this.btnBR.UseVisualStyleBackColor = false;
             this.btnBR.Click += new System.EventHandler(this.BtnBR_Click);
             this.btnBR.MouseHover += new System.EventHandler(this.BtnBrowseRight_MouseHover);
             // 
@@ -485,6 +491,7 @@ namespace FsAFS
             // 
             this.txtSourceFolderName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSourceFolderName.BackColor = System.Drawing.SystemColors.Info;
             this.txtSourceFolderName.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtSourceFolderName.Location = new System.Drawing.Point(45, 3);
             this.txtSourceFolderName.Multiline = true;
@@ -497,6 +504,7 @@ namespace FsAFS
             // 
             this.txtSourceFolderPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSourceFolderPath.BackColor = System.Drawing.SystemColors.Info;
             this.txtSourceFolderPath.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtSourceFolderPath.Location = new System.Drawing.Point(45, 29);
             this.txtSourceFolderPath.Multiline = true;
@@ -528,19 +536,21 @@ namespace FsAFS
             // btnBL
             // 
             this.btnBL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBL.BackColor = System.Drawing.SystemColors.Info;
             this.btnBL.Image = ((System.Drawing.Image)(resources.GetObject("btnBL.Image")));
             this.btnBL.Location = new System.Drawing.Point(303, 2);
             this.btnBL.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBL.Name = "btnBL";
             this.btnBL.Size = new System.Drawing.Size(40, 39);
             this.btnBL.TabIndex = 1;
-            this.btnBL.UseVisualStyleBackColor = true;
+            this.btnBL.UseVisualStyleBackColor = false;
             this.btnBL.Click += new System.EventHandler(this.BtnBL_Click);
             this.btnBL.MouseHover += new System.EventHandler(this.BtnBrowseLeft_MouseHover);
             // 
             // btnMoveRightToLeftFAF
             // 
             this.btnMoveRightToLeftFAF.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnMoveRightToLeftFAF.BackColor = System.Drawing.SystemColors.Info;
             this.btnMoveRightToLeftFAF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMoveRightToLeftFAF.Location = new System.Drawing.Point(634, 2);
             this.btnMoveRightToLeftFAF.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -548,13 +558,14 @@ namespace FsAFS
             this.btnMoveRightToLeftFAF.Size = new System.Drawing.Size(124, 35);
             this.btnMoveRightToLeftFAF.TabIndex = 50;
             this.btnMoveRightToLeftFAF.Text = "Move D to S";
-            this.btnMoveRightToLeftFAF.UseVisualStyleBackColor = true;
+            this.btnMoveRightToLeftFAF.UseVisualStyleBackColor = false;
             this.btnMoveRightToLeftFAF.Click += new System.EventHandler(this.BtnMoveRightToLeftFAF_Click);
             this.btnMoveRightToLeftFAF.MouseHover += new System.EventHandler(this.BtnMoveRightToLeftFAF_MouseHover);
             // 
             // btnCopyDuplicate
             // 
             this.btnCopyDuplicate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCopyDuplicate.BackColor = System.Drawing.SystemColors.Info;
             this.btnCopyDuplicate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCopyDuplicate.Image = ((System.Drawing.Image)(resources.GetObject("btnCopyDuplicate.Image")));
             this.btnCopyDuplicate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -566,12 +577,13 @@ namespace FsAFS
             this.btnCopyDuplicate.TabIndex = 46;
             this.btnCopyDuplicate.Text = "Copy Duplicate";
             this.btnCopyDuplicate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCopyDuplicate.UseVisualStyleBackColor = true;
+            this.btnCopyDuplicate.UseVisualStyleBackColor = false;
             this.btnCopyDuplicate.Click += new System.EventHandler(this.BtnCopyDuplicate_Click);
             // 
             // btnCopyRightToLeftFAF
             // 
             this.btnCopyRightToLeftFAF.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnCopyRightToLeftFAF.BackColor = System.Drawing.SystemColors.Info;
             this.btnCopyRightToLeftFAF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCopyRightToLeftFAF.Location = new System.Drawing.Point(501, 2);
             this.btnCopyRightToLeftFAF.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -580,13 +592,14 @@ namespace FsAFS
             this.btnCopyRightToLeftFAF.Size = new System.Drawing.Size(124, 35);
             this.btnCopyRightToLeftFAF.TabIndex = 30;
             this.btnCopyRightToLeftFAF.Text = "Copy D to S";
-            this.btnCopyRightToLeftFAF.UseVisualStyleBackColor = true;
+            this.btnCopyRightToLeftFAF.UseVisualStyleBackColor = false;
             this.btnCopyRightToLeftFAF.Click += new System.EventHandler(this.BtnCopyRightToLeftFAF_Click);
             this.btnCopyRightToLeftFAF.MouseHover += new System.EventHandler(this.BtnCopyRightToLeftFAF_MouseHover);
             // 
             // btnMoveLeftToRightFAF
             // 
             this.btnMoveLeftToRightFAF.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnMoveLeftToRightFAF.BackColor = System.Drawing.SystemColors.Info;
             this.btnMoveLeftToRightFAF.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnMoveLeftToRightFAF.Location = new System.Drawing.Point(136, 2);
             this.btnMoveLeftToRightFAF.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -594,13 +607,14 @@ namespace FsAFS
             this.btnMoveLeftToRightFAF.Size = new System.Drawing.Size(124, 35);
             this.btnMoveLeftToRightFAF.TabIndex = 30;
             this.btnMoveLeftToRightFAF.Text = "Move S to D";
-            this.btnMoveLeftToRightFAF.UseVisualStyleBackColor = true;
+            this.btnMoveLeftToRightFAF.UseVisualStyleBackColor = false;
             this.btnMoveLeftToRightFAF.Click += new System.EventHandler(this.BtnMoveLeftToRightFAF_Click);
             this.btnMoveLeftToRightFAF.MouseHover += new System.EventHandler(this.BtnMoveLeftToRightFAF_MouseHover);
             // 
             // btnCopyLeftToRightFAF
             // 
             this.btnCopyLeftToRightFAF.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnCopyLeftToRightFAF.BackColor = System.Drawing.SystemColors.Info;
             this.btnCopyLeftToRightFAF.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCopyLeftToRightFAF.Location = new System.Drawing.Point(6, 2);
             this.btnCopyLeftToRightFAF.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -609,13 +623,14 @@ namespace FsAFS
             this.btnCopyLeftToRightFAF.Size = new System.Drawing.Size(124, 35);
             this.btnCopyLeftToRightFAF.TabIndex = 30;
             this.btnCopyLeftToRightFAF.Text = "Copy S to D";
-            this.btnCopyLeftToRightFAF.UseVisualStyleBackColor = true;
+            this.btnCopyLeftToRightFAF.UseVisualStyleBackColor = false;
             this.btnCopyLeftToRightFAF.Click += new System.EventHandler(this.BtnCopyLeftToRightFAF_Click);
             this.btnCopyLeftToRightFAF.MouseHover += new System.EventHandler(this.BtnCopyLeftToRightFAF_MouseHover);
             // 
             // btnMoveDuplicate
             // 
             this.btnMoveDuplicate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnMoveDuplicate.BackColor = System.Drawing.SystemColors.Info;
             this.btnMoveDuplicate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMoveDuplicate.Image = ((System.Drawing.Image)(resources.GetObject("btnMoveDuplicate.Image")));
             this.btnMoveDuplicate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -627,12 +642,13 @@ namespace FsAFS
             this.btnMoveDuplicate.TabIndex = 47;
             this.btnMoveDuplicate.Text = "Move Duplicate";
             this.btnMoveDuplicate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnMoveDuplicate.UseVisualStyleBackColor = true;
+            this.btnMoveDuplicate.UseVisualStyleBackColor = false;
             this.btnMoveDuplicate.Click += new System.EventHandler(this.BtnMoveDuplicate_Click);
             // 
             // btnSM_FAF
             // 
             this.btnSM_FAF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSM_FAF.BackColor = System.Drawing.SystemColors.Info;
             this.btnSM_FAF.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSM_FAF.Image = ((System.Drawing.Image)(resources.GetObject("btnSM_FAF.Image")));
             this.btnSM_FAF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -644,12 +660,13 @@ namespace FsAFS
             this.btnSM_FAF.TabIndex = 14;
             this.btnSM_FAF.Text = "Sync and Move";
             this.btnSM_FAF.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSM_FAF.UseVisualStyleBackColor = true;
+            this.btnSM_FAF.UseVisualStyleBackColor = false;
             this.btnSM_FAF.Click += new System.EventHandler(this.BtnSM_Click);
             // 
             // btnSC_FAF
             // 
             this.btnSC_FAF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSC_FAF.BackColor = System.Drawing.SystemColors.Info;
             this.btnSC_FAF.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSC_FAF.Image = ((System.Drawing.Image)(resources.GetObject("btnSC_FAF.Image")));
             this.btnSC_FAF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -661,12 +678,13 @@ namespace FsAFS
             this.btnSC_FAF.TabIndex = 13;
             this.btnSC_FAF.Text = "Sync and Copy";
             this.btnSC_FAF.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSC_FAF.UseVisualStyleBackColor = true;
+            this.btnSC_FAF.UseVisualStyleBackColor = false;
             this.btnSC_FAF.Click += new System.EventHandler(this.BtnSC_Click);
             // 
             // btnAnalyse
             // 
             this.btnAnalyse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAnalyse.BackColor = System.Drawing.SystemColors.Info;
             this.btnAnalyse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAnalyse.Image = ((System.Drawing.Image)(resources.GetObject("btnAnalyse.Image")));
             this.btnAnalyse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -678,7 +696,7 @@ namespace FsAFS
             this.btnAnalyse.TabIndex = 28;
             this.btnAnalyse.Text = "Analyse";
             this.btnAnalyse.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAnalyse.UseVisualStyleBackColor = true;
+            this.btnAnalyse.UseVisualStyleBackColor = false;
             this.btnAnalyse.Click += new System.EventHandler(this.BtnAnalyse_Click);
             // 
             // timer1
@@ -689,6 +707,7 @@ namespace FsAFS
             // 
             this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClear.BackColor = System.Drawing.SystemColors.Info;
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClear.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.Image")));
             this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -699,7 +718,7 @@ namespace FsAFS
             this.btnClear.TabIndex = 53;
             this.btnClear.Text = "Clear";
             this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.UseVisualStyleBackColor = false;
             this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
             // trayIcon
@@ -734,6 +753,7 @@ namespace FsAFS
             // 
             // pbProgressBar
             // 
+            this.pbProgressBar.BackColor = System.Drawing.Color.Transparent;
             this.pbProgressBar.Image = ((System.Drawing.Image)(resources.GetObject("pbProgressBar.Image")));
             this.pbProgressBar.Location = new System.Drawing.Point(3, 0);
             this.pbProgressBar.Name = "pbProgressBar";
@@ -745,6 +765,7 @@ namespace FsAFS
             // btnCancel
             // 
             this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnCancel.BackColor = System.Drawing.SystemColors.Info;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -755,18 +776,19 @@ namespace FsAFS
             this.btnCancel.TabIndex = 54;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnAnalyseSettings
             // 
             this.btnAnalyseSettings.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAnalyseSettings.BackColor = System.Drawing.SystemColors.Info;
             this.btnAnalyseSettings.Image = ((System.Drawing.Image)(resources.GetObject("btnAnalyseSettings.Image")));
             this.btnAnalyseSettings.Location = new System.Drawing.Point(15, 40);
             this.btnAnalyseSettings.Name = "btnAnalyseSettings";
             this.btnAnalyseSettings.Size = new System.Drawing.Size(40, 40);
             this.btnAnalyseSettings.TabIndex = 49;
-            this.btnAnalyseSettings.UseVisualStyleBackColor = true;
+            this.btnAnalyseSettings.UseVisualStyleBackColor = false;
             this.btnAnalyseSettings.Click += new System.EventHandler(this.BtnAnalyseSettings_Click);
             // 
             // panelBottom2
@@ -808,42 +830,46 @@ namespace FsAFS
             // 
             // btnGotoTOPDuplicate
             // 
+            this.btnGotoTOPDuplicate.BackColor = System.Drawing.SystemColors.Info;
             this.btnGotoTOPDuplicate.Image = ((System.Drawing.Image)(resources.GetObject("btnGotoTOPDuplicate.Image")));
             this.btnGotoTOPDuplicate.Location = new System.Drawing.Point(390, 2);
             this.btnGotoTOPDuplicate.Name = "btnGotoTOPDuplicate";
             this.btnGotoTOPDuplicate.Size = new System.Drawing.Size(35, 35);
             this.btnGotoTOPDuplicate.TabIndex = 54;
-            this.btnGotoTOPDuplicate.UseVisualStyleBackColor = true;
+            this.btnGotoTOPDuplicate.UseVisualStyleBackColor = false;
             this.btnGotoTOPDuplicate.Click += new System.EventHandler(this.btnGotoTOPDuplicate_Click);
             // 
             // btnGotoBOTTOMDuplicate
             // 
+            this.btnGotoBOTTOMDuplicate.BackColor = System.Drawing.SystemColors.Info;
             this.btnGotoBOTTOMDuplicate.Image = ((System.Drawing.Image)(resources.GetObject("btnGotoBOTTOMDuplicate.Image")));
             this.btnGotoBOTTOMDuplicate.Location = new System.Drawing.Point(439, 2);
             this.btnGotoBOTTOMDuplicate.Name = "btnGotoBOTTOMDuplicate";
             this.btnGotoBOTTOMDuplicate.Size = new System.Drawing.Size(35, 35);
             this.btnGotoBOTTOMDuplicate.TabIndex = 53;
-            this.btnGotoBOTTOMDuplicate.UseVisualStyleBackColor = true;
+            this.btnGotoBOTTOMDuplicate.UseVisualStyleBackColor = false;
             this.btnGotoBOTTOMDuplicate.Click += new System.EventHandler(this.btnGotoBOTTOMDuplicate_Click);
             // 
             // btnGotoBOTTOMDifferent
             // 
+            this.btnGotoBOTTOMDifferent.BackColor = System.Drawing.SystemColors.Info;
             this.btnGotoBOTTOMDifferent.Image = ((System.Drawing.Image)(resources.GetObject("btnGotoBOTTOMDifferent.Image")));
             this.btnGotoBOTTOMDifferent.Location = new System.Drawing.Point(342, 2);
             this.btnGotoBOTTOMDifferent.Name = "btnGotoBOTTOMDifferent";
             this.btnGotoBOTTOMDifferent.Size = new System.Drawing.Size(35, 35);
             this.btnGotoBOTTOMDifferent.TabIndex = 52;
-            this.btnGotoBOTTOMDifferent.UseVisualStyleBackColor = true;
+            this.btnGotoBOTTOMDifferent.UseVisualStyleBackColor = false;
             this.btnGotoBOTTOMDifferent.Click += new System.EventHandler(this.btnGotoBOTTOMDifferent_Click);
             // 
             // btnGotoTOPDifferent
             // 
+            this.btnGotoTOPDifferent.BackColor = System.Drawing.SystemColors.Info;
             this.btnGotoTOPDifferent.Image = ((System.Drawing.Image)(resources.GetObject("btnGotoTOPDifferent.Image")));
             this.btnGotoTOPDifferent.Location = new System.Drawing.Point(296, 2);
             this.btnGotoTOPDifferent.Name = "btnGotoTOPDifferent";
             this.btnGotoTOPDifferent.Size = new System.Drawing.Size(35, 35);
             this.btnGotoTOPDifferent.TabIndex = 51;
-            this.btnGotoTOPDifferent.UseVisualStyleBackColor = true;
+            this.btnGotoTOPDifferent.UseVisualStyleBackColor = false;
             this.btnGotoTOPDifferent.Click += new System.EventHandler(this.btnGotoTOPDifferent_Click);
             // 
             // label1
@@ -904,6 +930,7 @@ namespace FsAFS
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(782, 553);
             this.Controls.Add(this.lbDuplicateTotalCount);
             this.Controls.Add(this.lbDuplicateTotalCountTXT);

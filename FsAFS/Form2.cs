@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.IO;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace FsAFS
 {
@@ -11,6 +12,8 @@ namespace FsAFS
     {
         string[] filetype_name = new string[404];
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\FsAFS_Database.mdf;Integrated Security=True");
+        SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\FsAFS_Database_1.mdf;Integrated Security=True");
+        CancellationTokenSource tokenSource = new CancellationTokenSource();
         public Form2()
         {
             InitializeComponent();
@@ -172,6 +175,8 @@ namespace FsAFS
                 }
             }
             //</>
+            
+            
             
             
         }
@@ -453,65 +458,70 @@ namespace FsAFS
             MessageBox.Show(Properties.Settings.Default.DifferentSettings);
         }
 
-        private async void btnCopyItemLoadData_Click(object sender, EventArgs e)
+        private async void btnCopyItemLoad_Click(object sender, EventArgs e)
         {
+            btnCopyItemLoad.Enabled = false;
+            lvCopyFromSource.Items.Clear();
+            lbTotalCountSD.Text = null;
+            pbCopyItemLoading.Visible = true;
             await Task.Run(() => {
-                Task task1 = Task.Factory.StartNew(() => {
-                    try
+                try
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("select * from copy_item_list", con);
+                    SqlDataReader rdr = cmd.ExecuteReader();
+
+                    if (rdr.HasRows)
                     {
-                        
-                        con.Open();
-                        SqlCommand cmd = new SqlCommand("select * from copy_item_list", con);
-                        SqlDataReader rdr = cmd.ExecuteReader();
-                        pbCopyItemLoading.Visible = true;
-                        if (rdr.HasRows)
+                        while (rdr.Read())
                         {
-                            while (rdr.Read())
-                            {
-                                AddItemListViewCopyFromSource(rdr.GetValue(0).ToString(), rdr.GetValue(1).ToString(), rdr.GetValue(3).ToString());
-                            }
+                            AddItemListViewCopyFromSource(rdr.GetValue(0).ToString(), rdr.GetValue(1).ToString(), rdr.GetValue(3).ToString());
                         }
-                        pbCopyItemLoading.Visible = false;
-                        con.Close();
-                        
                     }
-                    catch (Exception EX)
-                    {
-                        MessageBox.Show(EX.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                });
-                
+
+                    con.Close();
+                }
+                catch (Exception EX)
+                {
+                    MessageBox.Show(EX.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    
+                }
             });
-            
+            btnCopyItemLoad.Enabled = true;
+            pbCopyItemLoading.Visible = false;
         }
 
-        private async void btnDeleteItemLoadData_Click(object sender, EventArgs e)
+        private async void btnDeleteItemLoad_Click(object sender, EventArgs e)
         {
+            lvDeleteItem.Items.Clear();
+            lbTotalCountDelete.Text = null;
+            pbDeleteItemLoading.Visible = true;
+            btnDeleteItemLoad.Enabled = false;
             await Task.Run(() => {
-                Task task1 = Task.Factory.StartNew(() => {
-                    try
+                try
+                {
+                    con2.Open();
+                    SqlCommand cmd = new SqlCommand("select * from delete_item_list", con2);
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    
+                    if (rdr.HasRows)
                     {
-                        con.Open();
-                        SqlCommand cmd = new SqlCommand("select * from delete_item_list", con);
-                        SqlDataReader rdr = cmd.ExecuteReader();
-                        pbDeleteItemLoading.Visible = true;
-                        if (rdr.HasRows)
+                        while (rdr.Read())
                         {
-                            while (rdr.Read())
-                            {
-                                AddItemListViewDeleteItem(rdr.GetValue(0).ToString(), rdr.GetValue(1).ToString());
-                            }
+                            AddItemListViewDeleteItem(rdr.GetValue(0).ToString(), rdr.GetValue(1).ToString());
                         }
-                        pbDeleteItemLoading.Visible = false;
-                        con.Close();
                     }
-                    catch (Exception EX)
-                    {
-                        MessageBox.Show(EX.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                });
-                
+                    
+                    con2.Close();
+                }
+                catch (Exception EX)
+                {
+                    MessageBox.Show(EX.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                   
+                }
             });
+            btnDeleteItemLoad.Enabled = true;
+            pbDeleteItemLoading.Visible = false;
         }
     }
 }

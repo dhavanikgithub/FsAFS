@@ -54,7 +54,6 @@ namespace FsAFS
             this.txtSizeFrom = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pbCopyItemLoading = new System.Windows.Forms.PictureBox();
-            this.btnCopyItemLoadData = new System.Windows.Forms.Button();
             this.lbTotalCountSD = new System.Windows.Forms.Label();
             this.lbTotalItemCopyFromSource = new System.Windows.Forms.Label();
             this.lbCopyFromSource = new System.Windows.Forms.Label();
@@ -64,13 +63,14 @@ namespace FsAFS
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.pbDeleteItemLoading = new System.Windows.Forms.PictureBox();
-            this.btnDeleteItemLoadData = new System.Windows.Forms.Button();
             this.lbTotalCountDelete = new System.Windows.Forms.Label();
             this.lvDeleteItem = new System.Windows.Forms.ListView();
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lbDeletedItem = new System.Windows.Forms.Label();
             this.lbTotalDeleteItem = new System.Windows.Forms.Label();
+            this.btnCopyItemLoad = new System.Windows.Forms.Button();
+            this.btnDeleteItemLoad = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.Different.SuspendLayout();
             this.gbDifferentSettings.SuspendLayout();
@@ -95,6 +95,8 @@ namespace FsAFS
             // 
             // Different
             // 
+            this.Different.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.Different.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Different.Controls.Add(this.gbDifferentSettings);
             this.Different.Location = new System.Drawing.Point(4, 25);
             this.Different.Margin = new System.Windows.Forms.Padding(4);
@@ -103,10 +105,10 @@ namespace FsAFS
             this.Different.Size = new System.Drawing.Size(699, 533);
             this.Different.TabIndex = 0;
             this.Different.Text = "Different";
-            this.Different.UseVisualStyleBackColor = true;
             // 
             // gbDifferentSettings
             // 
+            this.gbDifferentSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.gbDifferentSettings.Controls.Add(this.btnShowSettings);
             this.gbDifferentSettings.Controls.Add(this.rbOther);
             this.gbDifferentSettings.Controls.Add(this.cbCustomType);
@@ -131,20 +133,21 @@ namespace FsAFS
             this.gbDifferentSettings.Margin = new System.Windows.Forms.Padding(4);
             this.gbDifferentSettings.Name = "gbDifferentSettings";
             this.gbDifferentSettings.Padding = new System.Windows.Forms.Padding(4);
-            this.gbDifferentSettings.Size = new System.Drawing.Size(691, 525);
+            this.gbDifferentSettings.Size = new System.Drawing.Size(687, 521);
             this.gbDifferentSettings.TabIndex = 0;
             this.gbDifferentSettings.TabStop = false;
             this.gbDifferentSettings.Text = "Settings";
             // 
             // btnShowSettings
             // 
+            this.btnShowSettings.BackColor = System.Drawing.SystemColors.Info;
             this.btnShowSettings.Location = new System.Drawing.Point(287, 427);
             this.btnShowSettings.Margin = new System.Windows.Forms.Padding(4);
             this.btnShowSettings.Name = "btnShowSettings";
             this.btnShowSettings.Size = new System.Drawing.Size(124, 37);
             this.btnShowSettings.TabIndex = 24;
             this.btnShowSettings.Text = "Show Settings";
-            this.btnShowSettings.UseVisualStyleBackColor = true;
+            this.btnShowSettings.UseVisualStyleBackColor = false;
             this.btnShowSettings.Click += new System.EventHandler(this.btnShowSettings_Click);
             // 
             // rbOther
@@ -212,13 +215,14 @@ namespace FsAFS
             // 
             // btnDiffSaveSettings
             // 
+            this.btnDiffSaveSettings.BackColor = System.Drawing.SystemColors.Info;
             this.btnDiffSaveSettings.Location = new System.Drawing.Point(299, 367);
             this.btnDiffSaveSettings.Margin = new System.Windows.Forms.Padding(4);
             this.btnDiffSaveSettings.Name = "btnDiffSaveSettings";
             this.btnDiffSaveSettings.Size = new System.Drawing.Size(100, 37);
             this.btnDiffSaveSettings.TabIndex = 18;
             this.btnDiffSaveSettings.Text = "Save";
-            this.btnDiffSaveSettings.UseVisualStyleBackColor = true;
+            this.btnDiffSaveSettings.UseVisualStyleBackColor = false;
             this.btnDiffSaveSettings.Click += new System.EventHandler(this.btnDiffSaveSettings_Click);
             // 
             // lbCTypeExample
@@ -235,6 +239,7 @@ namespace FsAFS
             // 
             // txtCType
             // 
+            this.txtCType.BackColor = System.Drawing.SystemColors.Info;
             this.txtCType.Location = new System.Drawing.Point(164, 271);
             this.txtCType.Margin = new System.Windows.Forms.Padding(4);
             this.txtCType.Name = "txtCType";
@@ -256,6 +261,7 @@ namespace FsAFS
             // 
             // cobType
             // 
+            this.cobType.BackColor = System.Drawing.SystemColors.Info;
             this.cobType.FormattingEnabled = true;
             this.cobType.Items.AddRange(new object[] {
             ".1",
@@ -1647,6 +1653,7 @@ namespace FsAFS
             // 
             // cobSizeTo
             // 
+            this.cobSizeTo.BackColor = System.Drawing.SystemColors.Info;
             this.cobSizeTo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobSizeTo.FormattingEnabled = true;
             this.cobSizeTo.Items.AddRange(new object[] {
@@ -1662,6 +1669,7 @@ namespace FsAFS
             // 
             // txtSizeTo
             // 
+            this.txtSizeTo.BackColor = System.Drawing.SystemColors.Info;
             this.txtSizeTo.Location = new System.Drawing.Point(413, 108);
             this.txtSizeTo.Margin = new System.Windows.Forms.Padding(4);
             this.txtSizeTo.Name = "txtSizeTo";
@@ -1681,6 +1689,7 @@ namespace FsAFS
             // 
             // cobSizeFrom
             // 
+            this.cobSizeFrom.BackColor = System.Drawing.SystemColors.Info;
             this.cobSizeFrom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobSizeFrom.FormattingEnabled = true;
             this.cobSizeFrom.Items.AddRange(new object[] {
@@ -1696,6 +1705,7 @@ namespace FsAFS
             // 
             // txtSizeFrom
             // 
+            this.txtSizeFrom.BackColor = System.Drawing.SystemColors.Info;
             this.txtSizeFrom.Location = new System.Drawing.Point(164, 108);
             this.txtSizeFrom.Margin = new System.Windows.Forms.Padding(4);
             this.txtSizeFrom.Name = "txtSizeFrom";
@@ -1705,8 +1715,9 @@ namespace FsAFS
             // 
             // tabPage1
             // 
+            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.tabPage1.Controls.Add(this.btnCopyItemLoad);
             this.tabPage1.Controls.Add(this.pbCopyItemLoading);
-            this.tabPage1.Controls.Add(this.btnCopyItemLoadData);
             this.tabPage1.Controls.Add(this.lbTotalCountSD);
             this.tabPage1.Controls.Add(this.lbTotalItemCopyFromSource);
             this.tabPage1.Controls.Add(this.lbCopyFromSource);
@@ -1716,28 +1727,17 @@ namespace FsAFS
             this.tabPage1.Size = new System.Drawing.Size(699, 533);
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Text = "Copy Item List";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // pbCopyItemLoading
             // 
             this.pbCopyItemLoading.Image = ((System.Drawing.Image)(resources.GetObject("pbCopyItemLoading.Image")));
-            this.pbCopyItemLoading.Location = new System.Drawing.Point(458, 4);
+            this.pbCopyItemLoading.Location = new System.Drawing.Point(454, 4);
             this.pbCopyItemLoading.Name = "pbCopyItemLoading";
             this.pbCopyItemLoading.Size = new System.Drawing.Size(35, 35);
             this.pbCopyItemLoading.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbCopyItemLoading.TabIndex = 8;
             this.pbCopyItemLoading.TabStop = false;
             this.pbCopyItemLoading.Visible = false;
-            // 
-            // btnCopyItemLoadData
-            // 
-            this.btnCopyItemLoadData.Location = new System.Drawing.Point(257, 4);
-            this.btnCopyItemLoadData.Name = "btnCopyItemLoadData";
-            this.btnCopyItemLoadData.Size = new System.Drawing.Size(96, 35);
-            this.btnCopyItemLoadData.TabIndex = 7;
-            this.btnCopyItemLoadData.Text = "Load Data";
-            this.btnCopyItemLoadData.UseVisualStyleBackColor = true;
-            this.btnCopyItemLoadData.Click += new System.EventHandler(this.btnCopyItemLoadData_Click);
             // 
             // lbTotalCountSD
             // 
@@ -1751,7 +1751,7 @@ namespace FsAFS
             // lbTotalItemCopyFromSource
             // 
             this.lbTotalItemCopyFromSource.AutoSize = true;
-            this.lbTotalItemCopyFromSource.Location = new System.Drawing.Point(598, 13);
+            this.lbTotalItemCopyFromSource.Location = new System.Drawing.Point(595, 13);
             this.lbTotalItemCopyFromSource.Name = "lbTotalItemCopyFromSource";
             this.lbTotalItemCopyFromSource.Size = new System.Drawing.Size(44, 17);
             this.lbTotalItemCopyFromSource.TabIndex = 4;
@@ -1769,6 +1769,7 @@ namespace FsAFS
             // 
             // lvCopyFromSource
             // 
+            this.lvCopyFromSource.BackColor = System.Drawing.SystemColors.Info;
             this.lvCopyFromSource.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
@@ -1799,8 +1800,9 @@ namespace FsAFS
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.tabPage2.Controls.Add(this.btnDeleteItemLoad);
             this.tabPage2.Controls.Add(this.pbDeleteItemLoading);
-            this.tabPage2.Controls.Add(this.btnDeleteItemLoadData);
             this.tabPage2.Controls.Add(this.lbTotalCountDelete);
             this.tabPage2.Controls.Add(this.lvDeleteItem);
             this.tabPage2.Controls.Add(this.lbDeletedItem);
@@ -1810,28 +1812,17 @@ namespace FsAFS
             this.tabPage2.Size = new System.Drawing.Size(699, 533);
             this.tabPage2.TabIndex = 2;
             this.tabPage2.Text = "Delete Item List";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // pbDeleteItemLoading
             // 
             this.pbDeleteItemLoading.Image = ((System.Drawing.Image)(resources.GetObject("pbDeleteItemLoading.Image")));
-            this.pbDeleteItemLoading.Location = new System.Drawing.Point(437, 3);
+            this.pbDeleteItemLoading.Location = new System.Drawing.Point(432, 3);
             this.pbDeleteItemLoading.Name = "pbDeleteItemLoading";
             this.pbDeleteItemLoading.Size = new System.Drawing.Size(35, 35);
             this.pbDeleteItemLoading.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbDeleteItemLoading.TabIndex = 9;
             this.pbDeleteItemLoading.TabStop = false;
             this.pbDeleteItemLoading.Visible = false;
-            // 
-            // btnDeleteItemLoadData
-            // 
-            this.btnDeleteItemLoadData.Location = new System.Drawing.Point(216, 3);
-            this.btnDeleteItemLoadData.Name = "btnDeleteItemLoadData";
-            this.btnDeleteItemLoadData.Size = new System.Drawing.Size(103, 35);
-            this.btnDeleteItemLoadData.TabIndex = 8;
-            this.btnDeleteItemLoadData.Text = "Load Data";
-            this.btnDeleteItemLoadData.UseVisualStyleBackColor = true;
-            this.btnDeleteItemLoadData.Click += new System.EventHandler(this.btnDeleteItemLoadData_Click);
             // 
             // lbTotalCountDelete
             // 
@@ -1844,6 +1835,7 @@ namespace FsAFS
             // 
             // lvDeleteItem
             // 
+            this.lvDeleteItem.BackColor = System.Drawing.SystemColors.Info;
             this.lvDeleteItem.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader7,
             this.columnHeader8});
@@ -1870,24 +1862,45 @@ namespace FsAFS
             this.lbDeletedItem.AutoSize = true;
             this.lbDeletedItem.Location = new System.Drawing.Point(8, 12);
             this.lbDeletedItem.Name = "lbDeletedItem";
-            this.lbDeletedItem.Size = new System.Drawing.Size(90, 17);
+            this.lbDeletedItem.Size = new System.Drawing.Size(94, 17);
             this.lbDeletedItem.TabIndex = 2;
-            this.lbDeletedItem.Text = "DeletedItems";
+            this.lbDeletedItem.Text = "Deleted Items";
             this.lbDeletedItem.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbTotalDeleteItem
             // 
             this.lbTotalDeleteItem.AutoSize = true;
-            this.lbTotalDeleteItem.Location = new System.Drawing.Point(590, 12);
+            this.lbTotalDeleteItem.Location = new System.Drawing.Point(587, 12);
             this.lbTotalDeleteItem.Name = "lbTotalDeleteItem";
             this.lbTotalDeleteItem.Size = new System.Drawing.Size(44, 17);
             this.lbTotalDeleteItem.TabIndex = 1;
             this.lbTotalDeleteItem.Text = "Total:";
             // 
+            // btnCopyItemLoad
+            // 
+            this.btnCopyItemLoad.Location = new System.Drawing.Point(258, 4);
+            this.btnCopyItemLoad.Name = "btnCopyItemLoad";
+            this.btnCopyItemLoad.Size = new System.Drawing.Size(90, 35);
+            this.btnCopyItemLoad.TabIndex = 9;
+            this.btnCopyItemLoad.Text = "Load Data";
+            this.btnCopyItemLoad.UseVisualStyleBackColor = true;
+            this.btnCopyItemLoad.Click += new System.EventHandler(this.btnCopyItemLoad_Click);
+            // 
+            // btnDeleteItemLoad
+            // 
+            this.btnDeleteItemLoad.Location = new System.Drawing.Point(222, 4);
+            this.btnDeleteItemLoad.Name = "btnDeleteItemLoad";
+            this.btnDeleteItemLoad.Size = new System.Drawing.Size(90, 35);
+            this.btnDeleteItemLoad.TabIndex = 10;
+            this.btnDeleteItemLoad.Text = "Load Data";
+            this.btnDeleteItemLoad.UseVisualStyleBackColor = true;
+            this.btnDeleteItemLoad.Click += new System.EventHandler(this.btnDeleteItemLoad_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(707, 562);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -1951,9 +1964,9 @@ namespace FsAFS
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.Label lbTotalCountSD;
         private System.Windows.Forms.Label lbTotalCountDelete;
-        private System.Windows.Forms.Button btnCopyItemLoadData;
-        private System.Windows.Forms.Button btnDeleteItemLoadData;
         private System.Windows.Forms.PictureBox pbCopyItemLoading;
         private System.Windows.Forms.PictureBox pbDeleteItemLoading;
+        private System.Windows.Forms.Button btnCopyItemLoad;
+        private System.Windows.Forms.Button btnDeleteItemLoad;
     }
 }

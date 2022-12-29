@@ -69,6 +69,7 @@ namespace FsAFS
         private double panelDestinationFolderFont;
 
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\FsAFS_Database.mdf;Integrated Security=True");
+        SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\FsAFS_Database_1.mdf;Integrated Security=True");
 
         private Size formRectSize;
         string[] filetype_name = new string[404];
@@ -697,13 +698,13 @@ namespace FsAFS
             if (File.Exists(path))
             {
                 File.Delete(path);
-                con.Open();
-                SqlCommand cmd = new SqlCommand("insert into delete_item_list values ('" + path + "','" + DateTime.Now.ToString() + "')", con);
+                con2.Open();
+                SqlCommand cmd = new SqlCommand("insert into delete_item_list values ('" + path + "','" + DateTime.Now.ToString() + "')", con2);
                 if (cmd.ExecuteNonQuery() == 0)
                 {
                     MessageBox.Show("Add Deleted item in Database Error");
                 }
-                con.Close();
+                con2.Close();
             }
         }
 
@@ -2245,6 +2246,7 @@ namespace FsAFS
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
+            
             if (txtSourceFolderPath.Text == "" || txtDestinationFolderPath.Text == "" || !Directory.Exists(txtSourceFolderPath.Text) || !Directory.Exists(txtDestinationFolderPath.Text))
             {
                 btnAnalyse.Enabled = false;
@@ -2408,7 +2410,7 @@ namespace FsAFS
         {
             if (lvDuplicate.Items.Count > 0)
             {
-                lvDuplicate.EnsureVisible(lvDifferent.Items.Count - 1);
+                lvDuplicate.EnsureVisible(lvDuplicate.Items.Count - 1);
             }
         }
 
