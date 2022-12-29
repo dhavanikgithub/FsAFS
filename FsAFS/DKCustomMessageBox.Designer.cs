@@ -91,7 +91,7 @@ namespace FsAFS
             this.groupBox1.Size = new System.Drawing.Size(450, 100);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Message Boxs";
+            this.groupBox1.Text = "Message Box";
             // 
             // panel1
             // 
@@ -126,8 +126,10 @@ namespace FsAFS
             this.Name = "DKCustomMessageBox";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Confirmation";
+            this.TopMost = true;
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel2.ResumeLayout(false);

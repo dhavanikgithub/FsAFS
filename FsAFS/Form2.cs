@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace FsAFS
 {
@@ -452,36 +453,65 @@ namespace FsAFS
             MessageBox.Show(Properties.Settings.Default.DifferentSettings);
         }
 
-        private void btnCopyItemLoadData_Click(object sender, EventArgs e)
+        private async void btnCopyItemLoadData_Click(object sender, EventArgs e)
         {
-            con.Open();
-            SqlCommand cmd = new SqlCommand("select * from copy_item_list", con);
-            SqlDataReader rdr = cmd.ExecuteReader();
-            if (rdr.HasRows)
-            {
-                while (rdr.Read())
-                {
-                    AddItemListViewCopyFromSource(rdr.GetValue(0).ToString(), rdr.GetValue(1).ToString(), rdr.GetValue(3).ToString());
-                }
-            }
-            con.Close();
+            await Task.Run(() => {
+                Task task1 = Task.Factory.StartNew(() => {
+                    try
+                    {
+                        
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand("select * from copy_item_list", con);
+                        SqlDataReader rdr = cmd.ExecuteReader();
+                        pbCopyItemLoading.Visible = true;
+                        if (rdr.HasRows)
+                        {
+                            while (rdr.Read())
+                            {
+                                AddItemListViewCopyFromSource(rdr.GetValue(0).ToString(), rdr.GetValue(1).ToString(), rdr.GetValue(3).ToString());
+                            }
+                        }
+                        pbCopyItemLoading.Visible = false;
+                        con.Close();
+                        
+                    }
+                    catch (Exception EX)
+                    {
+                        MessageBox.Show(EX.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                });
+                
+            });
             
         }
 
-        private void btnDeleteItemLoadData_Click(object sender, EventArgs e)
+        private async void btnDeleteItemLoadData_Click(object sender, EventArgs e)
         {
-            con.Open();
-            SqlCommand cmd = new SqlCommand("select * from delete_item_list", con);
-            SqlDataReader rdr = cmd.ExecuteReader();
-            if (rdr.HasRows)
-            {
-                while (rdr.Read())
-                {
-                    AddItemListViewDeleteItem(rdr.GetValue(0).ToString(), rdr.GetValue(1).ToString());
-                }
-            }
-            con.Close();
-            
+            await Task.Run(() => {
+                Task task1 = Task.Factory.StartNew(() => {
+                    try
+                    {
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand("select * from delete_item_list", con);
+                        SqlDataReader rdr = cmd.ExecuteReader();
+                        pbDeleteItemLoading.Visible = true;
+                        if (rdr.HasRows)
+                        {
+                            while (rdr.Read())
+                            {
+                                AddItemListViewDeleteItem(rdr.GetValue(0).ToString(), rdr.GetValue(1).ToString());
+                            }
+                        }
+                        pbDeleteItemLoading.Visible = false;
+                        con.Close();
+                    }
+                    catch (Exception EX)
+                    {
+                        MessageBox.Show(EX.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                });
+                
+            });
         }
     }
 }

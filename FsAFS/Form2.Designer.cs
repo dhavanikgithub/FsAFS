@@ -53,6 +53,8 @@ namespace FsAFS
             this.cobSizeFrom = new System.Windows.Forms.ComboBox();
             this.txtSizeFrom = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.pbCopyItemLoading = new System.Windows.Forms.PictureBox();
+            this.btnCopyItemLoadData = new System.Windows.Forms.Button();
             this.lbTotalCountSD = new System.Windows.Forms.Label();
             this.lbTotalItemCopyFromSource = new System.Windows.Forms.Label();
             this.lbCopyFromSource = new System.Windows.Forms.Label();
@@ -61,19 +63,21 @@ namespace FsAFS
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.pbDeleteItemLoading = new System.Windows.Forms.PictureBox();
+            this.btnDeleteItemLoadData = new System.Windows.Forms.Button();
             this.lbTotalCountDelete = new System.Windows.Forms.Label();
             this.lvDeleteItem = new System.Windows.Forms.ListView();
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lbDeletedItem = new System.Windows.Forms.Label();
             this.lbTotalDeleteItem = new System.Windows.Forms.Label();
-            this.btnCopyItemLoadData = new System.Windows.Forms.Button();
-            this.btnDeleteItemLoadData = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.Different.SuspendLayout();
             this.gbDifferentSettings.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCopyItemLoading)).BeginInit();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbDeleteItemLoading)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -1701,6 +1705,7 @@ namespace FsAFS
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.pbCopyItemLoading);
             this.tabPage1.Controls.Add(this.btnCopyItemLoadData);
             this.tabPage1.Controls.Add(this.lbTotalCountSD);
             this.tabPage1.Controls.Add(this.lbTotalItemCopyFromSource);
@@ -1713,19 +1718,40 @@ namespace FsAFS
             this.tabPage1.Text = "Copy Item List";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // pbCopyItemLoading
+            // 
+            this.pbCopyItemLoading.Image = ((System.Drawing.Image)(resources.GetObject("pbCopyItemLoading.Image")));
+            this.pbCopyItemLoading.Location = new System.Drawing.Point(458, 4);
+            this.pbCopyItemLoading.Name = "pbCopyItemLoading";
+            this.pbCopyItemLoading.Size = new System.Drawing.Size(35, 35);
+            this.pbCopyItemLoading.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbCopyItemLoading.TabIndex = 8;
+            this.pbCopyItemLoading.TabStop = false;
+            this.pbCopyItemLoading.Visible = false;
+            // 
+            // btnCopyItemLoadData
+            // 
+            this.btnCopyItemLoadData.Location = new System.Drawing.Point(257, 4);
+            this.btnCopyItemLoadData.Name = "btnCopyItemLoadData";
+            this.btnCopyItemLoadData.Size = new System.Drawing.Size(96, 35);
+            this.btnCopyItemLoadData.TabIndex = 7;
+            this.btnCopyItemLoadData.Text = "Load Data";
+            this.btnCopyItemLoadData.UseVisualStyleBackColor = true;
+            this.btnCopyItemLoadData.Click += new System.EventHandler(this.btnCopyItemLoadData_Click);
+            // 
             // lbTotalCountSD
             // 
             this.lbTotalCountSD.AutoSize = true;
-            this.lbTotalCountSD.Location = new System.Drawing.Point(651, 12);
+            this.lbTotalCountSD.Location = new System.Drawing.Point(635, 13);
             this.lbTotalCountSD.Name = "lbTotalCountSD";
-            this.lbTotalCountSD.Size = new System.Drawing.Size(12, 17);
+            this.lbTotalCountSD.Size = new System.Drawing.Size(20, 17);
             this.lbTotalCountSD.TabIndex = 6;
-            this.lbTotalCountSD.Text = " ";
+            this.lbTotalCountSD.Text = " 0";
             // 
             // lbTotalItemCopyFromSource
             // 
             this.lbTotalItemCopyFromSource.AutoSize = true;
-            this.lbTotalItemCopyFromSource.Location = new System.Drawing.Point(600, 12);
+            this.lbTotalItemCopyFromSource.Location = new System.Drawing.Point(598, 13);
             this.lbTotalItemCopyFromSource.Name = "lbTotalItemCopyFromSource";
             this.lbTotalItemCopyFromSource.Size = new System.Drawing.Size(44, 17);
             this.lbTotalItemCopyFromSource.TabIndex = 4;
@@ -1734,11 +1760,12 @@ namespace FsAFS
             // lbCopyFromSource
             // 
             this.lbCopyFromSource.AutoSize = true;
-            this.lbCopyFromSource.Location = new System.Drawing.Point(3, 12);
+            this.lbCopyFromSource.Location = new System.Drawing.Point(3, 13);
             this.lbCopyFromSource.Name = "lbCopyFromSource";
             this.lbCopyFromSource.Size = new System.Drawing.Size(149, 17);
             this.lbCopyFromSource.TabIndex = 2;
             this.lbCopyFromSource.Text = "Source To Destination";
+            this.lbCopyFromSource.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lvCopyFromSource
             // 
@@ -1749,9 +1776,9 @@ namespace FsAFS
             this.lvCopyFromSource.FullRowSelect = true;
             this.lvCopyFromSource.GridLines = true;
             this.lvCopyFromSource.HideSelection = false;
-            this.lvCopyFromSource.Location = new System.Drawing.Point(7, 35);
+            this.lvCopyFromSource.Location = new System.Drawing.Point(6, 45);
             this.lvCopyFromSource.Name = "lvCopyFromSource";
-            this.lvCopyFromSource.Size = new System.Drawing.Size(685, 490);
+            this.lvCopyFromSource.Size = new System.Drawing.Size(685, 480);
             this.lvCopyFromSource.TabIndex = 0;
             this.lvCopyFromSource.UseCompatibleStateImageBehavior = false;
             this.lvCopyFromSource.View = System.Windows.Forms.View.Details;
@@ -1772,6 +1799,7 @@ namespace FsAFS
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.pbDeleteItemLoading);
             this.tabPage2.Controls.Add(this.btnDeleteItemLoadData);
             this.tabPage2.Controls.Add(this.lbTotalCountDelete);
             this.tabPage2.Controls.Add(this.lvDeleteItem);
@@ -1784,14 +1812,35 @@ namespace FsAFS
             this.tabPage2.Text = "Delete Item List";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // pbDeleteItemLoading
+            // 
+            this.pbDeleteItemLoading.Image = ((System.Drawing.Image)(resources.GetObject("pbDeleteItemLoading.Image")));
+            this.pbDeleteItemLoading.Location = new System.Drawing.Point(437, 3);
+            this.pbDeleteItemLoading.Name = "pbDeleteItemLoading";
+            this.pbDeleteItemLoading.Size = new System.Drawing.Size(35, 35);
+            this.pbDeleteItemLoading.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbDeleteItemLoading.TabIndex = 9;
+            this.pbDeleteItemLoading.TabStop = false;
+            this.pbDeleteItemLoading.Visible = false;
+            // 
+            // btnDeleteItemLoadData
+            // 
+            this.btnDeleteItemLoadData.Location = new System.Drawing.Point(216, 3);
+            this.btnDeleteItemLoadData.Name = "btnDeleteItemLoadData";
+            this.btnDeleteItemLoadData.Size = new System.Drawing.Size(103, 35);
+            this.btnDeleteItemLoadData.TabIndex = 8;
+            this.btnDeleteItemLoadData.Text = "Load Data";
+            this.btnDeleteItemLoadData.UseVisualStyleBackColor = true;
+            this.btnDeleteItemLoadData.Click += new System.EventHandler(this.btnDeleteItemLoadData_Click);
+            // 
             // lbTotalCountDelete
             // 
             this.lbTotalCountDelete.AutoSize = true;
-            this.lbTotalCountDelete.Location = new System.Drawing.Point(643, 9);
+            this.lbTotalCountDelete.Location = new System.Drawing.Point(630, 12);
             this.lbTotalCountDelete.Name = "lbTotalCountDelete";
-            this.lbTotalCountDelete.Size = new System.Drawing.Size(46, 17);
+            this.lbTotalCountDelete.Size = new System.Drawing.Size(16, 17);
             this.lbTotalCountDelete.TabIndex = 4;
-            this.lbTotalCountDelete.Text = "label1";
+            this.lbTotalCountDelete.Text = "0";
             // 
             // lvDeleteItem
             // 
@@ -1801,9 +1850,9 @@ namespace FsAFS
             this.lvDeleteItem.FullRowSelect = true;
             this.lvDeleteItem.GridLines = true;
             this.lvDeleteItem.HideSelection = false;
-            this.lvDeleteItem.Location = new System.Drawing.Point(12, 30);
+            this.lvDeleteItem.Location = new System.Drawing.Point(8, 45);
             this.lvDeleteItem.Name = "lvDeleteItem";
-            this.lvDeleteItem.Size = new System.Drawing.Size(679, 495);
+            this.lvDeleteItem.Size = new System.Drawing.Size(685, 480);
             this.lvDeleteItem.TabIndex = 3;
             this.lvDeleteItem.UseCompatibleStateImageBehavior = false;
             this.lvDeleteItem.View = System.Windows.Forms.View.Details;
@@ -1819,40 +1868,21 @@ namespace FsAFS
             // lbDeletedItem
             // 
             this.lbDeletedItem.AutoSize = true;
-            this.lbDeletedItem.Location = new System.Drawing.Point(9, 9);
+            this.lbDeletedItem.Location = new System.Drawing.Point(8, 12);
             this.lbDeletedItem.Name = "lbDeletedItem";
             this.lbDeletedItem.Size = new System.Drawing.Size(90, 17);
             this.lbDeletedItem.TabIndex = 2;
             this.lbDeletedItem.Text = "DeletedItems";
+            this.lbDeletedItem.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbTotalDeleteItem
             // 
             this.lbTotalDeleteItem.AutoSize = true;
-            this.lbTotalDeleteItem.Location = new System.Drawing.Point(592, 9);
+            this.lbTotalDeleteItem.Location = new System.Drawing.Point(590, 12);
             this.lbTotalDeleteItem.Name = "lbTotalDeleteItem";
             this.lbTotalDeleteItem.Size = new System.Drawing.Size(44, 17);
             this.lbTotalDeleteItem.TabIndex = 1;
             this.lbTotalDeleteItem.Text = "Total:";
-            // 
-            // btnCopyItemLoadData
-            // 
-            this.btnCopyItemLoadData.Location = new System.Drawing.Point(313, 4);
-            this.btnCopyItemLoadData.Name = "btnCopyItemLoadData";
-            this.btnCopyItemLoadData.Size = new System.Drawing.Size(96, 25);
-            this.btnCopyItemLoadData.TabIndex = 7;
-            this.btnCopyItemLoadData.Text = "Load Data";
-            this.btnCopyItemLoadData.UseVisualStyleBackColor = true;
-            this.btnCopyItemLoadData.Click += new System.EventHandler(this.btnCopyItemLoadData_Click);
-            // 
-            // btnDeleteItemLoadData
-            // 
-            this.btnDeleteItemLoadData.Location = new System.Drawing.Point(302, 1);
-            this.btnDeleteItemLoadData.Name = "btnDeleteItemLoadData";
-            this.btnDeleteItemLoadData.Size = new System.Drawing.Size(103, 25);
-            this.btnDeleteItemLoadData.TabIndex = 8;
-            this.btnDeleteItemLoadData.Text = "Load Data";
-            this.btnDeleteItemLoadData.UseVisualStyleBackColor = true;
-            this.btnDeleteItemLoadData.Click += new System.EventHandler(this.btnDeleteItemLoadData_Click);
             // 
             // Form2
             // 
@@ -1866,7 +1896,7 @@ namespace FsAFS
             this.MaximizeBox = false;
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Analyse Setting";
+            this.Text = "Settings";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.tabControl1.ResumeLayout(false);
             this.Different.ResumeLayout(false);
@@ -1874,8 +1904,10 @@ namespace FsAFS
             this.gbDifferentSettings.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCopyItemLoading)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbDeleteItemLoading)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1921,5 +1953,7 @@ namespace FsAFS
         private System.Windows.Forms.Label lbTotalCountDelete;
         private System.Windows.Forms.Button btnCopyItemLoadData;
         private System.Windows.Forms.Button btnDeleteItemLoadData;
+        private System.Windows.Forms.PictureBox pbCopyItemLoading;
+        private System.Windows.Forms.PictureBox pbDeleteItemLoading;
     }
 }

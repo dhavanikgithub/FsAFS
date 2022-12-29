@@ -205,7 +205,7 @@ namespace FsAFS
             this.groupBox2.Size = new System.Drawing.Size(166, 88);
             this.groupBox2.TabIndex = 23;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Duplicate Subfolders with Files";
+            this.groupBox2.Text = "Duplicate Subfolders and Files";
             // 
             // btnDDFS
             // 
@@ -227,6 +227,7 @@ namespace FsAFS
             this.lvDifferent.Size = new System.Drawing.Size(377, 254);
             this.lvDifferent.TabIndex = 24;
             this.lvDifferent.UseCompatibleStateImageBehavior = false;
+            this.lvDifferent.DoubleClick += new System.EventHandler(this.lvDifferent_DoubleClick);
             // 
             // lvDuplicate
             // 
@@ -237,6 +238,7 @@ namespace FsAFS
             this.lvDuplicate.Size = new System.Drawing.Size(377, 254);
             this.lvDuplicate.TabIndex = 25;
             this.lvDuplicate.UseCompatibleStateImageBehavior = false;
+            this.lvDuplicate.DoubleClick += new System.EventHandler(this.lvDuplicate_DoubleClick);
             // 
             // lbDifferent
             // 
@@ -278,6 +280,8 @@ namespace FsAFS
             this.panelDestinationFolder.Name = "panelDestinationFolder";
             this.panelDestinationFolder.Size = new System.Drawing.Size(345, 81);
             this.panelDestinationFolder.TabIndex = 4;
+            this.panelDestinationFolder.DragDrop += new System.Windows.Forms.DragEventHandler(this.panelDestinationFolder_DragDrop);
+            this.panelDestinationFolder.DragEnter += new System.Windows.Forms.DragEventHandler(this.panelDestinationFolder_DragEnter);
             // 
             // pbCopyDestinationFolderPath
             // 
@@ -411,6 +415,8 @@ namespace FsAFS
             this.panelSourceFolder.Name = "panelSourceFolder";
             this.panelSourceFolder.Size = new System.Drawing.Size(345, 81);
             this.panelSourceFolder.TabIndex = 52;
+            this.panelSourceFolder.DragDrop += new System.Windows.Forms.DragEventHandler(this.panelSourceFolder_DragDrop);
+            this.panelSourceFolder.DragEnter += new System.Windows.Forms.DragEventHandler(this.panelSourceFolder_DragEnter);
             // 
             // pbCopySourceFolderPath
             // 
@@ -870,7 +876,7 @@ namespace FsAFS
             // lbDifferentTotalCount
             // 
             this.lbDifferentTotalCount.AutoSize = true;
-            this.lbDifferentTotalCount.Location = new System.Drawing.Point(222, 110);
+            this.lbDifferentTotalCount.Location = new System.Drawing.Point(205, 110);
             this.lbDifferentTotalCount.Name = "lbDifferentTotalCount";
             this.lbDifferentTotalCount.Size = new System.Drawing.Size(46, 17);
             this.lbDifferentTotalCount.TabIndex = 61;
@@ -879,7 +885,7 @@ namespace FsAFS
             // lbDuplicateTotalCount
             // 
             this.lbDuplicateTotalCount.AutoSize = true;
-            this.lbDuplicateTotalCount.Location = new System.Drawing.Point(641, 110);
+            this.lbDuplicateTotalCount.Location = new System.Drawing.Point(630, 110);
             this.lbDuplicateTotalCount.Name = "lbDuplicateTotalCount";
             this.lbDuplicateTotalCount.Size = new System.Drawing.Size(46, 17);
             this.lbDuplicateTotalCount.TabIndex = 63;

@@ -12,6 +12,7 @@ using System.Security.AccessControl;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Security.Principal;
+using System.Diagnostics;
 
 namespace FsAFS
 {
@@ -654,7 +655,7 @@ namespace FsAFS
             lvDuplicate.Items.Add(item);
             lvDuplicate.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             lvDuplicate.EnsureVisible(lvDuplicate.Items.Count - 1);
-            lbDifferentTotalCount.Text = lvDuplicate.Items.Count.ToString();
+            lbDuplicateTotalCount.Text = lvDuplicate.Items.Count.ToString();
         }
 
         public static string StringToMD5Hash(string input)
@@ -1014,8 +1015,6 @@ namespace FsAFS
             lbNoOfDestinationFolders.Text = "";
             txtDestinationFolderName.Clear();
             txtDestinationFolderPath.Clear();
-
-
             lvDuplicate.Items.Clear();
             lbDuplicateTotalCount.Text = null;
             lvDifferent.Items.Clear();
@@ -2410,6 +2409,151 @@ namespace FsAFS
             if (lvDuplicate.Items.Count > 0)
             {
                 lvDuplicate.EnsureVisible(lvDifferent.Items.Count - 1);
+            }
+        }
+
+        private void panelSourceFolder_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.All;
+        }
+
+        private void panelSourceFolder_DragDrop(object sender, DragEventArgs e)
+        {
+            lbLeftSideFolderSize.Text = "";
+            txtSourceFolderName.Clear();
+            txtSourceFolderPath.Clear();
+            lbNoOfSourceFiles.Text = "";
+            lbNoOfSourceFolders.Text = "";
+            lvDuplicate.Items.Clear();
+            lbDuplicateTotalCount.Text = null;
+            lvDifferent.Items.Clear();
+            lbDifferentTotalCount.Text = null;
+            string[] getFolder = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            if (getFolder.Length == 1)
+            {
+                FileAttributes attr = File.GetAttributes(getFolder[0]);
+
+                if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+                {
+                    if (AccessCheck(getFolder[0]))
+                    {
+                        timer1.Stop();
+                        btnBL.Enabled = false;
+                        string str = getFolder[0];
+                        if (str != txtDestinationFolderPath.Text)
+                        {
+                            txtSourceFolderName.Text = (str.Replace(Path.GetDirectoryName(str) + @"\", ""));
+                            txtSourceFolderPath.Text = str;
+                            lbLeftSideFolderSize.Text = GetFolderSize(str);
+                            calculatefilesandfolders(0);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Folder Already Selected");
+                        }
+                        btnBL.Enabled = true;
+                        timer1.Start();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Folder Not Accessible", "Folder Auth", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void panelDestinationFolder_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.All;
+        }
+
+        private void panelDestinationFolder_DragDrop(object sender, DragEventArgs e)
+        {
+            lbRightSideFolderSize.Text = "";
+            lbNoOfDestinationFiles.Text = "";
+            lbNoOfDestinationFolders.Text = "";
+            txtDestinationFolderName.Clear();
+            txtDestinationFolderPath.Clear();
+            lvDuplicate.Items.Clear();
+            lbDuplicateTotalCount.Text = null;
+            lvDifferent.Items.Clear();
+            lbDifferentTotalCount.Text = null;
+
+            string[] getFolder = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            if (getFolder.Length == 1)
+            {
+                FileAttributes attr = File.GetAttributes(getFolder[0]);
+
+                if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+                {
+                    if (AccessCheck(getFolder[0]))
+                    {
+                        timer1.Stop();
+                        btnBR.Enabled = false;
+                        string str = getFolder[0];
+                        if (str != txtSourceFolderPath.Text)
+                        {
+                            txtDestinationFolderName.Text = (str.Replace(Path.GetDirectoryName(str) + @"\", ""));
+                            txtDestinationFolderPath.Text = str;
+                            lbRightSideFolderSize.Text = GetFolderSize(str);
+                            calculatefilesandfolders(1);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Folder Already Selected");
+                        }
+                        btnBR.Enabled = true;
+                        timer1.Start();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Folder Not Accessible", "Folder Auth", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void lvDifferent_DoubleClick(object sender, EventArgs e)
+        {
+            string openPath = lvDifferent.SelectedItems[0].SubItems[1].Text;
+            string type = lvDifferent.SelectedItems[0].SubItems[3].Text;
+            if (type == "File")
+            {
+                if (File.Exists(openPath))
+                {
+                    Process.Start("explorer.exe", "/select, " + openPath);
+                }
+            }
+            else
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    Arguments = openPath,
+                    FileName = "explorer.exe"
+                };
+                Process.Start(startInfo);
+            }
+        }
+
+        private void lvDuplicate_DoubleClick(object sender, EventArgs e)
+        {
+            string openPath = txtSourceFolderPath.Text+(lvDuplicate.SelectedItems[0].SubItems[0].Text);
+            string type = lvDuplicate.SelectedItems[0].SubItems[1].Text;
+            if (type == "File")
+            {
+                if (File.Exists(openPath))
+                {
+                    Process.Start("explorer.exe", "/select, " + openPath);
+                }
+            }
+            else
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    Arguments = openPath,
+                    FileName = "explorer.exe"
+                };
+                Process.Start(startInfo);
             }
         }
     }
